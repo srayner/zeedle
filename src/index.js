@@ -5,12 +5,25 @@ import styled from "styled-components";
 import "@atlaskit/css-reset";
 import initialData from "./initial-data";
 import Column from "./column";
+import "./index.css";
+
+const TitleBar = styled.div`
+  background-color: #205785;
+  padding: 8px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+`;
 
 const Container = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
   display: flex;
+`;
+
+const Board = styled.h2`
+  margin: 0;
+  padding: 8px;
+  color: white;
+  font-weight: 400;
 `;
 
 class InnerList extends React.PureComponent {
@@ -104,6 +117,8 @@ class App extends React.Component {
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
+        <TitleBar>Zeedle</TitleBar>
+        <Board>Task List</Board>
         <Droppable
           droppableId="all-columns"
           direction="horizontal"

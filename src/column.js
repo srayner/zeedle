@@ -5,9 +5,10 @@ import Task from "./task";
 
 const Container = styled.div`
   margin: 8px;
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  background-color: white;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  background-color: ${props => (props.isDragging ? "darkgray" : "#e2e4e6")};
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -18,6 +19,8 @@ const Title = styled.h3`
 `;
 
 const TaskList = styled.div`
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   padding: 8px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
@@ -45,8 +48,12 @@ class Column extends React.Component {
   render() {
     return (
       <Draggable draggableId={this.props.column.id} index={this.props.index}>
-        {provided => (
-          <Container {...provided.draggableProps} innerRef={provided.innerRef}>
+        {(provided, snapshot) => (
+          <Container
+            {...provided.draggableProps}
+            innerRef={provided.innerRef}
+            isDragging={snapshot.isDragging}
+          >
             <Title {...provided.dragHandleProps}>
               {this.props.column.title}
             </Title>
