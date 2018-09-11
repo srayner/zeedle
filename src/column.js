@@ -69,6 +69,7 @@ class Column extends React.Component {
                 </TaskList>
               )}
             </Droppable>
+            <span>Add new card...</span>
           </Container>
         )}
       </Draggable>

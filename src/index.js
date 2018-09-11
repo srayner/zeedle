@@ -5,6 +5,7 @@ import styled from "styled-components";
 import "@atlaskit/css-reset";
 import initialData from "./initial-data";
 import Column from "./column";
+import EditCard from "./Component/EditCard";
 import "./index.css";
 
 const TitleBar = styled.div`
@@ -144,6 +145,7 @@ class App extends React.Component {
             </Container>
           )}
         </Droppable>
+        <EditCard />
       </DragDropContext>
     );
   }

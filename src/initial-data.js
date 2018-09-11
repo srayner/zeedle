@@ -21,7 +21,8 @@ const initialData = {
       taskIds: []
     }
   },
-  columnOrder: ["column-1", "column-2", "column-3"]
+  columnOrder: ["column-1", "column-2", "column-3"],
+  editing: false
 };
 
 export default initialData;
