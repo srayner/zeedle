@@ -38,6 +38,10 @@ class InnerList extends React.PureComponent {
 class App extends React.Component {
   state = initialData;
 
+  onAddNewCardClick = () => {
+
+  }
+
   onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
     if (!destination) {
@@ -145,7 +149,7 @@ class App extends React.Component {
             </Container>
           )}
         </Droppable>
-        <EditCard />
+        <EditCard open={this.state.editing}/>
       </DragDropContext>
     );
   }
