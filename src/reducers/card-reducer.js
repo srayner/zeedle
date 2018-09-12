@@ -4,6 +4,14 @@ const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CARD_DRAG":
       return onDragEnd(state, action.payload);
+    case "CARD_ADD":
+      console.log("action fired", action.payload);
+      return {
+        ...state,
+        editing: true
+      };
+    case "CLOSE_MODAL":
+      return addCard(state, action.payload);
     default:
       return state;
   }
@@ -30,8 +38,7 @@ function onDragEnd(state, result) {
       ...state,
       columnOrder: newColumnOrder
     };
-    this.setState(newState);
-    return;
+    return newState;
   }
 
   const start = state.columns[source.droppableId];
@@ -82,6 +89,16 @@ function onDragEnd(state, result) {
     }
   };
 
+  return newState;
+}
+
+function addCard(state, column) {
+  const newTask = { id: "task-4", content: "new card" };
+  const newTasks = { ...state.tasks, [newTask.id]: newTask };
+  const newTaskIds = Array.from(column.taskIds).push(newTask.id);
+  const newColumn = { ...column, taskIds: newTaskIds };
+  const newColumns = { ...state.columns, [newColumn.id]: newColumn };
+  const newState = { ...state, tasks: newTasks, columns: newColumns };
   return newState;
 }
 

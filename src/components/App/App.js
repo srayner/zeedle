@@ -28,6 +28,7 @@ class InnerList extends React.PureComponent {
 
 class App extends React.Component {
   render() {
+    const modal = this.props.editing ? <CardDetail /> : null;
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
@@ -59,7 +60,7 @@ class App extends React.Component {
             )}
           </Droppable>
         </DragDropContext>
-        <CardDetail />
+        {modal}
       </div>
     );
   }
@@ -69,7 +70,8 @@ const mapStateToProps = state => {
   return {
     tasks: state.tasks,
     columns: state.columns,
-    columnOrder: state.columnOrder
+    columnOrder: state.columnOrder,
+    editing: state.editing
   };
 };
 

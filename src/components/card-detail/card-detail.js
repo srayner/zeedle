@@ -1,5 +1,7 @@
 import React from "react";
 import "./card-detail.css";
+import { closeModal } from "../../actions/card-actions";
+import { connect } from "react-redux";
 
 class EditCard extends React.Component {
   state = {
@@ -17,7 +19,9 @@ class EditCard extends React.Component {
     return (
       <div id="myModal" className="modal">
         <div className="modal-content">
-          <span className="close">&times;</span>
+          <span onClick={this.props.closeModal} className="close">
+            &times;
+          </span>
           <form>
             <span>Title</span>
             <input
@@ -44,4 +48,17 @@ class EditCard extends React.Component {
   }
 }
 
-export default EditCard;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: () => dispatch(closeModal())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditCard);
