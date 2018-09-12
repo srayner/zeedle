@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import rootReducers from "./root-reducers";
+import cardReducer from "./reducers/card-reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
 const store = createStore(
-  rootReducers,
+  cardReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 

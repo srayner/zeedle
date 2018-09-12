@@ -1,5 +1,5 @@
 import React from "react";
-import "./EditCard.css";
+import "./card-detail.css";
 
 class EditCard extends React.Component {
   state = {
