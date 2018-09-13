@@ -1,17 +1,46 @@
 import initialState from "../data/initial-data";
+const uuid1 = require("uuid/v1");
 
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CARD_DRAG":
+    case "CARD_DRAG": {
       return onDragEnd(state, action.payload);
-    case "CARD_ADD":
-      console.log("action fired", action.payload);
-      return {
-        ...state,
-        editing: true
+    }
+
+    case "START_ADD_TASK": {
+      const column = action.payload;
+      const newColumn = { ...column, addingTask: true };
+      const newColumns = { ...state.columns, [newColumn.id]: newColumn };
+      const newState = { ...state, columns: newColumns };
+      return newState;
+    }
+
+    case "END_ADD_TASK": {
+      const column = action.payload;
+      const id = uuid1();
+      const newTask = { id: id, content: column.newTaskContent };
+      const newTasks = { ...state.tasks, [id]: newTask };
+      const newTaskIds = [...column.taskIds, id];
+      const newColumn = { ...column, taskIds: newTaskIds, addingTask: false };
+      const newColumns = { ...state.columns, [newColumn.id]: newColumn };
+      const newState = { ...state, tasks: newTasks, columns: newColumns };
+      return newState;
+    }
+
+    case "UPDATE_NEW_TASK_CONTENT": {
+      const newColumn = {
+        ...action.payload.column,
+        newTaskContent: action.payload.content
       };
-    case "CLOSE_MODAL":
+      const newColumns = { ...state.columns, [newColumn.id]: newColumn };
+      const newState = { ...state, columns: newColumns };
+      return newState;
+    }
+
+    case "CLOSE_MODAL": {
       return addCard(state, action.payload);
+    }
+
     default:
       return state;
   }

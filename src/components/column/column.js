@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import Task from "../../components/task/task";
-import { addCard } from "../../actions/card-actions";
+import { startAddTask, endAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
+import NewTask from "../../components/task/new-task";
 
 const Container = styled.div`
   margin: 8px;
@@ -56,9 +57,24 @@ class InnerList extends React.Component {
 
 class Column extends React.Component {
   render() {
-    const myColumn = this.props.column;
+    const column = this.props.column;
+    const addTaskLink = (
+      <AddCardLink
+        onClick={() => {
+          this.props.startAddTask(column);
+        }}
+      >
+        Add new card...
+      </AddCardLink>
+    );
+
+    const addTask = column.addingTask ? (
+      <NewTask column={column} />
+    ) : (
+      addTaskLink
+    );
     return (
-      <Draggable draggableId={this.props.column.id} index={this.props.index}>
+      <Draggable draggableId={column.id} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
@@ -80,13 +96,7 @@ class Column extends React.Component {
                 </TaskList>
               )}
             </Droppable>
-            <AddCardLink
-              onClick={() => {
-                this.props.addCard(myColumn);
-              }}
-            >
-              Add new card...
-            </AddCardLink>
+            {addTask}
           </Container>
         )}
       </Draggable>
@@ -100,7 +110,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addCard: column => dispatch(addCard(column))
+    startAddTask: column => dispatch(startAddTask(column)),
+    endAddTask: column => dispatch(endAddTask(column))
   };
 };
 

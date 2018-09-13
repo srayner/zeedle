@@ -5,10 +5,24 @@ export function onDragEnd(result) {
   };
 }
 
-export function addCard(column) {
+export function startAddTask(column) {
   return {
-    type: "CARD_ADD",
+    type: "START_ADD_TASK",
     payload: column
+  };
+}
+
+export function endAddTask(column) {
+  return {
+    type: "END_ADD_TASK",
+    payload: column
+  };
+}
+
+export function updateNewTaskContent(column, content) {
+  return {
+    type: "UPDATE_NEW_TASK_CONTENT",
+    payload: { column, content }
   };
 }
 
