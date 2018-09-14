@@ -37,10 +37,6 @@ const cardReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case "CLOSE_MODAL": {
-      return addCard(state, action.payload);
-    }
-
     default:
       return state;
   }
@@ -118,16 +114,6 @@ function onDragEnd(state, result) {
     }
   };
 
-  return newState;
-}
-
-function addCard(state, column) {
-  const newTask = { id: "task-4", content: "new card" };
-  const newTasks = { ...state.tasks, [newTask.id]: newTask };
-  const newTaskIds = Array.from(column.taskIds).push(newTask.id);
-  const newColumn = { ...column, taskIds: newTaskIds };
-  const newColumns = { ...state.columns, [newColumn.id]: newColumn };
-  const newState = { ...state, tasks: newTasks, columns: newColumns };
   return newState;
 }
 
