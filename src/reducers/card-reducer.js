@@ -4,7 +4,18 @@ const uuid1 = require("uuid/v1");
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CARD_DRAG": {
-      return onDragEnd(state, action.payload);
+      const { destination, source, draggableId, type } = action.payload;
+      if (!destination) {
+        return state;
+      }
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        return state;
+      }
+
+      return onDragEnd(state, destination, source, draggableId, type);
     }
 
     case "START_ADD_TASK": {
@@ -42,19 +53,7 @@ const cardReducer = (state = initialState, action) => {
   }
 };
 
-function onDragEnd(state, result) {
-  const { destination, source, draggableId, type } = result;
-  if (!destination) {
-    return;
-  }
-
-  if (
-    destination.droppableId === source.droppableId &&
-    destination.index === source.index
-  ) {
-    return;
-  }
-
+function onDragEnd(state, destination, source, draggableId, type) {
   if (type === "column") {
     const newColumnOrder = Array.from(state.columnOrder);
     newColumnOrder.splice(source.index, 1);
