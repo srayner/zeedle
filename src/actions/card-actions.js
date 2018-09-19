@@ -1,3 +1,28 @@
+import api from "../data/api";
+
+export function loadData() {
+  return dispatch => {
+    dispatch(loadDataBegin());
+    return api.getTasks().then(response => {
+      console.log("response: " + response);
+      dispatch(loadDataEnd(response.data));
+    });
+  };
+}
+
+export function loadDataBegin() {
+  return {
+    type: "LOAD_DATA_BEGIN"
+  };
+}
+
+export function loadDataEnd(response) {
+  return {
+    type: "LOAD_DATA_END",
+    payload: response
+  };
+}
+
 export function onDragEnd(result) {
   return {
     type: "CARD_DRAG",

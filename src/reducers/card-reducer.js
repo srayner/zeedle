@@ -1,8 +1,41 @@
 import initialState from "../data/initial-data";
+
 const uuid1 = require("uuid/v1");
 
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LOAD_DATA_BEGIN": {
+      console.log("LOAD_DATA_BEGIN fired");
+      return state;
+    }
+
+    case "LOAD_DATA_END": {
+      const tasks = action.payload.reduce(function(acc, cur, i) {
+        cur.id = cur._id;
+        delete cur._id;
+        acc[cur.id] = cur;
+        return acc;
+      }, {});
+
+      const columns = {
+        "column-1": {
+          id: "column-1",
+          title: "To do",
+          taskIds: Object.keys(tasks),
+          addingTask: false,
+          newTaskContent: ""
+        }
+      };
+      const newState = {
+        ...state,
+        tasks: tasks,
+        columns: columns,
+        columnOrder: ["column-1"]
+      };
+
+      return newState;
+    }
+
     case "CARD_DRAG": {
       return onDragEnd(state, action.payload);
     }

@@ -1,3 +1,10 @@
+const emptyData = {
+  tasks: {},
+  columns: {},
+  columnOrder: [],
+  editing: false
+};
+
 const initialData = {
   tasks: {
     "task-1": { id: "task-1", content: "Take out the trash" },
@@ -31,4 +38,4 @@ const initialData = {
   editing: false
 };
 
-export default initialData;
+export default emptyData;
