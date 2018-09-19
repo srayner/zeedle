@@ -1,5 +1,5 @@
 import React from "react";
-import { onDragEnd } from "../../actions/card-actions";
+import { loadData, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Column from "../../components/column/column";
@@ -27,6 +27,10 @@ class InnerList extends React.PureComponent {
 }
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.loadData();
+  }
+
   render() {
     const modal = this.props.editing ? <CardDetail /> : null;
     return (
@@ -77,6 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadData: () => dispatch(loadData()),
     onDragEnd: result => dispatch(onDragEnd(result))
   };
 };
