@@ -37,7 +37,18 @@ const cardReducer = (state = initialState, action) => {
     }
 
     case "CARD_DRAG": {
-      return onDragEnd(state, action.payload);
+      const { destination, source, draggableId, type } = action.payload;
+      if (!destination) {
+        return state;
+      }
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        return state;
+      }
+
+      return onDragEnd(state, destination, source, draggableId, type);
     }
 
     case "START_ADD_TASK": {
@@ -70,28 +81,12 @@ const cardReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case "CLOSE_MODAL": {
-      return addCard(state, action.payload);
-    }
-
     default:
       return state;
   }
 };
 
-function onDragEnd(state, result) {
-  const { destination, source, draggableId, type } = result;
-  if (!destination) {
-    return;
-  }
-
-  if (
-    destination.droppableId === source.droppableId &&
-    destination.index === source.index
-  ) {
-    return;
-  }
-
+function onDragEnd(state, destination, source, draggableId, type) {
   if (type === "column") {
     const newColumnOrder = Array.from(state.columnOrder);
     newColumnOrder.splice(source.index, 1);
@@ -151,16 +146,6 @@ function onDragEnd(state, result) {
     }
   };
 
-  return newState;
-}
-
-function addCard(state, column) {
-  const newTask = { id: "task-4", content: "new card" };
-  const newTasks = { ...state.tasks, [newTask.id]: newTask };
-  const newTaskIds = Array.from(column.taskIds).push(newTask.id);
-  const newColumn = { ...column, taskIds: newTaskIds };
-  const newColumns = { ...state.columns, [newColumn.id]: newColumn };
-  const newState = { ...state, tasks: newTasks, columns: newColumns };
   return newState;
 }
 
