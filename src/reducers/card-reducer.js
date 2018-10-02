@@ -10,27 +10,29 @@ const cardReducer = (state = initialState, action) => {
     }
 
     case "LOAD_DATA_END": {
-      const tasks = action.payload.reduce(function(acc, cur, i) {
+      const tasks = action.payload.tasks.reduce(function(acc, cur, i) {
         cur.id = cur._id;
         delete cur._id;
         acc[cur.id] = cur;
         return acc;
       }, {});
 
-      const columns = {
-        "column-1": {
-          id: "column-1",
-          title: "To do",
-          taskIds: Object.keys(tasks),
-          addingTask: false,
-          newTaskContent: ""
-        }
-      };
+      const columns = action.payload.columns.reduce(function(acc, cur, i) {
+        cur.id = cur._id;
+        delete cur._id;
+        cur.addingTask = false;
+        cur.newTaskContent = "";
+        cur.taskIds = [];
+        acc[cur.id] = cur;
+        return acc;
+      }, {});
+      columns["5ba40165b2cb4c2330fb7bcd"].taskIds = Object.keys(tasks);
+
       const newState = {
         ...state,
         tasks: tasks,
         columns: columns,
-        columnOrder: ["column-1"]
+        columnOrder: Object.keys(columns)
       };
 
       return newState;
@@ -60,11 +62,10 @@ const cardReducer = (state = initialState, action) => {
     }
 
     case "END_ADD_TASK": {
-      const column = action.payload;
-      const id = uuid1();
-      const newTask = { id: id, content: column.newTaskContent };
-      const newTasks = { ...state.tasks, [id]: newTask };
-      const newTaskIds = [...column.taskIds, id];
+      const column = action.column;
+      const newTask = action.newTask;
+      const newTasks = { ...state.tasks, [newTask.id]: newTask };
+      const newTaskIds = [...column.taskIds, newTask.id];
       const newColumn = { ...column, taskIds: newTaskIds, addingTask: false };
       const newColumns = { ...state.columns, [newColumn.id]: newColumn };
       const newState = { ...state, tasks: newTasks, columns: newColumns };

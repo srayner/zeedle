@@ -3,10 +3,18 @@ import api from "../data/api";
 export function loadData() {
   return dispatch => {
     dispatch(loadDataBegin());
-    return api.getTasks().then(response => {
-      console.log("response: " + response);
-      dispatch(loadDataEnd(response.data));
+    return myFunction().then(data => {
+      dispatch(loadDataEnd(data));
     });
+  };
+}
+
+async function myFunction() {
+  let tasks = await api.getTasks();
+  let columns = await api.getColumns();
+  return {
+    tasks: tasks.data,
+    columns: columns.data
   };
 }
 
@@ -38,9 +46,17 @@ export function startAddTask(column) {
 }
 
 export function endAddTask(column) {
-  return {
-    type: "END_ADD_TASK",
-    payload: column
+  return dispatch => {
+    return api.addTask(column.newTaskContent).then(response => {
+      const newTask = response.data;
+      newTask.id = newTask._id;
+      delete newTask._id;
+      return dispatch({
+        type: "END_ADD_TASK",
+        column: column,
+        newTask: newTask
+      });
+    });
   };
 }
 

@@ -11,6 +11,30 @@ class Api {
       }
     });
   }
+
+  addTask(title) {
+    return axios.post(
+      this.baseUri + "/tasks",
+      {
+        title: title
+      },
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+  }
+
+  getColumns() {
+    return axios.get(this.baseUri + "/columns", {
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
 }
 
 const api = new Api();
