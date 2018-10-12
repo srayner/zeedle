@@ -1,15 +1,16 @@
 import api from "../data/api";
+import { addTask, removeTask, moveTask } from "../data/list.js";
 
 export function loadData() {
   return dispatch => {
     dispatch(loadDataBegin());
-    return myFunction().then(data => {
+    return getBoardData().then(data => {
       dispatch(loadDataEnd(data));
     });
   };
 }
 
-async function myFunction() {
+async function getBoardData() {
   let tasks = await api.getTasks();
   let columns = await api.getColumns();
   return {
@@ -31,10 +32,56 @@ export function loadDataEnd(response) {
   };
 }
 
-export function onDragEnd(result) {
-  return {
-    type: "CARD_DRAG",
-    payload: result
+export function onDragEnd({ destination, source, draggableId, type }) {
+  return (dispatch, getState) => {
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    const state = getState();
+
+    if (type == "column") {
+      // update backend via api
+      // dispatch COLUMN_DRAG
+      return;
+    }
+
+    const start = state.columns[source.droppableId];
+    const finish = state.columns[destination.droppableId];
+    if (start === finish) {
+      const newColumn = moveTask(
+        start,
+        source.index,
+        destination.index,
+        draggableId
+      );
+      api.updateColumn(newColumn).then(() => {
+        dispatch({ type: "TASK_DRAG", source, destination, draggableId });
+      });
+      return;
+    }
+
+    const newStart = removeTask(start, source.index);
+    const newFinish = addTask(finish, finish.index, draggableId);
+
+    api
+      .updateColumn(newStart)
+      .then(() => {
+        api.updateColumn(newFinish);
+      })
+      .then(() => {
+        dispatch({
+          type: "TASK_DRAG",
+          source: source,
+          destination: destination,
+          draggableId: draggableId
+        });
+      });
   };
 }
 

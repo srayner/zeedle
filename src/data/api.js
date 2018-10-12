@@ -35,6 +35,20 @@ class Api {
       }
     });
   }
+
+  updateColumn(column) {
+    const data = {
+      id: column.id,
+      title: column.title,
+      taskIds: column.taskIds
+    };
+    return axios.patch(this.baseUri + "/columns/" + column.id, data, {
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
 }
 
 const api = new Api();
