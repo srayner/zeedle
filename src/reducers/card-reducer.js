@@ -1,10 +1,9 @@
 import initialState from "../data/initial-data";
-import { addTask, removeTask, moveTask } from "../data/list.js";
+import { moveColumn } from "../data/board";
 
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_DATA_BEGIN": {
-      console.log("LOAD_DATA_BEGIN fired");
       return state;
     }
 
@@ -35,25 +34,38 @@ const cardReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case "COLUMN_DRAG": {
-      const { source, destination, draggableId } = action;
-      const newColumnOrder = Array.from(state.columnOrder);
-      newColumnOrder.splice(source.index, 1);
-      newColumnOrder.splice(destination.index, 0, draggableId);
-      const newState = {
-        ...state,
-        columnOrder: newColumnOrder
-      };
+    case "COLUMN_MOVED": {
+      const { source, destination, draggableId } = action.payload;
+      const newState = moveColumn(
+        state,
+        source.index,
+        destination.index,
+        draggableId
+      );
       return newState;
     }
 
-    case "TASK_DRAG": {
-      return onDragTask(
-        state,
-        action.destination,
-        action.source,
-        action.draggableId
-      );
+    case "COLUMN_UPDATED": {
+      const column = action.payload.column;
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [column.id]: column
+        }
+      };
+    }
+
+    case "COLUMNS_UPDATED": {
+      const { sourceColumn, destinationColumn } = action.payload;
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [sourceColumn.id]: sourceColumn,
+          [destinationColumn.id]: destinationColumn
+        }
+      };
     }
 
     case "START_ADD_TASK": {
@@ -89,41 +101,5 @@ const cardReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-function onDragTask(state, destination, source, draggableId) {
-  const start = state.columns[source.droppableId];
-  const finish = state.columns[destination.droppableId];
-  if (start === finish) {
-    const newColumn = moveTask(
-      start,
-      source.index,
-      destination.index,
-      draggableId
-    );
-
-    const newState = {
-      ...state,
-      columns: {
-        ...state.columns,
-        [newColumn.id]: newColumn
-      }
-    };
-
-    return newState;
-  }
-
-  // moving from one column to another
-  const newStart = removeTask(start, source.index);
-  const newFinish = addTask(finish, finish.index, draggableId);
-  const newState = {
-    ...state,
-    columns: {
-      ...state.columns,
-      [newStart.id]: newStart,
-      [newFinish.id]: newFinish
-    }
-  };
-  return newState;
-}
 
 export default cardReducer;

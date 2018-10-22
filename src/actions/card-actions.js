@@ -4,7 +4,7 @@ import { addTask, removeTask, moveTask } from "../data/list.js";
 export function loadData() {
   return dispatch => {
     dispatch(loadDataBegin());
-    return getBoardData().then(data => {
+    getBoardData().then(data => {
       dispatch(loadDataEnd(data));
     });
   };
@@ -45,41 +45,48 @@ export function onDragEnd({ destination, source, draggableId, type }) {
     }
     const state = getState();
 
-    if (type == "column") {
-      // update backend via api
-      // dispatch COLUMN_DRAG
+    if (type === "column") {
+      // TODO: update backend via api
+      dispatch({
+        type: "COLUMN_MOVED",
+        payload: {
+          source,
+          destination,
+          draggableId
+        }
+      });
       return;
     }
 
     const start = state.columns[source.droppableId];
     const finish = state.columns[destination.droppableId];
     if (start === finish) {
-      const newColumn = moveTask(
+      const column = moveTask(
         start,
         source.index,
         destination.index,
         draggableId
       );
-      api.updateColumn(newColumn).then(() => {
-        dispatch({ type: "TASK_DRAG", source, destination, draggableId });
+      api.updateColumn(column).then(() => {
+        dispatch({
+          type: "COLUMN_UPDATED",
+          payload: { column }
+        });
       });
       return;
     }
 
-    const newStart = removeTask(start, source.index);
-    const newFinish = addTask(finish, finish.index, draggableId);
-
+    const sourceColumn = removeTask(start, source.index);
+    const destinationColumn = addTask(finish, destination.index, draggableId);
     api
-      .updateColumn(newStart)
+      .updateColumn(sourceColumn)
       .then(() => {
-        api.updateColumn(newFinish);
+        api.updateColumn(destinationColumn);
       })
       .then(() => {
         dispatch({
-          type: "TASK_DRAG",
-          source: source,
-          destination: destination,
-          draggableId: draggableId
+          type: "COLUMNS_UPDATED",
+          payload: { sourceColumn, destinationColumn }
         });
       });
   };
