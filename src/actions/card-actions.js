@@ -105,10 +105,14 @@ export function endAddTask(column) {
       const newTask = response.data;
       newTask.id = newTask._id;
       delete newTask._id;
-      return dispatch({
-        type: "END_ADD_TASK",
-        column: column,
-        newTask: newTask
+
+      const updatedColumn = addTask(column, 0, newTask.id);
+      api.updateColumn(updatedColumn).then(response => {
+        return dispatch({
+          type: "END_ADD_TASK",
+          column: column,
+          newTask: newTask
+        });
       });
     });
   };
