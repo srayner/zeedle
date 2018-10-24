@@ -16,3 +16,8 @@ export function removeTask(list, index) {
   taskIds.splice(index, 1);
   return { ...list, taskIds };
 }
+
+export function appendTask(list, taskId) {
+  const taskIds = [...list.taskIds, taskId];
+  return { ...list, taskIds };
+}

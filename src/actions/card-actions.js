@@ -1,5 +1,5 @@
 import api from "../data/api";
-import { addTask, removeTask, moveTask } from "../data/list.js";
+import { addTask, removeTask, moveTask, appendTask } from "../data/list.js";
 
 export function loadData() {
   return dispatch => {
@@ -106,7 +106,7 @@ export function endAddTask(column) {
       newTask.id = newTask._id;
       delete newTask._id;
 
-      const updatedColumn = addTask(column, 0, newTask.id);
+      const updatedColumn = appendTask(column, newTask.id);
       api.updateColumn(updatedColumn).then(response => {
         return dispatch({
           type: "END_ADD_TASK",
