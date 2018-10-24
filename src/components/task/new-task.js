@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { updateNewTaskContent, endAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
+import { Button } from "antd";
+import { Input } from "antd";
+
+const { TextArea } = Input;
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -9,29 +13,27 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   background-color: ${props => (props.isDragging ? "lightgray" : "white")};
-  display: flex;
-`;
-
-const Input = styled.input`
-  border: none;
+  //display: flex;
 `;
 
 class NewTask extends React.Component {
   render() {
     return (
       <Container>
-        <Input
+        <TextArea
           onChange={event => {
             this.props.onChange(this.props.column, event.target.value);
           }}
         />
-        <button
+        <Button
+          block
+          type="primary"
           onClick={() => {
             this.props.onClose(this.props.column);
           }}
         >
           Add Task
-        </button>
+        </Button>
       </Container>
     );
   }
