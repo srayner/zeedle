@@ -21,12 +21,12 @@ class NewTask extends React.Component {
     return (
       <Container>
         <TextArea
+          style={{ marginBottom: 10 }}
           onChange={event => {
             this.props.onChange(this.props.column, event.target.value);
           }}
         />
         <Button
-          block
           type="primary"
           onClick={() => {
             this.props.onClose(this.props.column);

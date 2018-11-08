@@ -5,6 +5,7 @@ import Task from "../../components/task/task";
 import { startAddTask, endAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
 import NewTask from "../../components/task/new-task";
+import ColumnHeader from "./column-header.js";
 
 const Container = styled.div`
   margin: 8px;
@@ -17,14 +18,10 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h3`
-  padding: 8px;
-`;
-
 const TaskList = styled.div`
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
     props.isDraggingOver ? "lightgreen" : "inherit"};
@@ -81,9 +78,11 @@ class Column extends React.Component {
             innerRef={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <Title {...provided.dragHandleProps}>
-              {this.props.column.title}
-            </Title>
+            <ColumnHeader
+              {...provided.dragHandleProps}
+              title={this.props.column.title}
+            />
+
             <Droppable droppableId={this.props.column.id} type="task">
               {(provided, snapshot) => (
                 <TaskList
