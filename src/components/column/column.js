@@ -8,7 +8,7 @@ import NewTask from "../../components/task/new-task";
 import ColumnHeader from "./column-header.js";
 
 const Container = styled.div`
-  margin: 8px;
+  margin: 0 8px;
   border: none;
   border-radius: 3px;
   transition: background-color 0.2s ease;
@@ -21,7 +21,7 @@ const Container = styled.div`
 const TaskList = styled.div`
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  padding: 0 8px 8px 8px;
+  padding: 0 8px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
     props.isDraggingOver ? "lightgreen" : "inherit"};
