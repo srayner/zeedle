@@ -13,7 +13,7 @@ const Container = styled.div`
   border-radius: 3px;
   transition: background-color 0.2s ease;
   background-color: ${props => (props.isDragging ? "darkgray" : "#e2e4e6")};
-  width: 200px;
+  width: 250px;
   display: flex;
   flex-direction: column;
 `;
