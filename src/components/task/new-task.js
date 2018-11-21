@@ -2,17 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { updateNewTaskContent, endAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
-import { Button } from "antd";
-import { Input } from "antd";
+import Button from "../button";
 
-const { TextArea } = Input;
+const TextArea = styled.textarea`
+  margin-bottom: 10px;
+`;
 
 const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: ${props => (props.isDragging ? "lightgray" : "white")};
+  background-color: "lightgray";
   //display: flex;
 `;
 
@@ -21,7 +22,6 @@ class NewTask extends React.Component {
     return (
       <Container>
         <TextArea
-          style={{ marginBottom: 10 }}
           onChange={event => {
             this.props.onChange(this.props.column, event.target.value);
           }}

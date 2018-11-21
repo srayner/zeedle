@@ -6,7 +6,6 @@ import Column from "../../components/column/column";
 import CardDetail from "../../components/card-detail/card-detail";
 import TitleBar from "../../components/title-bar/title-bar";
 import { connect } from "react-redux";
-import "antd/dist/antd.css";
 
 const Container = styled.div`
   display: flex;

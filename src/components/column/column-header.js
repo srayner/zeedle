@@ -15,11 +15,13 @@ const TextArea = styled.textarea`
   border-radius: 3px;
   box-shadow: none;
   font-weight: 700;
+  font-size: 14px;
   min-height: 20px;
   padding: 4px 7px;
   resize: none;
   max-height: 256px;
   width: 100%;
+  box-sizing: border-box;
 
   :focus {
     background: #fff;
