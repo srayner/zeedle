@@ -4,6 +4,10 @@ import { updateNewTaskContent, endAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
 import Button from "../button";
 
+// get our fontawesome imports
+import { faTimes, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const TextArea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
@@ -80,8 +84,12 @@ class NewTask extends React.Component {
           >
             Add Task
           </Button>
-          <CloseButton>X</CloseButton>
-          <MenuButton>...</MenuButton>
+          <CloseButton>
+            <FontAwesomeIcon icon={faTimes} />
+          </CloseButton>
+          <MenuButton>
+            <FontAwesomeIcon icon={faEllipsisH} />
+          </MenuButton>
         </ButtonContainer>
       </Container>
     );
