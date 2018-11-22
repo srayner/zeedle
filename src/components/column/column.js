@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 import NewTask from "../../components/task/new-task";
 import ColumnHeader from "./column-header.js";
 
+// get our fontawesome imports
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Container = styled.div`
   margin: 0 8px;
   border: none;
@@ -31,8 +35,9 @@ const TaskList = styled.div`
 
 const AddCardLink = styled.div`
   padding: 8px;
+  color: #777;
   &:hover {
-    color: red;
+    color: #111;
     cursor: pointer;
   }
 `;
@@ -61,7 +66,7 @@ class Column extends React.Component {
           this.props.startAddTask(column);
         }}
       >
-        Add new card...
+        <FontAwesomeIcon icon={faPlus} /> Add new task...
       </AddCardLink>
     );
 
