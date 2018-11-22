@@ -99,6 +99,13 @@ export function startAddTask(column) {
   };
 }
 
+export function cancelAddTask(column) {
+  return {
+    type: "CANCEL_ADD_TASK",
+    payload: column
+  };
+}
+
 export function endAddTask(column) {
   return dispatch => {
     return api.addTask(column.newTaskContent).then(response => {

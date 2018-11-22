@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { updateNewTaskContent, endAddTask } from "../../actions/card-actions";
+import {
+  updateNewTaskContent,
+  cancelAddTask,
+  endAddTask
+} from "../../actions/card-actions";
 import { connect } from "react-redux";
 import Button from "../button";
 
@@ -100,12 +104,16 @@ class NewTask extends React.Component {
           <Button
             type="primary"
             onClick={() => {
-              this.props.onClose(this.props.column);
+              this.props.onSubmit(this.props.column);
             }}
           >
             Add Task
           </Button>
-          <CloseButton>
+          <CloseButton
+            onClick={() => {
+              this.props.onCancel(this.props.column);
+            }}
+          >
             <FontAwesomeIcon icon={faTimes} />
           </CloseButton>
           <MenuButton>
@@ -125,7 +133,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onChange: (column, content) =>
       dispatch(updateNewTaskContent(column, content)),
-    onClose: column => dispatch(endAddTask(column))
+    onCancel: column => dispatch(cancelAddTask(column)),
+    onSubmit: column => dispatch(endAddTask(column))
   };
 };
 

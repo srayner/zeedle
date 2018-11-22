@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import Task from "../../components/task/task";
-import { startAddTask, endAddTask } from "../../actions/card-actions";
+import { startAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
 import NewTask from "../../components/task/new-task";
 import ColumnHeader from "./column-header.js";
@@ -109,8 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startAddTask: column => dispatch(startAddTask(column)),
-    endAddTask: column => dispatch(endAddTask(column))
+    startAddTask: column => dispatch(startAddTask(column))
   };
 };
 

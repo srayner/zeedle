@@ -76,6 +76,14 @@ const cardReducer = (state = initialState, action) => {
       return newState;
     }
 
+    case "CANCEL_ADD_TASK": {
+      const column = action.payload;
+      const newColumn = { ...column, addingTask: false };
+      const newColumns = { ...state.columns, [newColumn.id]: newColumn };
+      const newState = { ...state, columns: newColumns };
+      return newState;
+    }
+
     case "END_ADD_TASK": {
       const column = action.column;
       const newTask = action.newTask;
