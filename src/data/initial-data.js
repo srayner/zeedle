@@ -1,4 +1,5 @@
 const emptyData = {
+  showModal: false,
   tasks: {},
   columns: {},
   columnOrder: [],

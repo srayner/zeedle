@@ -3,6 +3,14 @@ import { moveColumn } from "../data/board";
 
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "TASK_MODAL_SHOW": {
+      return { ...state, showModal: true };
+    }
+
+    case "TASK_MODAL_HIDE": {
+      return { ...state, showModal: false };
+    }
+
     case "LOAD_DATA_BEGIN": {
       return state;
     }

@@ -1,6 +1,18 @@
 import api from "../data/api";
 import { addTask, removeTask, moveTask, appendTask } from "../data/list.js";
 
+export function showModal() {
+  return {
+    type: "TASK_MODAL_SHOW"
+  };
+}
+
+export function hideModal() {
+  return {
+    type: "TASK_MODAL_HIDE"
+  };
+}
+
 export function loadData() {
   return dispatch => {
     dispatch(loadDataBegin());
@@ -122,6 +134,14 @@ export function endAddTask(column) {
         });
       });
     });
+  };
+}
+
+export function startEditTask(task) {
+  console.log("edit task");
+  return {
+    type: "TASK_MODAL_SHOW",
+    payload: task
   };
 }
 

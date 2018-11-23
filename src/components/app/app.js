@@ -1,11 +1,12 @@
 import React from "react";
-import { loadData, onDragEnd } from "../../actions/card-actions";
+import { hideModal, loadData, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Column from "../../components/column/column";
-import CardDetail from "../../components/card-detail/card-detail";
+//import CardDetail from "../../components/card-detail/card-detail";
 import TitleBar from "../../components/title-bar/title-bar";
 import { connect } from "react-redux";
+import Modal from "../../components/modal/modal";
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +33,6 @@ class App extends React.Component {
   }
 
   render() {
-    const modal = this.props.editing ? <CardDetail /> : null;
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
@@ -64,7 +64,6 @@ class App extends React.Component {
             )}
           </Droppable>
         </DragDropContext>
-        {modal}
       </div>
     );
   }
@@ -72,6 +71,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    showModal: state.showModal,
     tasks: state.tasks,
     columns: state.columns,
     columnOrder: state.columnOrder,
@@ -81,6 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    hideModal: () => dispatch(hideModal()),
     loadData: () => dispatch(loadData()),
     onDragEnd: result => dispatch(onDragEnd(result))
   };
