@@ -1,6 +1,12 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { startEditTask } from "../../actions/card-actions";
+import { connect } from "react-redux";
+
+const clickHandler = () => {
+  console.log("click fired");
+};
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -21,6 +27,9 @@ class Task extends React.Component {
             {...provided.dragHandleProps}
             innerRef={provided.innerRef}
             isDragging={snapshot.isDragging}
+            onClick={() => {
+              this.props.clickHandler(this.props.task);
+            }}
           >
             {this.props.task.title}
           </Container>
@@ -30,4 +39,17 @@ class Task extends React.Component {
   }
 }
 
-export default Task;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clickHandler: task => dispatch(startEditTask(task))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Task);

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import Task from "../../components/task/task";
-import { startAddTask, startEditTask } from "../../actions/card-actions";
+import { startAddTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
 import NewTask from "../../components/task/new-task";
 import ColumnHeader from "./column-header.js";
@@ -52,14 +52,7 @@ class InnerList extends React.Component {
 
   render() {
     return this.props.tasks.map((task, index) => (
-      <Task
-        onClick={() => {
-          this.props.startEditTask(task);
-        }}
-        key={task.id}
-        task={task}
-        index={index}
-      />
+      <Task key={task.id} task={task} index={index} />
     ));
   }
 }
@@ -121,8 +114,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startAddTask: column => dispatch(startAddTask(column)),
-    startEditTask: task => dispatch(startEditTask(task))
+    startAddTask: column => dispatch(startAddTask(column))
   };
 };
 
