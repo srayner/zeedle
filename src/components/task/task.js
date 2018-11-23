@@ -4,10 +4,6 @@ import styled from "styled-components";
 import { startEditTask } from "../../actions/card-actions";
 import { connect } from "react-redux";
 
-const clickHandler = () => {
-  console.log("click fired");
-};
-
 const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;

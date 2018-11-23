@@ -33,6 +33,10 @@ class App extends React.Component {
   }
 
   render() {
+    const modal = this.props.showModal ? (
+      <Modal handleClose={this.props.hideModal} />
+    ) : null;
+
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
@@ -64,6 +68,7 @@ class App extends React.Component {
             )}
           </Droppable>
         </DragDropContext>
+        {modal}
       </div>
     );
   }
