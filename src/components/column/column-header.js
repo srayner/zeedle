@@ -34,7 +34,7 @@ class ColumnHeader extends React.Component {
   render() {
     return (
       <Container>
-        <TextArea>{this.props.title}</TextArea>
+        <TextArea value={this.props.title} readOnly />
       </Container>
     );
   }

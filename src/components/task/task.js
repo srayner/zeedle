@@ -1,8 +1,10 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { startEditTask } from "../../actions/card-actions";
+import { openTaskDetail, closeTaskDetail } from "../../actions/card-actions";
 import { connect } from "react-redux";
+import Modal from "../../components/modal/modal";
+import TaskDetail from "./task-detail";
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -15,33 +17,47 @@ const Container = styled.div`
 
 class Task extends React.Component {
   render() {
+    const modal =
+      this.props.editingTaskId === this.props.task.id ? (
+        <Modal handleClose={this.props.closeHandler}>
+          <TaskDetail task={this.props.task} column={this.props.column} />
+        </Modal>
+      ) : null;
+
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
-        {(provided, snapshot) => (
-          <Container
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            innerRef={provided.innerRef}
-            isDragging={snapshot.isDragging}
-            onClick={() => {
-              this.props.clickHandler(this.props.task);
-            }}
-          >
-            {this.props.task.title}
-          </Container>
-        )}
-      </Draggable>
+      <React.Fragment>
+        <Draggable draggableId={this.props.task.id} index={this.props.index}>
+          {(provided, snapshot) => (
+            <Container
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              innerRef={provided.innerRef}
+              isDragging={snapshot.isDragging}
+              onClick={() => {
+                this.props.clickHandler(this.props.task.id);
+              }}
+            >
+              {this.props.task.title}
+            </Container>
+          )}
+        </Draggable>
+
+        {modal}
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    editingTaskId: state.editingTaskId
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    clickHandler: task => dispatch(startEditTask(task))
+    closeHandler: () => dispatch(closeTaskDetail()),
+    clickHandler: taskId => dispatch(openTaskDetail(taskId))
   };
 };
 

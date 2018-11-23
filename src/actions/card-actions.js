@@ -137,24 +137,22 @@ export function endAddTask(column) {
   };
 }
 
-export function startEditTask(task) {
-  console.log("edit task");
+export function openTaskDetail(taskId) {
   return {
-    type: "TASK_MODAL_SHOW",
-    payload: task
+    type: "OPEN_TASK_DETAIL",
+    payload: taskId
   };
 }
 
+export function closeTaskDetail() {
+  return {
+    type: "CLOSE_TASK_DETAIL",
+    payload: null
+  };
+}
 export function updateNewTaskContent(column, content) {
   return {
     type: "UPDATE_NEW_TASK_CONTENT",
     payload: { column, content }
-  };
-}
-
-export function closeModal() {
-  return {
-    type: "CLOSE_MODAL",
-    payload: null
   };
 }

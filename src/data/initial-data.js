@@ -1,5 +1,5 @@
 const emptyData = {
-  showModal: false,
+  editingTaskId: null,
   tasks: {},
   columns: {},
   columnOrder: [],

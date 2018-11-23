@@ -3,10 +3,8 @@ import { hideModal, loadData, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Column from "../../components/column/column";
-//import CardDetail from "../../components/card-detail/card-detail";
 import TitleBar from "../../components/title-bar/title-bar";
 import { connect } from "react-redux";
-import Modal from "../../components/modal/modal";
 
 const Container = styled.div`
   display: flex;
@@ -33,14 +31,10 @@ class App extends React.Component {
   }
 
   render() {
-    const modal = this.props.showModal ? (
-      <Modal handleClose={this.props.hideModal} />
-    ) : null;
-
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
-          <TitleBar>Zeedle</TitleBar>
+          <TitleBar>zeedle</TitleBar>
           <Board>Task List</Board>
           <Droppable
             droppableId="all-columns"
@@ -68,7 +62,6 @@ class App extends React.Component {
             )}
           </Droppable>
         </DragDropContext>
-        {modal}
       </div>
     );
   }
@@ -76,7 +69,6 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    showModal: state.showModal,
     tasks: state.tasks,
     columns: state.columns,
     columnOrder: state.columnOrder,

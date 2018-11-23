@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton } from "../button";
+import { LargeCloseButton } from "../button";
 
 // get our fontawesome imports
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -20,20 +20,22 @@ const Container = styled.div`
 `;
 
 const Content = styled.section`
-  background-color: #fefefe;
+  background-color: #e2e4e6;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  border-radius: 6px;
+  width: 70%;
+  position: relative;
 `;
 
 const modal = ({ handleClose, children }) => {
   return (
     <Container>
       <Content>
-        <CloseButton onClick={handleClose}>
+        <LargeCloseButton onClick={handleClose}>
           <FontAwesomeIcon icon={faTimes} />
-        </CloseButton>
+        </LargeCloseButton>
 
         {children}
       </Content>
