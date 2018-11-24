@@ -1,5 +1,6 @@
 import React from "react";
-import { hideModal, loadData, onDragEnd } from "../../actions/card-actions";
+import { loadData } from "../../actions/board";
+import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import BoardTitle from "../board/board-title";

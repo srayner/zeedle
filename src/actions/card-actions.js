@@ -13,37 +13,6 @@ export function hideModal() {
   };
 }
 
-export function loadData() {
-  return dispatch => {
-    dispatch(loadDataBegin());
-    getBoardData().then(data => {
-      dispatch(loadDataEnd(data));
-    });
-  };
-}
-
-async function getBoardData() {
-  let tasks = await api.getTasks();
-  let columns = await api.getColumns();
-  return {
-    tasks: tasks.data,
-    columns: columns.data
-  };
-}
-
-export function loadDataBegin() {
-  return {
-    type: "LOAD_DATA_BEGIN"
-  };
-}
-
-export function loadDataEnd(response) {
-  return {
-    type: "LOAD_DATA_END",
-    payload: response
-  };
-}
-
 export function onDragEnd({ destination, source, draggableId, type }) {
   return (dispatch, getState) => {
     if (!destination) {
