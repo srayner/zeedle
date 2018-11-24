@@ -2,19 +2,13 @@ import React from "react";
 import { hideModal, loadData, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import Column from "../../components/column/column";
-import TitleBar from "../../components/title-bar/title-bar";
+import BoardTitle from "../board/board-title";
+import Column from "../column/column";
+import TitleBar from "./title-bar";
 import { connect } from "react-redux";
 
 const Container = styled.div`
   display: flex;
-`;
-
-const Board = styled.h2`
-  margin: 0;
-  padding: 8px;
-  color: white;
-  font-weight: 400;
 `;
 
 class InnerList extends React.PureComponent {
@@ -35,7 +29,7 @@ class App extends React.Component {
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
           <TitleBar>zeedle</TitleBar>
-          <Board>Task List</Board>
+          <BoardTitle>Task List</BoardTitle>
           <Droppable
             droppableId="all-columns"
             direction="horizontal"

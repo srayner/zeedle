@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { openTaskDetail, closeTaskDetail } from "../../actions/card-actions";
 import { connect } from "react-redux";
-import Modal from "../../components/modal/modal";
+import Modal from "../ui/modal";
 import TaskDetail from "./task-detail";
 
 const Container = styled.div`

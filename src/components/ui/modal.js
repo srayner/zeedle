@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { LargeCloseButton } from "../button";
+import { LargeCloseButton } from "./button";
 
 // get our fontawesome imports
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
