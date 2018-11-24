@@ -50,7 +50,7 @@ class Task extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    editingTaskId: state.editingTaskId
+    editingTaskId: state.board.editingTaskId
   };
 };
 

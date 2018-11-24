@@ -1,11 +1,13 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import cardReducer from "./reducers/card-reducer";
+import board from "./reducers/board";
+import columns from "./reducers/columns";
+import tasks from "./reducers/tasks";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
-
+const rootReducer = combineReducers({ board, columns, tasks });
 const store = createStore(
-  cardReducer,
+  rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 

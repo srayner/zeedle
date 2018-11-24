@@ -65,8 +65,7 @@ const mapStateToProps = state => {
   return {
     tasks: state.tasks,
     columns: state.columns,
-    columnOrder: state.columnOrder,
-    editing: state.editing
+    columnOrder: state.board.columnOrder
   };
 };
 
