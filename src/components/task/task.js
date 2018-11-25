@@ -5,6 +5,12 @@ import { openTaskDetail, closeTaskDetail } from "../../actions/card-actions";
 import { connect } from "react-redux";
 import Modal from "../ui/modal";
 import TaskDetail from "./task-detail";
+import ButtonList from "../ui/button-list";
+import {
+  faArrowRight,
+  faCopy,
+  faTrashAlt
+} from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -15,12 +21,26 @@ const Container = styled.div`
   display: flex;
 `;
 
+const actionButtons = [
+  { caption: "Move", icon: faArrowRight },
+  { caption: "Copy", icon: faCopy },
+  { caption: "Delete", icon: faTrashAlt }
+];
+
+const ModalContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
 class Task extends React.Component {
   render() {
     const modal =
       this.props.editingTaskId === this.props.task.id ? (
         <Modal handleClose={this.props.closeHandler}>
-          <TaskDetail task={this.props.task} column={this.props.column} />
+          <ModalContainer>
+            <TaskDetail task={this.props.task} column={this.props.column} />
+            <ButtonList title="Actions" buttons={actionButtons} />
+          </ModalContainer>
         </Modal>
       ) : null;
 

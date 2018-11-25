@@ -5,12 +5,19 @@ import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
 const Container = styled.div`
   color: #777;
   font-size: 20px;
   margin: 0;
   margin-bottom: 20px;
   display: flex;
+  flex-grow: 1;
 `;
 
 const Wrap = styled.div`
@@ -38,7 +45,7 @@ const Description = styled.span`
 class TaskDetail extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <Wrapper>
         <Container>
           <FontAwesomeIcon icon={faFile} />
           <Wrap>
@@ -52,7 +59,7 @@ class TaskDetail extends React.Component {
             <Description>{this.props.task.description}</Description>
           </Wrap>
         </Container>
-      </React.Fragment>
+      </Wrapper>
     );
   }
 }

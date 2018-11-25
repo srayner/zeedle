@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.section`
-  background-color: #e2e4e6;
+  background-color: #ebeef0;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
