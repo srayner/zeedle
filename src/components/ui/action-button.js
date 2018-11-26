@@ -12,8 +12,9 @@ const Button = styled.a`
   text-decoration: none;
   box-shadow: 0 1px 0 0 #c2ccd1;
   transition-property: background-color, border-color, box-shadow;
-  transition-delay: 85ms;
+  transition-duration: 85ms;
   transition-timing-function: ease;
+  cursor: pointer;
 
   :hover {
     color: #092d42;
