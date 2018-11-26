@@ -106,6 +106,21 @@ export function endAddTask(column) {
   };
 }
 
+export function deleteTask(column, index) {
+  return dispatch => {
+    const taskId = column.taskIds[index];
+    return api.deleteTask(taskId).then(response => {
+      const updatedColumn = removeTask(column, index);
+      api.updateColumn(updatedColumn).then(response => {
+        return dispatch({
+          type: "TASK_DELETE",
+          payload: { column: updatedColumn, taskId: taskId }
+        });
+      });
+    });
+  };
+}
+
 export function openTaskDetail(taskId) {
   return {
     type: "OPEN_TASK_DETAIL",

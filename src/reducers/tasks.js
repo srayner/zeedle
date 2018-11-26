@@ -15,6 +15,11 @@ const tasks = (state = {}, action) => {
       const newTask = action.newTask;
       return { ...state, [newTask.id]: newTask };
     }
+    case "TASK_DELETE": {
+      const key = action.payload.taskId;
+      const { [key]: value, ...newState } = state;
+      return newState;
+    }
     default:
       return state;
   }

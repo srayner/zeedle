@@ -17,7 +17,12 @@ class ButtonList extends React.Component {
   render() {
     const innerList = this.props.buttons.map((button, index) => {
       return (
-        <ActionButton key={index} caption={button.caption} icon={button.icon}>
+        <ActionButton
+          key={index}
+          caption={button.caption}
+          icon={button.icon}
+          clickHandler={button.clickHandler}
+        >
           {button.caption}
         </ActionButton>
       );

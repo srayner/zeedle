@@ -1,7 +1,11 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { openTaskDetail, closeTaskDetail } from "../../actions/card-actions";
+import {
+  openTaskDetail,
+  closeTaskDetail,
+  deleteTask
+} from "../../actions/card-actions";
 import { connect } from "react-redux";
 import Modal from "../ui/modal";
 import TaskDetail from "./task-detail";
@@ -21,12 +25,6 @@ const Container = styled.div`
   display: flex;
 `;
 
-const actionButtons = [
-  { caption: "Move", icon: faArrowRight },
-  { caption: "Copy", icon: faCopy },
-  { caption: "Delete", icon: faTrashAlt }
-];
-
 const ModalContainer = styled.div`
   display: flex;
   margin-top: 10px;
@@ -34,6 +32,18 @@ const ModalContainer = styled.div`
 
 class Task extends React.Component {
   render() {
+    const actionButtons = [
+      { caption: "Move", icon: faArrowRight },
+      { caption: "Copy", icon: faCopy },
+      {
+        caption: "Delete",
+        icon: faTrashAlt,
+        clickHandler: () => {
+          this.props.deleteHandler(this.props.column, this.props.index);
+        }
+      }
+    ];
+
     const modal =
       this.props.editingTaskId === this.props.task.id ? (
         <Modal handleClose={this.props.closeHandler}>
@@ -77,7 +87,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     closeHandler: () => dispatch(closeTaskDetail()),
-    clickHandler: taskId => dispatch(openTaskDetail(taskId))
+    clickHandler: taskId => dispatch(openTaskDetail(taskId)),
+    deleteHandler: (column, index) => dispatch(deleteTask(column, index))
   };
 };
 

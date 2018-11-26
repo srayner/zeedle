@@ -27,6 +27,15 @@ class Api {
     );
   }
 
+  deleteTask(id) {
+    return axios.delete(this.baseUri + "/tasks/" + id, {
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
   getColumns() {
     return axios.get(this.baseUri + "/columns", {
       mode: "no-cors",

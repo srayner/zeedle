@@ -32,7 +32,7 @@ const Caption = styled.span`
 
 const ActionButton = props => {
   return (
-    <Button>
+    <Button onClick={props.clickHandler}>
       <FontAwesomeIcon icon={props.icon} />
       <Caption>{props.caption}</Caption>
     </Button>

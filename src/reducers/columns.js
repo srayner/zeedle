@@ -49,6 +49,10 @@ const columns = (state = {}, action) => {
       };
       return { ...state, [newColumn.id]: newColumn };
     }
+    case "TASK_DELETE": {
+      const newColumn = action.payload.column;
+      return { ...state, [newColumn.id]: newColumn };
+    }
     default:
       return state;
   }
