@@ -30,3 +30,15 @@ function loadDataEnd(response) {
     payload: response
   };
 }
+
+export function addColumnStart() {
+  return {
+    type: "ADD_COLUMN_START"
+  };
+}
+
+export function addColumnEnd() {
+  return {
+    type: "ADD_COLUMN_END"
+  };
+}

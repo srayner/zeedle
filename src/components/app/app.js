@@ -1,5 +1,5 @@
 import React from "react";
-import { loadData } from "../../actions/board";
+import { loadData, addColumnStart, addColumnEnd } from "../../actions/board";
 import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -56,7 +56,11 @@ class App extends React.Component {
                   );
                 })}
                 {provided.placeholder}
-                <NewColumnLink>
+                <NewColumnLink
+                  onClick={() => {
+                    this.props.addColumnStart();
+                  }}
+                >
                   <FontAwesomeIcon icon={faPlus} /> Add new column...
                 </NewColumnLink>
               </Container>
@@ -80,7 +84,9 @@ const mapDispatchToProps = dispatch => {
   return {
     hideModal: () => dispatch(hideModal()),
     loadData: () => dispatch(loadData()),
-    onDragEnd: result => dispatch(onDragEnd(result))
+    onDragEnd: result => dispatch(onDragEnd(result)),
+    addColumnStart: () => dispatch(addColumnStart()),
+    addColumnEnd: () => dispatch(addColumnEnd())
   };
 };
 

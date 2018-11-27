@@ -1,6 +1,7 @@
 import { moveColumn } from "../data/board";
 
 const initialState = {
+  addingColumn: false,
   editingTaskId: null,
   columnOrder: []
 };
@@ -29,6 +30,12 @@ const board = (state = initialState, action) => {
         draggableId
       );
       return newState;
+    }
+    case "ADD_COLUMN_START": {
+      return { ...state, addingColumn: true };
+    }
+    case "ADD_COLUMN_END": {
+      return { ...state, addingColumn: false };
     }
     default:
       return state;
