@@ -7,6 +7,9 @@ import BoardTitle from "../board/board-title";
 import Column from "../column/column";
 import TitleBar from "./title-bar";
 import { connect } from "react-redux";
+import NewColumnLink from "../column/new-column-link";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   display: flex;
@@ -53,6 +56,9 @@ class App extends React.Component {
                   );
                 })}
                 {provided.placeholder}
+                <NewColumnLink>
+                  <FontAwesomeIcon icon={faPlus} /> Add new column...
+                </NewColumnLink>
               </Container>
             )}
           </Droppable>
