@@ -46,12 +46,21 @@ export function addListUpdateContent(content) {
 
 export function addListCancel() {
   return {
-    type: "ADD_LIST_END"
+    type: "ADD_LIST_CANCEL"
   };
 }
 
 export function addListEnd() {
-  return {
-    type: "ADD_LIST_END"
+  return (dispatch, getState) => {
+    const title = getState().board.newListContent;
+    return api.addList(title).then(response => {
+      const newList = response.data;
+      newList.id = newList._id;
+      delete newList._id;
+      dispatch({
+        type: "ADD_LIST_END",
+        payload: newList
+      });
+    });
   };
 }

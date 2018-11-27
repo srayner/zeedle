@@ -35,10 +35,15 @@ const board = (state = initialState, action) => {
       return { ...state, addingList: true };
     }
     case "ADD_LIST_UPDATE_CONTENT": {
-      return { ...state, newListContent: action.payload.content };
+      return { ...state, newListContent: action.payload };
+    }
+    case "ADD_LIST_CANCEL": {
+      return { ...state, addingList: false };
     }
     case "ADD_LIST_END": {
-      return { ...state, addingList: false };
+      const newList = action.payload;
+      const columnOrder = [...state.columnOrder, newList.id];
+      return { ...state, columnOrder, addingList: false };
     }
     default:
       return state;

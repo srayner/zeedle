@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   display: flex;
+  align-items: flex-start;
 `;
 
 class InnerList extends React.PureComponent {
@@ -40,7 +41,7 @@ class App extends React.Component {
           this.props.addListStart();
         }}
       >
-        <FontAwesomeIcon icon={faPlus} /> Add new column...
+        <FontAwesomeIcon icon={faPlus} /> Add another list...
       </NewColumnLink>
     );
   }
@@ -99,7 +100,7 @@ const mapDispatchToProps = dispatch => {
     loadData: () => dispatch(loadData()),
     onDragEnd: result => dispatch(onDragEnd(result)),
     addListStart: () => dispatch(addListStart()),
-    addListEnd: () => dispatch(addListEnd())
+    addListEnd: title => dispatch(addListEnd(title))
   };
 };
 

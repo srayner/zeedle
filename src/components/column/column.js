@@ -69,7 +69,7 @@ class Column extends React.Component {
             isDragging={snapshot.isDragging}
           >
             <ColumnHeader
-              {...provided.dragHandleProps}
+              dragHandleProps={provided.dragHandleProps}
               title={this.props.column.title}
             />
 

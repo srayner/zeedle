@@ -8,7 +8,6 @@ const TaskList = styled.div`
   background-color: ${props =>
     props.isDraggingOver ? "lightgreen" : "inherit"};
   flex-grow: 1;
-  min-height: 100px;
 `;
 
 export default TaskList;

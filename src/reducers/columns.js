@@ -53,6 +53,10 @@ const columns = (state = {}, action) => {
       const newColumn = action.payload.column;
       return { ...state, [newColumn.id]: newColumn };
     }
+    case "ADD_LIST_END": {
+      const newList = action.payload;
+      return { ...state, [newList.id]: newList };
+    }
     default:
       return state;
   }

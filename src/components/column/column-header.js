@@ -33,7 +33,7 @@ const TextArea = styled.textarea`
 class ColumnHeader extends React.Component {
   render() {
     return (
-      <Container>
+      <Container {...this.props.dragHandleProps}>
         <TextArea value={this.props.title} readOnly />
       </Container>
     );

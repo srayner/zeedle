@@ -5,10 +5,9 @@ const Text = styled.input`
   width: 100%;
   max-width: 100%;
   min-width: 100%;
-  overflow: auto;
   padding: 8px;
   border-radius: 4px;
-  border-color: #d3d3d3;
+  border: 1px solid #d3d3d3;
   margin-bottom: 8px;
   font-size: 14px;
   vertical-align: top;

@@ -58,6 +58,22 @@ class Api {
       }
     });
   }
+
+  addList(title) {
+    return axios.post(
+      this.baseUri + "/columns",
+      {
+        title: title,
+        taskIds: []
+      },
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+  }
 }
 
 const api = new Api();

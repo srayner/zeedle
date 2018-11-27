@@ -13,10 +13,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   border: none;
-  padding: 0 8px;
+  border-radius: 3px;
+  padding: 8px;
   margin: 0;
-  margin-bottom: 8px;
-  background-color: "lightgray";
+  background-color: #e2e4e6;
+  width: 250px;
 `;
 
 const ButtonContainer = styled.div`
@@ -65,7 +66,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onChange: content => dispatch(addListUpdateContent(content)),
     onCancel: column => dispatch(addListCancel(column)),
-    onSubmit: column => dispatch(addListEnd(column))
+    onSubmit: () => dispatch(addListEnd())
   };
 };
 
