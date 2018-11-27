@@ -31,14 +31,27 @@ function loadDataEnd(response) {
   };
 }
 
-export function addColumnStart() {
+export function addListStart() {
   return {
-    type: "ADD_COLUMN_START"
+    type: "ADD_LIST_START"
   };
 }
 
-export function addColumnEnd() {
+export function addListUpdateContent(content) {
   return {
-    type: "ADD_COLUMN_END"
+    type: "ADD_LIST_UPDATE_CONTENT",
+    payload: content
+  };
+}
+
+export function addListCancel() {
+  return {
+    type: "ADD_LIST_END"
+  };
+}
+
+export function addListEnd() {
+  return {
+    type: "ADD_LIST_END"
   };
 }

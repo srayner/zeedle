@@ -1,5 +1,5 @@
 import React from "react";
-import { loadData, addColumnStart, addColumnEnd } from "../../actions/board";
+import { loadData, addListStart, addListEnd } from "../../actions/board";
 import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -8,6 +8,7 @@ import Column from "../column/column";
 import TitleBar from "./title-bar";
 import { connect } from "react-redux";
 import NewColumnLink from "../column/new-column-link";
+import NewList from "../column/new-list";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -28,7 +29,24 @@ class App extends React.Component {
     this.props.loadData();
   }
 
+  newList() {
+    if (this.props.addingList) {
+      return <NewList />;
+    }
+
+    return (
+      <NewColumnLink
+        onClick={() => {
+          this.props.addListStart();
+        }}
+      >
+        <FontAwesomeIcon icon={faPlus} /> Add new column...
+      </NewColumnLink>
+    );
+  }
+
   render() {
+    const newList = this.newList();
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
@@ -56,13 +74,7 @@ class App extends React.Component {
                   );
                 })}
                 {provided.placeholder}
-                <NewColumnLink
-                  onClick={() => {
-                    this.props.addColumnStart();
-                  }}
-                >
-                  <FontAwesomeIcon icon={faPlus} /> Add new column...
-                </NewColumnLink>
+                {newList}
               </Container>
             )}
           </Droppable>
@@ -76,7 +88,8 @@ const mapStateToProps = state => {
   return {
     tasks: state.tasks,
     columns: state.columns,
-    columnOrder: state.board.columnOrder
+    columnOrder: state.board.columnOrder,
+    addingList: state.board.addingList
   };
 };
 
@@ -85,8 +98,8 @@ const mapDispatchToProps = dispatch => {
     hideModal: () => dispatch(hideModal()),
     loadData: () => dispatch(loadData()),
     onDragEnd: result => dispatch(onDragEnd(result)),
-    addColumnStart: () => dispatch(addColumnStart()),
-    addColumnEnd: () => dispatch(addColumnEnd())
+    addListStart: () => dispatch(addListStart()),
+    addListEnd: () => dispatch(addListEnd())
   };
 };
 

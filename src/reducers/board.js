@@ -1,7 +1,7 @@
 import { moveColumn } from "../data/board";
 
 const initialState = {
-  addingColumn: false,
+  addingList: false,
   editingTaskId: null,
   columnOrder: []
 };
@@ -31,11 +31,11 @@ const board = (state = initialState, action) => {
       );
       return newState;
     }
-    case "ADD_COLUMN_START": {
-      return { ...state, addingColumn: true };
+    case "ADD_LIST_START": {
+      return { ...state, addingList: true };
     }
-    case "ADD_COLUMN_END": {
-      return { ...state, addingColumn: false };
+    case "ADD_LIST_END": {
+      return { ...state, addingList: false };
     }
     default:
       return state;
