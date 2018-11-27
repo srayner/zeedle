@@ -34,6 +34,9 @@ const board = (state = initialState, action) => {
     case "ADD_LIST_START": {
       return { ...state, addingList: true };
     }
+    case "ADD_LIST_UPDATE_CONTENT": {
+      return { ...state, newListContent: action.payload.content };
+    }
     case "ADD_LIST_END": {
       return { ...state, addingList: false };
     }
