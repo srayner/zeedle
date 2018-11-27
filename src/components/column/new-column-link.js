@@ -9,6 +9,7 @@ const NewColumnLink = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   width: 250px;
   height: 36px;
+  transition: background-color 85ms ease;
   &:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.4);
