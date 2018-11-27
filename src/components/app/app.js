@@ -15,6 +15,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+  }
+  ::-webkit-scrollbar-button {
+    display: block;
+    height: 5px;
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+  }
 `;
 
 class InnerList extends React.PureComponent {

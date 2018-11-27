@@ -20,6 +20,7 @@ const Container = styled.div`
   width: 250px;
   display: flex;
   flex-direction: column;
+  flex: 0 0 auto;
 `;
 
 class InnerList extends React.Component {
