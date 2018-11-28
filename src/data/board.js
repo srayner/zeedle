@@ -4,3 +4,5 @@ export function moveColumn(board, oldIndex, newIndex, columnId) {
   columnOrder.splice(newIndex, 0, columnId);
   return { ...board, columnOrder };
 }
+
+export function removeList(board, listIndex) {}

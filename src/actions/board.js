@@ -65,11 +65,12 @@ export function addListEnd() {
   };
 }
 
-export function removeList(board, index) {
-  return dispatch => {
+export function removeList(index) {
+  return (dispatch, getState) => {
+    const board = getState().board;
     const listId = board.columnOrder[index];
-    return api.deleteColumn(listId).then(response => {
-      const updatedBoard = removeList(board, index);
+    return api.deleteList(listId).then(response => {
+      const updatedBoard = removeList(board, index); //TODO - this function has not been written yet!
       return dispatch({
         type: "COLUMN_DELETE",
         payload: { board: updatedBoard, listId: listId }

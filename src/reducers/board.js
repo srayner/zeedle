@@ -45,6 +45,9 @@ const board = (state = initialState, action) => {
       const columnOrder = [...state.columnOrder, newList.id];
       return { ...state, columnOrder, addingList: false };
     }
+    case "COLUMN_DELETE": {
+      return action.payload.board;
+    }
     default:
       return state;
   }

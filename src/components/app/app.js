@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  loadData,
-  addListStart,
-  addListEnd,
-  removeList
-} from "../../actions/board";
+import { loadData, addListStart, addListEnd } from "../../actions/board";
 import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -47,16 +42,10 @@ const Container = styled.div`
 
 class InnerList extends React.PureComponent {
   render() {
+    console.log(this.props);
     const { column, taskMap, index } = this.props;
     const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-    return (
-      <Column
-        column={column}
-        tasks={tasks}
-        index={index}
-        onDelete={this.props.onDelete}
-      />
-    );
+    return <Column column={column} tasks={tasks} index={index} />;
   }
 }
 
@@ -106,7 +95,6 @@ class App extends React.Component {
                       column={column}
                       taskMap={this.props.tasks}
                       index={index}
-                      onDelete={this.props.deleteListHandler}
                     />
                   );
                 })}
@@ -136,8 +124,7 @@ const mapDispatchToProps = dispatch => {
     loadData: () => dispatch(loadData()),
     onDragEnd: result => dispatch(onDragEnd(result)),
     addListStart: () => dispatch(addListStart()),
-    addListEnd: title => dispatch(addListEnd(title)),
-    removeListHandler: index => dispatch(removeList(index))
+    addListEnd: title => dispatch(addListEnd(title))
   };
 };
 

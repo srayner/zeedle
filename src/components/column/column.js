@@ -7,6 +7,7 @@ import TaskList from "../task/task-list";
 import NewTask from "../task/new-task";
 import NewTaskLink from "../task/new-task-link";
 import { startAddTask } from "../../actions/card-actions";
+import { removeList } from "../../actions/board";
 import { connect } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,6 +73,8 @@ class Column extends React.Component {
             <ColumnHeader
               dragHandleProps={provided.dragHandleProps}
               title={this.props.column.title}
+              onDelete={this.props.removeListHandler}
+              index={this.props.index}
             />
 
             <Droppable droppableId={this.props.column.id} type="task">
@@ -100,7 +103,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startAddTask: column => dispatch(startAddTask(column))
+    startAddTask: column => dispatch(startAddTask(column)),
+    removeListHandler: index => dispatch(removeList(index))
   };
 };
 

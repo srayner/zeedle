@@ -36,10 +36,15 @@ const TextArea = styled.textarea`
 
 class ColumnHeader extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <Container {...this.props.dragHandleProps}>
         <TextArea value={this.props.title} readOnly />
-        <CloseButton>
+        <CloseButton
+          onClick={() => {
+            this.props.onDelete(this.props.index);
+          }}
+        >
           <FontAwesomeIcon icon={faTimes} />
         </CloseButton>
       </Container>
