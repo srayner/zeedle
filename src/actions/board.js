@@ -1,4 +1,5 @@
 import api from "../data/api";
+import { removeListAtIndex } from "../data/board";
 
 export function loadData() {
   return dispatch => {
@@ -70,7 +71,7 @@ export function removeList(index) {
     const board = getState().board;
     const listId = board.columnOrder[index];
     return api.deleteList(listId).then(response => {
-      const updatedBoard = removeList(board, index); //TODO - this function has not been written yet!
+      const updatedBoard = removeListAtIndex(board, index);
       return dispatch({
         type: "COLUMN_DELETE",
         payload: { board: updatedBoard, listId: listId }

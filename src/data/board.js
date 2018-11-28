@@ -5,4 +5,8 @@ export function moveColumn(board, oldIndex, newIndex, columnId) {
   return { ...board, columnOrder };
 }
 
-export function removeList(board, listIndex) {}
+export function removeListAtIndex(board, index) {
+  const columnIds = Array.from(board.columnOrder);
+  columnIds.splice(index, 1);
+  return { ...board, columnOrder: columnIds };
+}
