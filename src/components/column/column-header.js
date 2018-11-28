@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { CloseButton } from "../ui/button";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
   padding: 8px;
+  display: flex;
 `;
 
 const TextArea = styled.textarea`
@@ -35,6 +39,9 @@ class ColumnHeader extends React.Component {
     return (
       <Container {...this.props.dragHandleProps}>
         <TextArea value={this.props.title} readOnly />
+        <CloseButton>
+          <FontAwesomeIcon icon={faTimes} />
+        </CloseButton>
       </Container>
     );
   }

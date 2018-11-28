@@ -74,6 +74,15 @@ class Api {
       }
     );
   }
+
+  deleteList(id) {
+    return axios.delete(this.baseUri + "/columns/" + id, {
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
 }
 
 const api = new Api();

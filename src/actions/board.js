@@ -64,3 +64,16 @@ export function addListEnd() {
     });
   };
 }
+
+export function removeList(board, index) {
+  return dispatch => {
+    const listId = board.columnOrder[index];
+    return api.deleteColumn(listId).then(response => {
+      const updatedBoard = removeList(board, index);
+      return dispatch({
+        type: "COLUMN_DELETE",
+        payload: { board: updatedBoard, listId: listId }
+      });
+    });
+  };
+}
