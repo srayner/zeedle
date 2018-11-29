@@ -46,6 +46,12 @@ export const CloseButton = styled(GrayButton)`
   }
 `;
 
+export const TightCloseButton = styled(CloseButton)`
+  padding: 0;
+  margin: 0;
+  width: 18px;
+`;
+
 export const LargeCloseButton = styled.button`
   border: none;
   border-radius: 50%;

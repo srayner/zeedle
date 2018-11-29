@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CloseButton } from "../ui/button";
+import { TightCloseButton } from "../ui/button";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -40,13 +40,13 @@ class ColumnHeader extends React.Component {
     return (
       <Container {...this.props.dragHandleProps}>
         <TextArea value={this.props.title} readOnly />
-        <CloseButton
+        <TightCloseButton
           onClick={() => {
             this.props.onDelete(this.props.index);
           }}
         >
           <FontAwesomeIcon icon={faTimes} />
-        </CloseButton>
+        </TightCloseButton>
       </Container>
     );
   }
