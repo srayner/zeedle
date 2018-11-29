@@ -1,6 +1,7 @@
 import { moveColumn } from "../data/board";
 
 const initialState = {
+  title: "Task List",
   addingList: false,
   editingTaskId: null,
   columnOrder: []
