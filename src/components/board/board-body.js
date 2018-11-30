@@ -6,7 +6,7 @@ import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import NewColumnLink from "../column/new-column-link";
 import NewList from "../column/new-list";
-import Column from "../column/column";
+import List from "../column/column";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -46,9 +46,9 @@ const Container = styled.div`
 
 class InnerList extends React.PureComponent {
   render() {
-    const { column, taskMap, index } = this.props;
-    const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-    return <Column column={column} tasks={tasks} index={index} />;
+    const { list, taskMap, index } = this.props;
+    const tasks = list.taskIds.map(taskId => taskMap[taskId]);
+    return <List list={list} tasks={tasks} index={index} />;
   }
 }
 
@@ -70,7 +70,7 @@ class BoardBody extends React.Component {
 
   render() {
     const newList = this.newList();
-    const { board, columns, tasks } = this.props;
+    const { board, lists, tasks } = this.props;
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
@@ -85,11 +85,11 @@ class BoardBody extends React.Component {
                 innerRef={provided.innerRef}
               >
                 {board.columnOrder.map((columnId, index) => {
-                  const column = columns[columnId];
+                  const list = lists[columnId];
                   return (
                     <InnerList
-                      key={column.id}
-                      column={column}
+                      key={list.id}
+                      list={list}
                       taskMap={tasks}
                       index={index}
                     />
@@ -109,7 +109,7 @@ class BoardBody extends React.Component {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    columns: state.columns,
+    lists: state.lists,
     tasks: state.tasks
   };
 };

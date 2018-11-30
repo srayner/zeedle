@@ -1,4 +1,4 @@
-const columns = (state = {}, action) => {
+const lists = (state = {}, action) => {
   switch (action.type) {
     case "LOAD_DATA_BEGIN": {
       return state;
@@ -62,4 +62,4 @@ const columns = (state = {}, action) => {
   }
 };
 
-export default columns;
+export default lists;

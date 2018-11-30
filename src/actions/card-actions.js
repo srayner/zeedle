@@ -39,8 +39,8 @@ export function onDragEnd({ destination, source, draggableId, type }) {
       return;
     }
 
-    const start = state.columns[source.droppableId];
-    const finish = state.columns[destination.droppableId];
+    const start = state.lists[source.droppableId];
+    const finish = state.lists[destination.droppableId];
     if (start === finish) {
       const column = moveTask(
         start,

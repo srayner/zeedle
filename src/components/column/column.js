@@ -34,36 +34,27 @@ class InnerList extends React.Component {
 
   render() {
     return this.props.tasks.map((task, index) => (
-      <Task
-        key={task.id}
-        task={task}
-        index={index}
-        column={this.props.column}
-      />
+      <Task key={task.id} task={task} index={index} column={this.props.list} />
     ));
   }
 }
 
-class Column extends React.Component {
+class List extends React.Component {
   render() {
-    const column = this.props.column;
+    const list = this.props.list;
     const addTaskLink = (
       <NewTaskLink
         onClick={() => {
-          this.props.startAddTask(column);
+          this.props.startAddTask(list);
         }}
       >
         <FontAwesomeIcon icon={faPlus} /> Add new task...
       </NewTaskLink>
     );
 
-    const addTask = column.addingTask ? (
-      <NewTask column={column} />
-    ) : (
-      addTaskLink
-    );
+    const addTask = list.addingTask ? <NewTask list={list} /> : addTaskLink;
     return (
-      <Draggable draggableId={column.id} index={this.props.index}>
+      <Draggable draggableId={list.id} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
@@ -72,19 +63,19 @@ class Column extends React.Component {
           >
             <ColumnHeader
               dragHandleProps={provided.dragHandleProps}
-              title={this.props.column.title}
+              title={list.title}
               onDelete={this.props.removeListHandler}
               index={this.props.index}
             />
 
-            <Droppable droppableId={this.props.column.id} type="task">
+            <Droppable droppableId={list.id} type="task">
               {(provided, snapshot) => (
                 <TaskList
                   innerRef={provided.innerRef}
                   {...provided.droppableProps}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
-                  <InnerList tasks={this.props.tasks} column={column} />
+                  <InnerList tasks={this.props.tasks} list={list} />
                   {provided.placeholder}
                 </TaskList>
               )}
@@ -111,4 +102,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Column);
+)(List);

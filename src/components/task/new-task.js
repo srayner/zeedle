@@ -31,27 +31,28 @@ const ButtonContainer = styled.div`
 
 class NewTask extends React.Component {
   render() {
+    const list = this.props.list;
     return (
       <Container>
         <TextArea
           rows="2"
           placeholder="Enter a title for this task..."
           onChange={event => {
-            this.props.onChange(this.props.column, event.target.value);
+            this.props.onChange(list, event.target.value);
           }}
         />
         <ButtonContainer>
           <Button
             type="primary"
             onClick={() => {
-              this.props.onSubmit(this.props.column);
+              this.props.onSubmit(list);
             }}
           >
             Add Task
           </Button>
           <CloseButton
             onClick={() => {
-              this.props.onCancel(this.props.column);
+              this.props.onCancel(list);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
