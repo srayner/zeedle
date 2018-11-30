@@ -41,6 +41,7 @@ class ColumnHeader extends React.Component {
         <TextArea
           value={this.props.title}
           onChange={event => this.props.onTitleChange(event.target.value)}
+          onBlur={() => this.props.onTitleBlur()}
         />
         <TightCloseButton
           onClick={() => {

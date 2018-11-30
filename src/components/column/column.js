@@ -8,7 +8,7 @@ import NewTask from "../task/new-task";
 import NewTaskLink from "../task/new-task-link";
 import { startAddTask } from "../../actions/card-actions";
 import { removeList } from "../../actions/board";
-import { editListTitle } from "../../actions/list";
+import { editListTitle, saveList } from "../../actions/list";
 import { connect } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,6 +69,7 @@ class List extends React.Component {
               onTitleChange={newTitle =>
                 this.props.editListTitle(list, newTitle)
               }
+              onTitleBlur={() => this.props.saveList(list)}
               index={this.props.index}
             />
 
@@ -100,7 +101,8 @@ const mapDispatchToProps = dispatch => {
   return {
     startAddTask: column => dispatch(startAddTask(column)),
     removeListHandler: index => dispatch(removeList(index)),
-    editListTitle: (column, title) => dispatch(editListTitle(column, title))
+    editListTitle: (column, title) => dispatch(editListTitle(column, title)),
+    saveList: list => dispatch(saveList(list))
   };
 };
 
