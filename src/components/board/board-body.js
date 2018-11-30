@@ -54,7 +54,7 @@ class InnerList extends React.PureComponent {
 
 class BoardBody extends React.Component {
   newList() {
-    if (this.props.addingList) {
+    if (this.props.board.addingList) {
       return <NewList />;
     }
     return (

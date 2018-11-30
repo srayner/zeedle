@@ -20,7 +20,6 @@ class Board extends React.Component {
     this.props.loadData();
   }
   render() {
-    console.log(this.props);
     return (
       <Container>
         <BoardTitle>{this.props.board.title}</BoardTitle>
