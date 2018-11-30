@@ -8,6 +8,7 @@ import NewTask from "../task/new-task";
 import NewTaskLink from "../task/new-task-link";
 import { startAddTask } from "../../actions/card-actions";
 import { removeList } from "../../actions/board";
+import { editListTitle } from "../../actions/list";
 import { connect } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,6 +66,9 @@ class List extends React.Component {
               dragHandleProps={provided.dragHandleProps}
               title={list.title}
               onDelete={this.props.removeListHandler}
+              onTitleChange={newTitle =>
+                this.props.editListTitle(list, newTitle)
+              }
               index={this.props.index}
             />
 
@@ -95,7 +99,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     startAddTask: column => dispatch(startAddTask(column)),
-    removeListHandler: index => dispatch(removeList(index))
+    removeListHandler: index => dispatch(removeList(index)),
+    editListTitle: (column, title) => dispatch(editListTitle(column, title))
   };
 };
 

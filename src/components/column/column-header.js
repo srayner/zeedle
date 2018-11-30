@@ -36,10 +36,12 @@ const TextArea = styled.textarea`
 
 class ColumnHeader extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <Container {...this.props.dragHandleProps}>
-        <TextArea value={this.props.title} readOnly />
+        <TextArea
+          value={this.props.title}
+          onChange={event => this.props.onTitleChange(event.target.value)}
+        />
         <TightCloseButton
           onClick={() => {
             this.props.onDelete(this.props.index);
