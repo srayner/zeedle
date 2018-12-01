@@ -16,6 +16,9 @@ const Title = styled.textarea`
   font-size: 20px;
   line-height: 24px;
   resize: none;
+  :focus {
+    background-color: white;
+  }
 `;
 
 class TaskDetailTitle extends React.Component {
