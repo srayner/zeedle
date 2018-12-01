@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import TaskDetailTitle from "./task-detail-title";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,22 +28,6 @@ const Wrap = styled.div`
   width: 100%;
 `;
 
-const Title = styled.textarea`
-  color: black;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  margin: 0;
-  margin-top: -3px;
-  padding: 0;
-  width: 100%;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  resize: none;
-`;
-
 const SubTitle = styled.div`
   font-size: 14px;
 `;
@@ -62,9 +47,9 @@ class TaskDetail extends React.Component {
         <Container>
           <FontAwesomeIcon icon={faFile} />
           <Wrap>
-            <Title
+            <TaskDetailTitle
               value={task.title}
-              onChange={event => onTitleChange(task, event.target.value)}
+              onTitleChange={title => onTitleChange(task, title)}
               onBlur={() => onTitleChanged(task)}
             />
             <SubTitle>in list: {column.title}</SubTitle>
