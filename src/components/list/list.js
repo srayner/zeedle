@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import ColumnHeader from "./column-header.js";
+import ListHeader from "./list-header.js";
 import Task from "../task/task";
 import TaskList from "../task/task-list";
 import NewTask from "../task/new-task";
@@ -62,7 +62,7 @@ class List extends React.Component {
             innerRef={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <ColumnHeader
+            <ListHeader
               dragHandleProps={provided.dragHandleProps}
               title={list.title}
               onDelete={this.props.removeListHandler}

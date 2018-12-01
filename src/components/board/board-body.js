@@ -1,14 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { loadData, addListStart, addListEnd } from "../../actions/board";
+import { loadData } from "../../actions/board";
 import { hideModal, onDragEnd } from "../../actions/card-actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import NewColumnLink from "../column/new-column-link";
-import NewList from "../column/new-list";
-import List from "../column/column";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NewList from "../list/new-list";
+import List from "../list/list";
 
 const Container = styled.div`
   position: absolute;
@@ -53,23 +50,7 @@ class InnerList extends React.PureComponent {
 }
 
 class BoardBody extends React.Component {
-  newList() {
-    if (this.props.board.addingList) {
-      return <NewList />;
-    }
-    return (
-      <NewColumnLink
-        onClick={() => {
-          this.props.addListStart();
-        }}
-      >
-        <FontAwesomeIcon icon={faPlus} /> Add another list...
-      </NewColumnLink>
-    );
-  }
-
   render() {
-    const newList = this.newList();
     const { board, lists, tasks } = this.props;
     return (
       <div>
@@ -96,7 +77,7 @@ class BoardBody extends React.Component {
                   );
                 })}
                 {provided.placeholder}
-                {newList}
+                <NewList />
               </Container>
             )}
           </Droppable>
@@ -117,8 +98,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadData: () => dispatch(loadData()),
-    addListStart: () => dispatch(addListStart()),
-    addListEnd: title => dispatch(addListEnd(title)),
     hideModal: () => dispatch(hideModal()),
     onDragEnd: result => dispatch(onDragEnd(result))
   };

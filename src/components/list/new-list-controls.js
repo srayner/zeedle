@@ -26,7 +26,7 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-class NewList extends React.Component {
+class NewListControls extends React.Component {
   render() {
     return (
       <Container>
@@ -73,4 +73,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewList);
+)(NewListControls);
