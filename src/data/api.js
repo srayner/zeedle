@@ -12,6 +12,21 @@ class Api {
     });
   }
 
+  updateTask(task) {
+    return axios.patch(
+      this.baseUri + "/tasks/" + task.id,
+      {
+        title: task.title
+      },
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+  }
+
   addTask(title) {
     return axios.post(
       this.baseUri + "/tasks",

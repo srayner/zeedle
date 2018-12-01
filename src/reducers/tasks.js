@@ -20,6 +20,10 @@ const tasks = (state = {}, action) => {
       const { [key]: value, ...newState } = state;
       return newState;
     }
+    case "TASK_UPDATED": {
+      const task = action.payload.task;
+      return { ...state, [task.id]: task };
+    }
     default:
       return state;
   }

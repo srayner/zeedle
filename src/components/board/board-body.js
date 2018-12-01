@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { loadData } from "../../actions/board";
-import { hideModal, onDragEnd } from "../../actions/card-actions";
+import { hideModal, onDragEnd } from "../../actions/task";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import NewList from "../list/new-list";
 import List from "../list/list";

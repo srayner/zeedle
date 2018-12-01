@@ -140,3 +140,18 @@ export function updateNewTaskContent(column, content) {
     payload: { column, content }
   };
 }
+
+export function editTaskTitle(task, title) {
+  const newTask = { ...task, title };
+  return {
+    type: "TASK_UPDATED",
+    payload: { task: newTask }
+  };
+}
+
+export function saveTask(task) {
+  api.updateTask(task);
+  return {
+    type: "SAVING_TASK"
+  };
+}

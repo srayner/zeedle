@@ -5,7 +5,7 @@ import {
   openTaskDetail,
   closeTaskDetail,
   deleteTask
-} from "../../actions/card-actions";
+} from "../../actions/task";
 import { connect } from "react-redux";
 import Modal from "../ui/modal";
 import TaskDetail from "./task-detail";

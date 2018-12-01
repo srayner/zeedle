@@ -34,7 +34,7 @@ const TextArea = styled.textarea`
   }
 `;
 
-class ColumnHeader extends React.Component {
+class ListHeader extends React.Component {
   render() {
     return (
       <Container {...this.props.dragHandleProps}>
@@ -55,4 +55,4 @@ class ColumnHeader extends React.Component {
   }
 }
 
-export default ColumnHeader;
+export default ListHeader;

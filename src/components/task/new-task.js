@@ -4,7 +4,7 @@ import {
   updateNewTaskContent,
   cancelAddTask,
   endAddTask
-} from "../../actions/card-actions";
+} from "../../actions/task";
 import { connect } from "react-redux";
 import { Button, GrayButton, CloseButton } from "../ui/button";
 import TextArea from "../ui/text-area";

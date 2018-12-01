@@ -6,7 +6,7 @@ import Task from "../task/task";
 import TaskList from "../task/task-list";
 import NewTask from "../task/new-task";
 import NewTaskLink from "../task/new-task-link";
-import { startAddTask } from "../../actions/card-actions";
+import { startAddTask } from "../../actions/task";
 import { removeList } from "../../actions/board";
 import { editListTitle, saveList } from "../../actions/list";
 import { connect } from "react-redux";
