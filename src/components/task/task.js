@@ -21,7 +21,7 @@ const Container = styled.div`
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: ${props => (props.isDragging ? "lightgray" : "white")};
+  background-color: white;
   display: flex;
 `;
 

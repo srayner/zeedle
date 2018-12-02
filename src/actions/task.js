@@ -149,6 +149,14 @@ export function editTaskTitle(task, title) {
   };
 }
 
+export function editTaskDescription(task, description) {
+  const newTask = { ...task, description };
+  return {
+    type: "TASK_UPDATED",
+    payload: { task: newTask }
+  };
+}
+
 export function saveTask(task) {
   api.updateTask(task);
   return {

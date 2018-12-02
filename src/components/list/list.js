@@ -17,8 +17,7 @@ const Container = styled.div`
   margin: 0 8px;
   border: none;
   border-radius: 3px;
-  transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDragging ? "darkgray" : "#e2e4e6")};
+  background-color: #e2e4e6;
   width: 250px;
   display: flex;
   flex-direction: column;

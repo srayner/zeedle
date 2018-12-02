@@ -16,7 +16,8 @@ class Api {
     return axios.patch(
       this.baseUri + "/tasks/" + task.id,
       {
-        title: task.title
+        title: task.title,
+        description: task.description
       },
       {
         mode: "no-cors",
