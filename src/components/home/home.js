@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import BoardLink from "../home/board-link";
 
 const home = () => {
   return (
@@ -7,9 +7,7 @@ const home = () => {
       <h2>Boards</h2>
       <nav>
         <ul>
-          <li>
-            <Link to="/board">Task List</Link>
-          </li>
+          <BoardLink to="/board">Task List</BoardLink>
         </ul>
       </nav>
     </div>
