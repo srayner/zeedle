@@ -28,7 +28,7 @@ class App extends React.Component {
             zeedle
           </TitleBar>
           <Route path="/" exact component={Home} />
-          <Route path="/board/" component={Board} />
+          <Route path="/board/:boardId" component={Board} />
         </div>
       </Router>
     );

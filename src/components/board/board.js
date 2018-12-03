@@ -8,7 +8,8 @@ import Container from "../ui/container";
 
 class Board extends React.Component {
   componentDidMount() {
-    this.props.loadData();
+    const { boardId } = this.props.match.params;
+    this.props.loadData(boardId);
   }
   render() {
     return (

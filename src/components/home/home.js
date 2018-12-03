@@ -13,6 +13,11 @@ const HomeTitle = styled.h2`
   font-weight: 400;
 `;
 
+const BoardList = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
 class Home extends React.Component {
   componentDidMount() {
     this.props.loadBoards();
@@ -30,7 +35,7 @@ class Home extends React.Component {
         <HomeTitle>Boards</HomeTitle>
         <Page>
           <nav>
-            <ul>{boards}</ul>
+            <BoardList>{boards}</BoardList>
           </nav>
         </Page>
       </Container>

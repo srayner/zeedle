@@ -6,6 +6,8 @@ const ListItem = styled.li`
   height: 100px;
   width: 200px;
   background-color: rgb(0, 121, 191);
+  list-style: none;
+  margin: 20px;
 `;
 
 const BoardLink = props => {
