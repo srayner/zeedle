@@ -8,10 +8,10 @@ const ListItem = styled.li`
   background-color: cyan;
 `;
 
-const BoardLink = () => {
+const BoardLink = props => {
   return (
     <ListItem>
-      <Link to="/board">Task List</Link>;
+      <Link to={props.to}>Task List</Link>;
     </ListItem>
   );
 };

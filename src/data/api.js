@@ -3,6 +3,15 @@ import axios from "axios";
 class Api {
   baseUri = "http://localhost:8000";
 
+  getBoards() {
+    return axios.get(this.baseUri + "/boards", {
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
   getTasks() {
     return axios.get(this.baseUri + "/tasks", {
       mode: "no-cors",

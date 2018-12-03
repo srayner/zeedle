@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const TitleButton = styled.span`
   font-family: "Roboto";
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 400;
   padding: 4px 8px;
   border: none;
   border-radius: 3px;

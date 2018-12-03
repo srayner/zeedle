@@ -1,12 +1,34 @@
 import api from "../data/api";
 import { removeListAtIndex } from "../data/board";
 
+export function loadBoards() {
+  return dispatch => {
+    getBoards().then(data => {
+      dispatch(loadBoardsEnd(data));
+    });
+  };
+}
+
 export function loadData() {
   return dispatch => {
     dispatch(loadDataBegin());
     getBoardData().then(data => {
       dispatch(loadDataEnd(data));
     });
+  };
+}
+
+async function getBoards() {
+  const boards = await api.getBoards();
+  return {
+    boards: boards.data
+  };
+}
+
+function loadBoardsEnd(response) {
+  return {
+    type: "LOAD_BOARDS_END",
+    payload: response
   };
 }
 
