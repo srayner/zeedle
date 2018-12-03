@@ -9,10 +9,10 @@ export function loadBoards() {
   };
 }
 
-export function loadData() {
+export function loadData(boardId) {
   return dispatch => {
     dispatch(loadDataBegin());
-    getBoardData().then(data => {
+    getBoardData(boardId).then(data => {
       dispatch(loadDataEnd(data));
     });
   };
@@ -32,9 +32,9 @@ function loadBoardsEnd(response) {
   };
 }
 
-async function getBoardData() {
+async function getBoardData(boardId) {
   const tasks = await api.getTasks();
-  const columns = await api.getColumns();
+  const columns = await api.getColumns(boardId);
   return {
     tasks: tasks.data,
     columns: columns.data

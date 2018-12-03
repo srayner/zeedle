@@ -61,8 +61,8 @@ class Api {
     });
   }
 
-  getColumns() {
-    return axios.get(this.baseUri + "/columns", {
+  getColumns(boardId) {
+    return axios.get(this.baseUri + "/columns?boardId=" + boardId, {
       mode: "no-cors",
       headers: {
         "Content-Type": "application/json"
