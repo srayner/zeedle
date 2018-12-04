@@ -10,3 +10,8 @@ export function removeListAtIndex(board, index) {
   columnIds.splice(index, 1);
   return { ...board, columnOrder: columnIds };
 }
+
+export function appendList(board, listId) {
+  const listIds = [...board.columnOrder, listId];
+  return { ...board, columnOrder: listIds };
+}

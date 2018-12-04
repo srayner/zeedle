@@ -1,5 +1,5 @@
 import api from "../data/api";
-import { removeListAtIndex } from "../data/board";
+import { removeListAtIndex, appendList } from "../data/board";
 
 export function loadBoards() {
   return dispatch => {
@@ -35,9 +35,11 @@ function loadBoardsEnd(response) {
 async function getBoardData(boardId) {
   const tasks = await api.getTasks();
   const columns = await api.getColumns(boardId);
+  const board = await api.getBoards(boardId);
   return {
     tasks: tasks.data,
-    columns: columns.data
+    columns: columns.data,
+    board: board
   };
 }
 
@@ -73,16 +75,20 @@ export function addListCancel() {
   };
 }
 
-export function addListEnd() {
+export function addListEnd(board) {
   return (dispatch, getState) => {
     const title = getState().board.newListContent;
     return api.addList(title).then(response => {
       const newList = response.data;
       newList.id = newList._id;
       delete newList._id;
-      dispatch({
-        type: "ADD_LIST_END",
-        payload: newList
+
+      const updatedBoard = appendList(board, newList.id);
+      api.updateBoard(updatedBoard).then(response => {
+        return dispatch({
+          type: "ADD_LIST_END",
+          payload: newList
+        });
       });
     });
   };

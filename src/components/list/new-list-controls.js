@@ -40,7 +40,7 @@ class NewListControls extends React.Component {
           <Button
             type="primary"
             onClick={() => {
-              this.props.onSubmit();
+              this.props.onSubmit(this.props.board);
             }}
           >
             Add List
@@ -59,14 +59,16 @@ class NewListControls extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    board: state.board
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onChange: content => dispatch(addListUpdateContent(content)),
     onCancel: column => dispatch(addListCancel(column)),
-    onSubmit: () => dispatch(addListEnd())
+    onSubmit: board => dispatch(addListEnd(board))
   };
 };
 

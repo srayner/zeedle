@@ -12,6 +12,23 @@ class Api {
     });
   }
 
+  updateBoard(board) {
+    return axios.patch(
+      this.baseUri + "/boards/" + board.id,
+      {
+        title: board.title,
+        columnIds: board.columnOrder,
+        starred: board.starred
+      },
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+  }
+
   getTasks() {
     return axios.get(this.baseUri + "/tasks", {
       mode: "no-cors",
