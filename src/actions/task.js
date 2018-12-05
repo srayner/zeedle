@@ -48,7 +48,7 @@ export function onDragEnd({ destination, source, draggableId, type }) {
         destination.index,
         draggableId
       );
-      api.updateColumn(list).then(() => {
+      api.updateList(list).then(() => {
         dispatch({
           type: "LIST_UPDATED",
           payload: { list }
@@ -57,17 +57,17 @@ export function onDragEnd({ destination, source, draggableId, type }) {
       return;
     }
 
-    const sourceColumn = removeTask(start, source.index);
-    const destinationColumn = addTask(finish, destination.index, draggableId);
+    const sourceList = removeTask(start, source.index);
+    const destinationList = addTask(finish, destination.index, draggableId);
     api
-      .updateColumn(sourceColumn)
+      .updateList(sourceList)
       .then(() => {
-        api.updateColumn(destinationColumn);
+        api.updateList(destinationList);
       })
       .then(() => {
         dispatch({
           type: "LISTS_UPDATED",
-          payload: { sourceColumn, destinationColumn }
+          payload: { sourceList, destinationList }
         });
       });
   };
@@ -95,7 +95,7 @@ export function endAddTask(column) {
       delete newTask._id;
 
       const updatedColumn = appendTask(column, newTask.id);
-      api.updateColumn(updatedColumn).then(response => {
+      api.updateList(updatedColumn).then(response => {
         return dispatch({
           type: "END_ADD_TASK",
           column: column,
@@ -111,7 +111,7 @@ export function deleteTask(column, index) {
     const taskId = column.taskIds[index];
     return api.deleteTask(taskId).then(response => {
       const updatedColumn = removeTask(column, index);
-      api.updateColumn(updatedColumn).then(response => {
+      api.updateList(updatedColumn).then(response => {
         return dispatch({
           type: "TASK_DELETE",
           payload: { column: updatedColumn, taskId: taskId }

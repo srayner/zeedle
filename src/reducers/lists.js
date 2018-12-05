@@ -18,11 +18,11 @@ const lists = (state = {}, action) => {
       return { ...state, [list.id]: list };
     }
     case "LISTS_UPDATED": {
-      const { sourceColumn, destinationColumn } = action.payload;
+      const { sourceList, destinationList } = action.payload;
       return {
         ...state,
-        [sourceColumn.id]: sourceColumn,
-        [destinationColumn.id]: destinationColumn
+        [sourceList.id]: sourceList,
+        [destinationList.id]: destinationList
       };
     }
     case "START_ADD_TASK": {

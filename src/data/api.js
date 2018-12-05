@@ -87,7 +87,7 @@ class Api {
     });
   }
 
-  getColumns(boardId) {
+  getLists(boardId) {
     return axios.get(this.baseUri + "/columns?boardId=" + boardId, {
       mode: "no-cors",
       headers: {
@@ -96,13 +96,13 @@ class Api {
     });
   }
 
-  updateColumn(column) {
+  updateList(list) {
     const data = {
-      id: column.id,
-      title: column.title,
-      taskIds: column.taskIds
+      id: list.id,
+      title: list.title,
+      taskIds: list.taskIds
     };
-    return axios.patch(this.baseUri + "/columns/" + column.id, data, {
+    return axios.patch(this.baseUri + "/columns/" + list.id, data, {
       mode: "no-cors",
       headers: {
         "Content-Type": "application/json"

@@ -36,7 +36,7 @@ function loadBoardsEnd(response) {
 
 async function getBoardData(boardId) {
   const tasks = await api.getTasks();
-  const columns = await api.getColumns(boardId);
+  const columns = await api.getLists(boardId);
   const board = await api.getBoard(boardId);
   return {
     tasks: tasks.data,
