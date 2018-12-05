@@ -21,11 +21,7 @@ class BoardBody extends React.Component {
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
-          <Droppable
-            droppableId="all-columns"
-            direction="horizontal"
-            type="column"
-          >
+          <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {provided => (
               <Page {...provided.droppableProps} innerRef={provided.innerRef}>
                 {board.listIds.map((columnId, index) => {

@@ -11,6 +11,6 @@ export function editListTitle(list, title) {
 export function saveList(list) {
   api.updateList(list);
   return {
-    type: "SAVING_COLUMN"
+    type: "LIST_SAVING"
   };
 }

@@ -1,5 +1,6 @@
 import api from "../data/api";
 import { addTask, removeTask, moveTask, appendTask } from "../data/list.js";
+import { moveList } from "../data/board";
 
 export function showModal() {
   return {
@@ -26,15 +27,17 @@ export function onDragEnd({ destination, source, draggableId, type }) {
     }
     const state = getState();
 
-    if (type === "column") {
-      // TODO: update backend via api
+    if (type === "list") {
+      const updatedBoard = moveList(
+        state.board,
+        source.index,
+        destination.index,
+        draggableId
+      );
+      api.updateBoard(updatedBoard);
       dispatch({
-        type: "COLUMN_MOVED",
-        payload: {
-          source,
-          destination,
-          draggableId
-        }
+        type: "BOARD_UPDATED",
+        payload: { board: updatedBoard }
       });
       return;
     }

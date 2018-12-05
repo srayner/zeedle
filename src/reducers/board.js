@@ -1,5 +1,3 @@
-import { moveList } from "../data/board";
-
 const initialState = {
   title: "Task List",
   addingList: false,
@@ -23,15 +21,8 @@ const board = (state = initialState, action) => {
     case "CLOSE_TASK_DETAIL": {
       return { ...state, editingTaskId: null };
     }
-    case "COLUMN_MOVED": {
-      const { source, destination, draggableId } = action.payload;
-      const newState = moveList(
-        state,
-        source.index,
-        destination.index,
-        draggableId
-      );
-      return newState;
+    case "BOARD_UPDATED": {
+      return action.payload.board;
     }
     case "ADD_LIST_START": {
       return { ...state, addingList: true };
