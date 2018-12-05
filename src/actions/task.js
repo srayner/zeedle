@@ -66,7 +66,7 @@ export function onDragEnd({ destination, source, draggableId, type }) {
       })
       .then(() => {
         dispatch({
-          type: "COLUMNS_UPDATED",
+          type: "LISTS_UPDATED",
           payload: { sourceColumn, destinationColumn }
         });
       });
