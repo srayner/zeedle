@@ -26,7 +26,7 @@ class Api {
       this.baseUri + "/boards/" + board.id,
       {
         title: board.title,
-        columnIds: board.columnOrder,
+        columnIds: board.listIds,
         starred: board.starred
       },
       {

@@ -99,7 +99,7 @@ export function addListEnd(board) {
 export function removeList(index) {
   return (dispatch, getState) => {
     const board = getState().board;
-    const listId = board.columnOrder[index];
+    const listId = board.listIds[index];
     return api.deleteList(listId).then(response => {
       const updatedBoard = removeListAtIndex(board, index);
       return dispatch({

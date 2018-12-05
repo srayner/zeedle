@@ -1,10 +1,10 @@
-import { moveColumn } from "../data/board";
+import { moveList } from "../data/board";
 
 const initialState = {
   title: "Task List",
   addingList: false,
   editingTaskId: null,
-  columnOrder: []
+  listIds: []
 };
 
 const board = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const board = (state = initialState, action) => {
       let board = action.payload.board;
       board.id = board._id;
       delete board._id;
-      board.columnOrder = board.columnIds;
+      board.listIds = board.columnIds;
       delete board.columnIds;
       return board;
     }
@@ -25,7 +25,7 @@ const board = (state = initialState, action) => {
     }
     case "COLUMN_MOVED": {
       const { source, destination, draggableId } = action.payload;
-      const newState = moveColumn(
+      const newState = moveList(
         state,
         source.index,
         destination.index,
@@ -44,8 +44,8 @@ const board = (state = initialState, action) => {
     }
     case "ADD_LIST_END": {
       const newList = action.payload;
-      const columnOrder = [...state.columnOrder, newList.id];
-      return { ...state, columnOrder, addingList: false };
+      const listIds = [...state.listIds, newList.id];
+      return { ...state, listIds, addingList: false };
     }
     case "COLUMN_DELETE": {
       return action.payload.board;

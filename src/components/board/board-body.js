@@ -28,7 +28,7 @@ class BoardBody extends React.Component {
           >
             {provided => (
               <Page {...provided.droppableProps} innerRef={provided.innerRef}>
-                {board.columnOrder.map((columnId, index) => {
+                {board.listIds.map((columnId, index) => {
                   const list = lists[columnId];
                   return (
                     <InnerList

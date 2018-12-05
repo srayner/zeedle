@@ -1,17 +1,17 @@
-export function moveColumn(board, oldIndex, newIndex, columnId) {
-  const columnOrder = Array.from(board.columnOrder);
-  columnOrder.splice(oldIndex, 1);
-  columnOrder.splice(newIndex, 0, columnId);
-  return { ...board, columnOrder };
+export function moveList(board, oldIndex, newIndex, listId) {
+  const listIds = Array.from(board.listIds);
+  listIds.splice(oldIndex, 1);
+  listIds.splice(newIndex, 0, listId);
+  return { ...board, listIds };
 }
 
 export function removeListAtIndex(board, index) {
-  const columnIds = Array.from(board.columnOrder);
-  columnIds.splice(index, 1);
-  return { ...board, columnOrder: columnIds };
+  const listIds = Array.from(board.listIds);
+  listIds.splice(index, 1);
+  return { ...board, listIds };
 }
 
 export function appendList(board, listId) {
-  const listIds = [...board.columnOrder, listId];
-  return { ...board, columnOrder: listIds };
+  const listIds = [...board.listIds, listId];
+  return { ...board, listIds };
 }
