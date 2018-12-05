@@ -10,11 +10,12 @@ const initialState = {
 const board = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_DATA_END": {
-      const columns = action.payload.columns.reduce(function(acc, cur, i) {
-        acc[cur._id] = cur;
-        return acc;
-      }, {});
-      return { ...state, columnOrder: Object.keys(columns) };
+      let board = action.payload.board;
+      board.id = board._id;
+      delete board._id;
+      board.columnOrder = board.columnIds;
+      delete board.columnIds;
+      return board;
     }
     case "OPEN_TASK_DETAIL": {
       return { ...state, editingTaskId: action.payload };

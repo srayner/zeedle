@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import BoardTitle from "./board-title";
 import BoardBody from "./board-body";

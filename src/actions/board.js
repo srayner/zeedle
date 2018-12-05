@@ -4,6 +4,8 @@ import { removeListAtIndex, appendList } from "../data/board";
 export function loadBoards() {
   return dispatch => {
     getBoards().then(data => {
+      console.log("Boards");
+      console.log(data);
       dispatch(loadBoardsEnd(data));
     });
   };
@@ -35,11 +37,11 @@ function loadBoardsEnd(response) {
 async function getBoardData(boardId) {
   const tasks = await api.getTasks();
   const columns = await api.getColumns(boardId);
-  const board = await api.getBoards(boardId);
+  const board = await api.getBoard(boardId);
   return {
     tasks: tasks.data,
     columns: columns.data,
-    board: board
+    board: board.data
   };
 }
 
@@ -76,8 +78,8 @@ export function addListCancel() {
 }
 
 export function addListEnd(board) {
-  return (dispatch, getState) => {
-    const title = getState().board.newListContent;
+  return dispatch => {
+    const title = board.newListContent;
     return api.addList(title).then(response => {
       const newList = response.data;
       newList.id = newList._id;
