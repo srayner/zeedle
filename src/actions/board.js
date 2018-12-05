@@ -36,11 +36,11 @@ function loadBoardsEnd(response) {
 
 async function getBoardData(boardId) {
   const tasks = await api.getTasks();
-  const columns = await api.getLists(boardId);
+  const lists = await api.getLists(boardId);
   const board = await api.getBoard(boardId);
   return {
     tasks: tasks.data,
-    columns: columns.data,
+    lists: lists.data,
     board: board.data
   };
 }
@@ -102,8 +102,9 @@ export function removeList(index) {
     const listId = board.listIds[index];
     return api.deleteList(listId).then(response => {
       const updatedBoard = removeListAtIndex(board, index);
+      api.updateBoard(updatedBoard);
       return dispatch({
-        type: "COLUMN_DELETE",
+        type: "LIST_DELETE",
         payload: { board: updatedBoard, listId: listId }
       });
     });

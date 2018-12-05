@@ -47,7 +47,7 @@ const board = (state = initialState, action) => {
       const listIds = [...state.listIds, newList.id];
       return { ...state, listIds, addingList: false };
     }
-    case "COLUMN_DELETE": {
+    case "LIST_DELETE": {
       return action.payload.board;
     }
     default:

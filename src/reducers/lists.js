@@ -4,7 +4,7 @@ const lists = (state = {}, action) => {
       return state;
     }
     case "LOAD_DATA_END": {
-      return action.payload.columns.reduce(function(acc, cur, i) {
+      return action.payload.lists.reduce(function(acc, cur, i) {
         cur.id = cur._id;
         delete cur._id;
         cur.addingTask = false;
