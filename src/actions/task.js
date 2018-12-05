@@ -42,16 +42,16 @@ export function onDragEnd({ destination, source, draggableId, type }) {
     const start = state.lists[source.droppableId];
     const finish = state.lists[destination.droppableId];
     if (start === finish) {
-      const column = moveTask(
+      const list = moveTask(
         start,
         source.index,
         destination.index,
         draggableId
       );
-      api.updateColumn(column).then(() => {
+      api.updateColumn(list).then(() => {
         dispatch({
-          type: "COLUMN_UPDATED",
-          payload: { column }
+          type: "LIST_UPDATED",
+          payload: { list }
         });
       });
       return;

@@ -13,9 +13,9 @@ const lists = (state = {}, action) => {
         return acc;
       }, {});
     }
-    case "COLUMN_UPDATED": {
-      const column = action.payload.column;
-      return { ...state, [column.id]: column };
+    case "LIST_UPDATED": {
+      const { list } = action.payload;
+      return { ...state, [list.id]: list };
     }
     case "COLUMNS_UPDATED": {
       const { sourceColumn, destinationColumn } = action.payload;
