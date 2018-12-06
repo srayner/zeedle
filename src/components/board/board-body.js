@@ -9,6 +9,7 @@ import Page from "../ui/page";
 
 class InnerList extends React.PureComponent {
   render() {
+    console.log(this.props);
     const { list, taskMap, index } = this.props;
     const tasks = list.taskIds.map(taskId => taskMap[taskId]);
     return <List list={list} tasks={tasks} index={index} />;

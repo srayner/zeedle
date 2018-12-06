@@ -11,8 +11,6 @@ const board = (state = initialState, action) => {
       let board = action.payload.board;
       board.id = board._id;
       delete board._id;
-      board.listIds = board.columnIds;
-      delete board.columnIds;
       return board;
     }
     case "OPEN_TASK_DETAIL": {

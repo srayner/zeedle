@@ -26,7 +26,7 @@ class Api {
       this.baseUri + "/boards/" + board.id,
       {
         title: board.title,
-        columnIds: board.listIds,
+        listIds: board.listIds,
         starred: board.starred
       },
       {
@@ -88,7 +88,7 @@ class Api {
   }
 
   getLists(boardId) {
-    return axios.get(this.baseUri + "/columns?boardId=" + boardId, {
+    return axios.get(this.baseUri + "/lists?boardId=" + boardId, {
       mode: "no-cors",
       headers: {
         "Content-Type": "application/json"
@@ -102,7 +102,7 @@ class Api {
       title: list.title,
       taskIds: list.taskIds
     };
-    return axios.patch(this.baseUri + "/columns/" + list.id, data, {
+    return axios.patch(this.baseUri + "/lists/" + list.id, data, {
       mode: "no-cors",
       headers: {
         "Content-Type": "application/json"
@@ -112,7 +112,7 @@ class Api {
 
   addList(title) {
     return axios.post(
-      this.baseUri + "/columns",
+      this.baseUri + "/lists",
       {
         title: title,
         taskIds: []
@@ -127,7 +127,7 @@ class Api {
   }
 
   deleteList(id) {
-    return axios.delete(this.baseUri + "/columns/" + id, {
+    return axios.delete(this.baseUri + "/lists/" + id, {
       mode: "no-cors",
       headers: {
         "Content-Type": "application/json"

@@ -4,8 +4,6 @@ import { removeListAtIndex, appendList } from "../data/board";
 export function loadBoards() {
   return dispatch => {
     getBoards().then(data => {
-      console.log("Boards");
-      console.log(data);
       dispatch(loadBoardsEnd(data));
     });
   };
