@@ -67,7 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onChange: content => dispatch(addListUpdateContent(content)),
-    onCancel: column => dispatch(addListCancel(column)),
+    onCancel: list => dispatch(addListCancel(list)),
     onSubmit: board => dispatch(addListEnd(board))
   };
 };

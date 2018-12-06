@@ -26,32 +26,29 @@ const lists = (state = {}, action) => {
       };
     }
     case "START_ADD_TASK": {
-      const column = action.payload;
-      const newColumn = { ...column, addingTask: true };
-      return { ...state, [newColumn.id]: newColumn };
+      const list = action.payload;
+      const newList = { ...list, addingTask: true };
+      return { ...state, [newList.id]: newList };
     }
     case "CANCEL_ADD_TASK": {
-      const column = action.payload;
-      const newColumn = { ...column, addingTask: false };
-      return { ...state, [newColumn.id]: newColumn };
+      const list = action.payload;
+      const newList = { ...list, addingTask: false };
+      return { ...state, [newList.id]: newList };
     }
-    case "END_ADD_TASK": {
-      const column = action.column;
-      const newTask = action.newTask;
-      const newTaskIds = [...column.taskIds, newTask.id];
-      const newColumn = { ...column, taskIds: newTaskIds, addingTask: false };
-      return { ...state, [newColumn.id]: newColumn };
+    case "ADD_TASK_END": {
+      const { list, newTask } = action.payload;
+      const newTaskIds = [...list.taskIds, newTask.id];
+      const newList = { ...list, taskIds: newTaskIds, addingTask: false };
+      return { ...state, [newList.id]: newList };
     }
     case "UPDATE_NEW_TASK_CONTENT": {
-      const newColumn = {
-        ...action.payload.column,
-        newTaskContent: action.payload.content
-      };
-      return { ...state, [newColumn.id]: newColumn };
+      const { list, content } = action.payload;
+      const updatedList = { ...list, newTaskContent: content };
+      return { ...state, [updatedList.id]: updatedList };
     }
     case "TASK_DELETE": {
-      const newColumn = action.payload.column;
-      return { ...state, [newColumn.id]: newColumn };
+      const { list } = action.payload;
+      return { ...state, [list.id]: list };
     }
     case "ADD_LIST_END": {
       const newList = action.payload;

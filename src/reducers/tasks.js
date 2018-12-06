@@ -11,13 +11,13 @@ const tasks = (state = {}, action) => {
         return acc;
       }, {});
     }
-    case "END_ADD_TASK": {
-      const newTask = action.newTask;
+    case "ADD_TASK_END": {
+      const { newTask } = action.payload;
       return { ...state, [newTask.id]: newTask };
     }
     case "TASK_DELETE": {
-      const key = action.payload.taskId;
-      const { [key]: value, ...newState } = state;
+      const { taskId } = action.payload;
+      const { [taskId]: value, ...newState } = state;
       return newState;
     }
     case "TASK_UPDATED": {

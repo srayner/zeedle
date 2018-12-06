@@ -34,7 +34,7 @@ class InnerList extends React.Component {
 
   render() {
     return this.props.tasks.map((task, index) => (
-      <Task key={task.id} task={task} index={index} column={this.props.list} />
+      <Task key={task.id} task={task} index={index} list={this.props.list} />
     ));
   }
 }
@@ -92,20 +92,16 @@ class List extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
 const mapDispatchToProps = dispatch => {
   return {
-    startAddTask: column => dispatch(startAddTask(column)),
+    startAddTask: list => dispatch(startAddTask(list)),
     removeListHandler: index => dispatch(removeList(index)),
-    editListTitle: (column, title) => dispatch(editListTitle(column, title)),
+    editListTitle: (list, title) => dispatch(editListTitle(list, title)),
     saveList: list => dispatch(saveList(list))
   };
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(List);

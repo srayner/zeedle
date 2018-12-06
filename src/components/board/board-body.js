@@ -24,8 +24,8 @@ class BoardBody extends React.Component {
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {provided => (
               <Page {...provided.droppableProps} innerRef={provided.innerRef}>
-                {board.listIds.map((columnId, index) => {
-                  const list = lists[columnId];
+                {board.listIds.map((listId, index) => {
+                  const list = lists[listId];
                   return (
                     <InnerList
                       key={list.id}

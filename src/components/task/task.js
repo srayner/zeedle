@@ -39,7 +39,7 @@ class Task extends React.Component {
         caption: "Delete",
         icon: faTrashAlt,
         clickHandler: () => {
-          this.props.deleteHandler(this.props.column, this.props.index);
+          this.props.deleteHandler(this.props.list, this.props.index);
         }
       }
     ];
@@ -48,7 +48,7 @@ class Task extends React.Component {
       this.props.editingTaskId === this.props.task.id ? (
         <Modal handleClose={this.props.closeHandler}>
           <ModalContainer>
-            <TaskDetail task={this.props.task} column={this.props.column} />
+            <TaskDetail task={this.props.task} list={this.props.list} />
             <ButtonList title="Actions" buttons={actionButtons} />
           </ModalContainer>
         </Modal>
@@ -88,7 +88,7 @@ const mapDispatchToProps = dispatch => {
   return {
     closeHandler: () => dispatch(closeTaskDetail()),
     clickHandler: taskId => dispatch(openTaskDetail(taskId)),
-    deleteHandler: (column, index) => dispatch(deleteTask(column, index))
+    deleteHandler: (list, index) => dispatch(deleteTask(list, index))
   };
 };
 

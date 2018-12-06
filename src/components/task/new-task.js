@@ -72,10 +72,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: (column, content) =>
-      dispatch(updateNewTaskContent(column, content)),
-    onCancel: column => dispatch(cancelAddTask(column)),
-    onSubmit: column => dispatch(endAddTask(column))
+    onChange: (list, content) => dispatch(updateNewTaskContent(list, content)),
+    onCancel: list => dispatch(cancelAddTask(list)),
+    onSubmit: list => dispatch(endAddTask(list))
   };
 };
 

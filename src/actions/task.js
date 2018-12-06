@@ -76,48 +76,47 @@ export function onDragEnd({ destination, source, draggableId, type }) {
   };
 }
 
-export function startAddTask(column) {
+export function startAddTask(list) {
   return {
     type: "START_ADD_TASK",
-    payload: column
+    payload: list
   };
 }
 
-export function cancelAddTask(column) {
+export function cancelAddTask(list) {
   return {
     type: "CANCEL_ADD_TASK",
-    payload: column
+    payload: list
   };
 }
 
-export function endAddTask(column) {
+export function endAddTask(list) {
   return dispatch => {
-    return api.addTask(column.newTaskContent).then(response => {
+    return api.addTask(list.newTaskContent).then(response => {
       const newTask = response.data;
       newTask.id = newTask._id;
       delete newTask._id;
 
-      const updatedColumn = appendTask(column, newTask.id);
-      api.updateList(updatedColumn).then(response => {
+      const updatedList = appendTask(list, newTask.id);
+      api.updateList(updatedList).then(() => {
         return dispatch({
-          type: "END_ADD_TASK",
-          column: column,
-          newTask: newTask
+          type: "ADD_TASK_END",
+          payload: { list, newTask }
         });
       });
     });
   };
 }
 
-export function deleteTask(column, index) {
+export function deleteTask(list, index) {
   return dispatch => {
-    const taskId = column.taskIds[index];
-    return api.deleteTask(taskId).then(response => {
-      const updatedColumn = removeTask(column, index);
-      api.updateList(updatedColumn).then(response => {
+    const taskId = list.taskIds[index];
+    return api.deleteTask(taskId).then(() => {
+      const updatedList = removeTask(list, index);
+      api.updateList(updatedList).then(() => {
         return dispatch({
           type: "TASK_DELETE",
-          payload: { column: updatedColumn, taskId: taskId }
+          payload: { list: updatedList, taskId }
         });
       });
     });
@@ -137,10 +136,11 @@ export function closeTaskDetail() {
     payload: null
   };
 }
-export function updateNewTaskContent(column, content) {
+
+export function updateNewTaskContent(list, content) {
   return {
     type: "UPDATE_NEW_TASK_CONTENT",
-    payload: { column, content }
+    payload: { list, content }
   };
 }
 

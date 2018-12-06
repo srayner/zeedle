@@ -36,17 +36,10 @@ const SubTitle = styled.div`
   font-size: 14px;
 `;
 
-const Description = styled.span`
-  color: black;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-size: 16px;
-`;
-
 class TaskDetail extends React.Component {
   render() {
     const {
-      column,
+      list,
       task,
       onTitleChange,
       onDescriptionChange,
@@ -64,7 +57,7 @@ class TaskDetail extends React.Component {
               onChange={title => onTitleChange(task, title)}
               onBlur={() => onTaskModified(task)}
             />
-            <SubTitle>in list: {column.title}</SubTitle>
+            <SubTitle>in list: {list.title}</SubTitle>
           </Wrap>
         </Container>
         <Container>
@@ -84,10 +77,6 @@ class TaskDetail extends React.Component {
   }
 }
 
-const mapStateToProps = dispatch => {
-  return {};
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     onTitleChange: (task, title) => dispatch(editTaskTitle(task, title)),
@@ -98,6 +87,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(TaskDetail);
