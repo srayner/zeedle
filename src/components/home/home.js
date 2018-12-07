@@ -5,6 +5,7 @@ import { loadBoards } from "../../actions/board";
 import Page from "../ui/page";
 import Container from "../ui/container";
 import styled from "styled-components";
+import NewBoardLink from "../board/new-board-link";
 
 const HomeTitle = styled.h2`
   margin: 0 8px;
@@ -36,6 +37,7 @@ class Home extends React.Component {
         <Page>
           <nav>
             <BoardList>{boards}</BoardList>
+            <NewBoardLink>Create new board...</NewBoardLink>
           </nav>
         </Page>
       </Container>

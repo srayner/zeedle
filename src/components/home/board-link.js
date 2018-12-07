@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const ListItem = styled.li`
-  height: 100px;
-  width: 200px;
+  height: 90px;
+  width: 180px;
   background-color: rgb(0, 121, 191);
   list-style: none;
   margin: 20px;
