@@ -6,6 +6,8 @@ import Page from "../ui/page";
 import Container from "../ui/container";
 import styled from "styled-components";
 import NewBoardLink from "../board/new-board-link";
+import Modal from "../ui/modal";
+import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
 
 const HomeTitle = styled.h2`
   margin: 0 8px;
@@ -19,12 +21,23 @@ const BoardList = styled.ul`
   padding: 0;
 `;
 
+const ModalContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
 class Home extends React.Component {
   componentDidMount() {
     this.props.loadBoards();
   }
 
   render() {
+    const modal = this.props.addingBoard ? (
+      <Modal handleClose={this.props.cancelAddBoard}>
+        <ModalContainer />
+      </Modal>
+    ) : null;
+
     const boards = Object.keys(this.props.boards).map((key, index) => {
       const board = this.props.boards[key];
       const url = "/board/" + board.id;
@@ -37,9 +50,12 @@ class Home extends React.Component {
         <Page>
           <nav>
             <BoardList>{boards}</BoardList>
-            <NewBoardLink>Create new board...</NewBoardLink>
+            <NewBoardLink onClick={this.props.startAddBoard}>
+              Create new board...
+            </NewBoardLink>
           </nav>
         </Page>
+        {modal}
       </Container>
     );
   }
@@ -47,13 +63,17 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    addingBoard: state.app.addingBoard,
     boards: state.boards
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadBoards: () => dispatch(loadBoards())
+    loadBoards: () => dispatch(loadBoards()),
+    startAddBoard: () => dispatch(startAddBoard()),
+    cancelAddBoard: () => dispatch(cancelAddBoard()),
+    endAddBoard: () => dispatch(endAddBoard())
   };
 };
 
