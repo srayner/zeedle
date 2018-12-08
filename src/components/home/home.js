@@ -8,6 +8,8 @@ import styled from "styled-components";
 import NewBoardLink from "../board/new-board-link";
 import Modal from "../ui/modal";
 import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
+import { Button } from "../ui/button";
+import NewBoard from "../board/new-board";
 
 const HomeTitle = styled.h2`
   margin: 0 8px;
@@ -34,7 +36,9 @@ class Home extends React.Component {
   render() {
     const modal = this.props.addingBoard ? (
       <Modal handleClose={this.props.cancelAddBoard}>
-        <ModalContainer />
+        <ModalContainer>
+          <NewBoard />
+        </ModalContainer>
       </Modal>
     ) : null;
 
