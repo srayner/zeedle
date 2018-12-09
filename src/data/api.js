@@ -21,6 +21,21 @@ class Api {
     });
   }
 
+  addBoard(title) {
+    return axios.post(
+      this.baseUri + "/boards",
+      {
+        title
+      },
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+  }
+
   updateBoard(board) {
     return axios.patch(
       this.baseUri + "/boards/" + board.id,

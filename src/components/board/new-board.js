@@ -2,14 +2,18 @@ import React from "react";
 import Text from "../ui/text";
 import { connect } from "react-redux";
 import { Button } from "../ui/button";
-import { endAddBoard } from "../../actions/app";
+import { endAddBoard, updateNewBoardContent } from "../../actions/app";
 
 class NewBoard extends React.Component {
   render() {
     return (
       <div>
-        <Text />
-        <Button onClick={() => this.props.endAddBoard()}>Add new board</Button>
+        <Text
+          onChange={event =>
+            this.props.updateNewBoardContent(event.target.value)
+          }
+        />
+        <Button onClick={this.props.endAddBoard}>Add new board</Button>
       </div>
     );
   }
@@ -17,7 +21,9 @@ class NewBoard extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    endAddBoard: () => dispatch(endAddBoard())
+    endAddBoard: () => dispatch(endAddBoard()),
+    updateNewBoardContent: newContent =>
+      dispatch(updateNewBoardContent(newContent))
   };
 };
 

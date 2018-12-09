@@ -8,6 +8,10 @@ const boards = (state = {}, action) => {
         return acc;
       }, {});
     }
+    case "ADD_BOARD_END": {
+      const { newBoard } = action.payload;
+      return { ...state, [newBoard.id]: newBoard };
+    }
     default:
       return state;
   }

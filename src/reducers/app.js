@@ -1,5 +1,6 @@
 const initialState = {
-  addingBoard: false
+  addingBoard: false,
+  newBoardContent: ""
 };
 
 const app = (state = initialState, action) => {
@@ -12,6 +13,10 @@ const app = (state = initialState, action) => {
     }
     case "ADD_BOARD_END": {
       return { ...state, addingBoard: false };
+    }
+    case "ADD_BOARD_UPDATE_CONTENT": {
+      const { newContent } = action.payload;
+      return { ...state, newBoardContent: newContent };
     }
     default:
       return state;
