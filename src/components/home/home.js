@@ -20,6 +20,7 @@ const HomeTitle = styled.h2`
 const BoardList = styled.ul`
   margin: 0;
   padding: 0;
+  display: flex;
 `;
 
 const ModalContainer = styled.div`
