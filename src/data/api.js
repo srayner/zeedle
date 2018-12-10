@@ -25,7 +25,8 @@ class Api {
     return axios.post(
       this.baseUri + "/boards",
       {
-        title
+        title,
+        listIds: []
       },
       {
         mode: "no-cors",
