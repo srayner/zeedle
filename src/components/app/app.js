@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import HomeButton from "./home-button";
 import BoardButton from "./board-button";
 import styled from "styled-components";
+import LoginPage from "../user/login-page";
+import SignupPage from "../user/signup-page";
 
 const StyledLink = styled(Link)`
   focus: {
@@ -29,6 +31,8 @@ class App extends React.Component {
           </TitleBar>
           <Route path="/" exact component={Home} />
           <Route path="/board/:boardId" component={Board} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
         </div>
       </Router>
     );
