@@ -1,10 +1,18 @@
 const initialState = {
+  token: null,
   addingBoard: false,
   newBoardContent: ""
 };
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "LOGIN": {
+      const { token } = action.payload;
+      return { ...state, token };
+    }
+    case "LOGOUT": {
+      return { ...state, token: null };
+    }
     case "ADD_BOARD_START": {
       return { ...state, addingBoard: true };
     }

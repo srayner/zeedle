@@ -3,6 +3,30 @@ import axios from "axios";
 class Api {
   baseUri = "http://localhost:8000";
 
+  options = {
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  signup(email, password) {
+    console.log(this.options);
+    return axios.post(
+      this.baseUri + "/user/signup",
+      { email, password },
+      this.options
+    );
+  }
+
+  login(email, password) {
+    return axios.post(
+      this.baseUri + "/user/login",
+      { email, password },
+      this.options
+    );
+  }
+
   getBoards() {
     return axios.get(this.baseUri + "/boards", {
       mode: "no-cors",

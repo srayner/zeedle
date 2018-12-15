@@ -1,5 +1,13 @@
 import api from "../data/api";
 
+export function signUp(email, password) {
+  return dispatch => {
+    return api.signup(email, password).then(response => {
+      console.log(response);
+    });
+  };
+}
+
 export function startAddBoard() {
   return {
     type: "ADD_BOARD_START"
