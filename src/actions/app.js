@@ -3,6 +3,7 @@ import api from "../data/api";
 export function signUp(email, password) {
   return dispatch => {
     return api.signup(email, password).then(response => {
+      console.log("response");
       console.log(response);
     });
   };

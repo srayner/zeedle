@@ -10,13 +10,8 @@ class Api {
     }
   };
 
-  signup(email, password) {
-    console.log(this.options);
-    return axios.post(
-      this.baseUri + "/user/signup",
-      { email, password },
-      this.options
-    );
+  signup(data) {
+    return axios.post(this.baseUri + "/user/signup", data, this.options);
   }
 
   login(email, password) {
