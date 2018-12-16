@@ -1,11 +1,14 @@
 import api from "../data/api";
 
-export function signUp(email, password) {
+export function signUp(data) {
   return dispatch => {
-    return api.signup(email, password).then(response => {
-      console.log("response");
-      console.log(response);
-    });
+    return api.signup(data).then(response => {});
+  };
+}
+
+export function login(data) {
+  return dispatch => {
+    return api.login(data).then(response => {});
   };
 }
 

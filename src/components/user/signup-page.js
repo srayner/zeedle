@@ -16,7 +16,7 @@ class SignupPage extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmit: (email, password) => dispatch(signUp(email, password))
+    onSubmit: data => dispatch(signUp(data))
   };
 };
 

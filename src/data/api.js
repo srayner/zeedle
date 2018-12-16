@@ -14,12 +14,8 @@ class Api {
     return axios.post(this.baseUri + "/user/signup", data, this.options);
   }
 
-  login(email, password) {
-    return axios.post(
-      this.baseUri + "/user/login",
-      { email, password },
-      this.options
-    );
+  login(data) {
+    return axios.post(this.baseUri + "/user/login", data, this.options);
   }
 
   getBoards() {
