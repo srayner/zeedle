@@ -8,7 +8,10 @@ export function signUp(data) {
 
 export function login(data) {
   return dispatch => {
-    return api.login(data).then(response => {});
+    return api.login(data).then(response => {
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+    });
   };
 }
 

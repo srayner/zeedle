@@ -3,28 +3,36 @@ import axios from "axios";
 class Api {
   baseUri = "http://localhost:8000";
 
-  options = {
-    mode: "no-cors",
-    headers: {
+  getHeaders = () => {
+    const headers = {
       "Content-Type": "application/json"
+    };
+    const token = localStorage.getItem("token");
+    if (token) {
+      headers.Authorization = "Bearer " + token;
     }
+    return headers;
+  };
+
+  getOptions = () => {
+    return {
+      mode: "no-cors",
+      headers: this.getHeaders()
+    };
   };
 
   signup(data) {
-    return axios.post(this.baseUri + "/user/signup", data, this.options);
+    return axios.post(this.baseUri + "/user/signup", data, this.getOptions());
   }
 
   login(data) {
-    return axios.post(this.baseUri + "/user/login", data, this.options);
+    return axios.post(this.baseUri + "/user/login", data, this.getOptions());
   }
 
   getBoards() {
-    return axios.get(this.baseUri + "/boards", {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    const options = this.getOptions();
+    console.log(options);
+    return axios.get(this.baseUri + "/boards", this.getOptions());
   }
 
   getBoard(boardId) {
