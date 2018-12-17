@@ -10,6 +10,7 @@ import Modal from "../ui/modal";
 import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
 import NewBoard from "../board/new-board";
 import { Redirect } from "react-router-dom";
+import Avatar from "../../components/ui/avatar";
 
 const HomeTitle = styled.h2`
   margin: 0 8px;
@@ -39,6 +40,7 @@ class Home extends React.Component {
     if (!token) {
       return <Redirect to="/login" />;
     }
+
     const modal = this.props.addingBoard ? (
       <Modal handleClose={this.props.cancelAddBoard}>
         <ModalContainer>
@@ -62,6 +64,7 @@ class Home extends React.Component {
             <NewBoardLink onClick={this.props.startAddBoard}>
               Create new board...
             </NewBoardLink>
+            <Avatar>S R</Avatar>
           </nav>
         </Page>
         {modal}
