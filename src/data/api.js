@@ -36,12 +36,7 @@ class Api {
   }
 
   getBoard(boardId) {
-    return axios.get(this.baseUri + "/boards/" + boardId, {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.get(this.baseUri + "/boards/" + boardId, this.getOptions());
   }
 
   addBoard(title) {
@@ -51,12 +46,7 @@ class Api {
         title,
         listIds: []
       },
-      {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      this.getOptions()
     );
   }
 
@@ -68,22 +58,12 @@ class Api {
         listIds: board.listIds,
         starred: board.starred
       },
-      {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      this.getOptions()
     );
   }
 
   getTasks() {
-    return axios.get(this.baseUri + "/tasks", {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.get(this.baseUri + "/tasks", this.getOptions());
   }
 
   updateTask(task) {
@@ -93,12 +73,7 @@ class Api {
         title: task.title,
         description: task.description
       },
-      {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      this.getOptions()
     );
   }
 
@@ -108,31 +83,19 @@ class Api {
       {
         title: title
       },
-      {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      this.getOptions()
     );
   }
 
   deleteTask(id) {
-    return axios.delete(this.baseUri + "/tasks/" + id, {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.delete(this.baseUri + "/tasks/" + id, this.getOptions());
   }
 
   getLists(boardId) {
-    return axios.get(this.baseUri + "/lists?boardId=" + boardId, {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.get(
+      this.baseUri + "/lists?boardId=" + boardId,
+      this.getOptions()
+    );
   }
 
   updateList(list) {
@@ -141,12 +104,11 @@ class Api {
       title: list.title,
       taskIds: list.taskIds
     };
-    return axios.patch(this.baseUri + "/lists/" + list.id, data, {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.patch(
+      this.baseUri + "/lists/" + list.id,
+      data,
+      this.getOptions()
+    );
   }
 
   addList(title) {
@@ -156,22 +118,12 @@ class Api {
         title: title,
         taskIds: []
       },
-      {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      this.getOptions()
     );
   }
 
   deleteList(id) {
-    return axios.delete(this.baseUri + "/lists/" + id, {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    return axios.delete(this.baseUri + "/lists/" + id, this.getOptions());
   }
 }
 
