@@ -1,14 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { showProfileMenu, hideProfileMenu } from "../../actions/app";
+import { showProfileMenu, hideProfileMenu, logout } from "../../actions/app";
 import Avatar from "../../components/ui/avatar";
 import profileMenuData from "../../data/profile-menu";
 import PopupMenu from "../ui/popup-menu";
 
 class ProfileNav extends React.Component {
+  menuClick = itemId => {
+    switch (itemId) {
+      case "LOGOUT": {
+        this.props.logout();
+      }
+    }
+  };
+
   componentDidMount() {
     profileMenuData.onItemClick = this.props.onMenuItemClick;
     profileMenuData.onClose = this.props.hideMenu;
+    profileMenuData.onItemClick = this.menuClick;
   }
 
   render() {
@@ -41,6 +50,9 @@ const mapDispatchToProps = dispatch => {
     },
     hideMenu: () => {
       dispatch(hideProfileMenu());
+    },
+    logout: () => {
+      dispatch(logout());
     }
   };
 };

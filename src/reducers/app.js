@@ -12,7 +12,7 @@ const app = (state = initialState, action) => {
       return { ...state, token };
     }
     case "LOGOUT": {
-      return { ...state, token: null };
+      return { ...state, token: null, profileMenuVisible: false };
     }
     case "SHOW_PROFILE_MENU": {
       return { ...state, profileMenuVisible: true };

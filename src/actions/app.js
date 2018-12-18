@@ -15,6 +15,13 @@ export function login(data) {
   };
 }
 
+export function logout() {
+  localStorage.removeItem("token");
+  return {
+    type: "LOGOUT"
+  };
+}
+
 export function showProfileMenu() {
   return {
     type: "SHOW_PROFILE_MENU"
