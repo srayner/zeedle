@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Avatar = props => {
-  return <Container>{props.children}</Container>;
+  return <Container onClick={() => props.onClick}>{props.children}</Container>;
 };
 
 export default Avatar;

@@ -1,7 +1,8 @@
 const initialState = {
   token: null,
   addingBoard: false,
-  newBoardContent: ""
+  newBoardContent: "",
+  profileMenuVisible: false
 };
 
 const app = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const app = (state = initialState, action) => {
     }
     case "LOGOUT": {
       return { ...state, token: null };
+    }
+    case "SHOW_PROFILE_MENU": {
+      return { ...state, profileMenuVisible: true };
+    }
+    case "HIDE_PROFILE_MENU": {
+      return { ...state, profileMenuVisible: false };
     }
     case "ADD_BOARD_START": {
       return { ...state, addingBoard: true };

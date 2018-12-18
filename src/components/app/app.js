@@ -8,7 +8,7 @@ import BoardButton from "./board-button";
 import styled from "styled-components";
 import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
-import Avatar from "../ui/avatar";
+import ProfileNav from "../profile/profile-nav";
 
 const StyledLink = styled(Link)`
   focus: {
@@ -22,8 +22,6 @@ const RightContainer = styled.div`
 
 class App extends React.Component {
   render() {
-    const token = localStorage.getItem("token");
-    const avatar = token ? <Avatar>S R</Avatar> : null;
     return (
       <Router>
         <div>
@@ -35,7 +33,9 @@ class App extends React.Component {
               <BoardButton />
             </Link>
             zeedle
-            <RightContainer>{avatar}</RightContainer>
+            <RightContainer>
+              <ProfileNav />
+            </RightContainer>
           </TitleBar>
           <Route path="/" exact component={Home} />
           <Route path="/board/:boardId" component={Board} />

@@ -15,6 +15,18 @@ export function login(data) {
   };
 }
 
+export function showProfileMenu() {
+  return {
+    type: "SHOW_PROFILE_MENU"
+  };
+}
+
+export function hideProfileMenu() {
+  return {
+    type: "HIDE_PROFILE_MENU"
+  };
+}
+
 export function startAddBoard() {
   return {
     type: "ADD_BOARD_START"
