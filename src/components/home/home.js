@@ -36,13 +36,19 @@ class Home extends React.Component {
   }
 
   render() {
-    const token = localStorage.getItem("token");
+    const { token, addingBoard, cancelAddBoard } = this.props;
     if (!token) {
-      return <Redirect to="/login" />;
+      return (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { referrer: "/" }
+          }}
+        />
+      );
     }
-
-    const modal = this.props.addingBoard ? (
-      <Modal handleClose={this.props.cancelAddBoard}>
+    const modal = addingBoard ? (
+      <Modal handleClose={cancelAddBoard}>
         <ModalContainer>
           <NewBoard />
         </ModalContainer>
@@ -76,7 +82,8 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     addingBoard: state.app.addingBoard,
-    boards: state.boards
+    boards: state.boards,
+    token: state.app.token
   };
 };
 

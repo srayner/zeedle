@@ -11,6 +11,10 @@ export function login(data) {
     return api.login(data).then(response => {
       const token = response.data.token;
       localStorage.setItem("token", token);
+      return dispatch({
+        type: "LOGIN",
+        payload: { token }
+      });
     });
   };
 }

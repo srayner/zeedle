@@ -21,13 +21,9 @@ class ProfileNav extends React.Component {
   }
 
   render() {
-    const menu = this.props.menuVisible ? (
-      <PopupMenu {...profileMenuData} />
-    ) : null;
-    const token = localStorage.getItem("token");
-    const avatar = token ? (
-      <Avatar onClick={this.props.showMenu}>S R</Avatar>
-    ) : null;
+    const { menuVisible, token, showMenu } = this.props;
+    const menu = menuVisible ? <PopupMenu {...profileMenuData} /> : null;
+    const avatar = token ? <Avatar onClick={showMenu}>S R</Avatar> : null;
     return (
       <React.Fragment>
         {avatar}
@@ -39,6 +35,7 @@ class ProfileNav extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    token: state.app.token,
     menuVisible: state.app.profileMenuVisible
   };
 };

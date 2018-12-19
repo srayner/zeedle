@@ -1,5 +1,6 @@
 const initialState = {
   token: null,
+  redirect: null,
   addingBoard: false,
   newBoardContent: "",
   profileMenuVisible: false
@@ -8,8 +9,8 @@ const initialState = {
 const app = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN": {
-      const { token } = action.payload;
-      return { ...state, token };
+      const { token, redirect } = action.payload;
+      return { ...state, token, redirect };
     }
     case "LOGOUT": {
       return { ...state, token: null, profileMenuVisible: false };
