@@ -2,7 +2,7 @@ import React from "react";
 import BoardLink from "../home/board-link";
 import { connect } from "react-redux";
 import { loadBoards } from "../../actions/board";
-import Page from "../ui/page";
+//import Page from "../ui/page";
 import Container from "../ui/container";
 import styled from "styled-components";
 import NewBoardLink from "../board/new-board-link";
@@ -11,6 +11,18 @@ import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
 import NewBoard from "../board/new-board";
 import { Redirect } from "react-router-dom";
 import Avatar from "../../components/ui/avatar";
+import BoardListTitle from "../board/board-list-title";
+import { faFlipboard } from "@fortawesome/free-brands-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Page = styled.div`
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: 200px auto;
+  background-color: #ffffff;
+  padding: 10px;
+`;
 
 const HomeTitle = styled.h2`
   margin: 0 8px;
@@ -23,11 +35,30 @@ const BoardList = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const ModalContainer = styled.div`
   display: flex;
   margin-top: 10px;
+`;
+
+const QuickLinkTitle = styled.div`
+  padding: 0 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+const QuickLinkList = styled.ul`
+  padding: 20px;
+  margin: 0;
+`;
+
+const QuickLink = styled.li`
+  margin: 0;
+  padding: 0 0 10px 0;
+  list-style: none;
 `;
 
 class Home extends React.Component {
@@ -63,14 +94,27 @@ class Home extends React.Component {
 
     return (
       <Container backgroundColor="white">
-        <HomeTitle>Boards</HomeTitle>
+        <HomeTitle>Home</HomeTitle>
         <Page>
           <nav>
+            <QuickLinkTitle>Quick Links</QuickLinkTitle>
+            <QuickLinkList>
+              <QuickLink>
+                <FontAwesomeIcon icon={faHome} />
+                Home
+              </QuickLink>
+              <QuickLink>
+                <FontAwesomeIcon icon={faFlipboard} />
+                Boards
+              </QuickLink>
+            </QuickLinkList>
+          </nav>
+          <nav>
+            <BoardListTitle caption="Personal Boards" />
             <BoardList>{boards}</BoardList>
             <NewBoardLink onClick={this.props.startAddBoard}>
               Create new board...
             </NewBoardLink>
-            <Avatar>S R</Avatar>
           </nav>
         </Page>
         {modal}
