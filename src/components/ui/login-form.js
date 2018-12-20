@@ -20,7 +20,9 @@ class LoginForm extends React.Component {
   render() {
     return (
       <form>
+        <label>Email</label>
         <Text onChange={event => this.handleChange(event, "email")} />
+        <label>Password</label>
         <Text onChange={event => this.handleChange(event, "password")} />
         <Button onClick={this.handleSubmit}>{this.props.submitCaption}</Button>
       </form>
