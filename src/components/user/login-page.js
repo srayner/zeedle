@@ -1,4 +1,5 @@
 import React from "react";
+import LoginContainer from "./login-container";
 import LoginForm from "../ui/login-form";
 import { login } from "../../actions/app";
 import { connect } from "react-redux";
@@ -13,10 +14,10 @@ class LoginPage extends React.Component {
       return <Redirect to={referrer} />;
     }
     return (
-      <div>
+      <LoginContainer>
         <h1>Login</h1>
         <LoginForm submitCaption="Login" onSubmit={this.props.onSubmit} />
-      </div>
+      </LoginContainer>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import LoginContainer from "./login-container";
 import LoginForm from "../ui/login-form";
 import { signUp } from "../../actions/app";
 import { connect } from "react-redux";
@@ -6,10 +7,10 @@ import { connect } from "react-redux";
 class SignupPage extends React.Component {
   render() {
     return (
-      <div>
+      <LoginContainer>
         <h1>Sign up</h1>
         <LoginForm submitCaption="Sign up" onSubmit={this.props.onSubmit} />
-      </div>
+      </LoginContainer>
     );
   }
 }
