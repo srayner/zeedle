@@ -10,6 +10,9 @@ class ProfileNav extends React.Component {
     switch (itemId) {
       case "LOGOUT": {
         this.props.logout();
+        break;
+      }
+      default: {
       }
     }
   };
