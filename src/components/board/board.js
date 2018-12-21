@@ -13,7 +13,7 @@ class Board extends React.Component {
   render() {
     return (
       <Container>
-        <BoardTitle>{this.props.board.title}</BoardTitle>
+        <BoardTitle caption={this.props.board.title} />
         <BoardBody />
       </Container>
     );
