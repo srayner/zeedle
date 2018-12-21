@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../ui/button";
 
 const Container = styled.div`
+  box-sizing: border-box;
   width: 100%;
   margin: 0;
   padding: 10px 20px;
@@ -16,6 +17,7 @@ const Caption = styled.h2`
   color: white;
   font-size: 18px;
   font-weight: 400;
+  line-height: 34px;
 `;
 
 const BoardTitle = props => {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Page = styled.div`
   position: absolute;
-  top: 42px;
+  top: 54px;
   right: 8px;
   bottom: 8px;
   left: 8px;
