@@ -6,7 +6,12 @@ import Container from "../ui/container";
 import styled from "styled-components";
 import NewBoardLink from "../board/new-board-link";
 import Modal from "../ui/modal";
-import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
+import {
+  startAddBoard,
+  cancelAddBoard,
+  endAddBoard,
+  cancelDeleteBoard
+} from "../../actions/app";
 import NewBoard from "../board/new-board";
 import { Redirect } from "react-router-dom";
 import BoardListTitle from "../board/board-list-title";
@@ -65,7 +70,13 @@ class Home extends React.Component {
   }
 
   render() {
-    const { token, addingBoard, cancelAddBoard } = this.props;
+    const {
+      token,
+      addingBoard,
+      deletingBoard,
+      cancelAddBoard,
+      cancelDeleteBoard
+    } = this.props;
     if (!token) {
       return (
         <Redirect
@@ -76,13 +87,25 @@ class Home extends React.Component {
         />
       );
     }
-    const modal = addingBoard ? (
-      <Modal handleClose={cancelAddBoard}>
-        <ModalContainer>
-          <NewBoard />
-        </ModalContainer>
-      </Modal>
-    ) : null;
+    let modal = null;
+    if (addingBoard) {
+      modal = (
+        <Modal handleClose={cancelAddBoard}>
+          <ModalContainer>
+            <NewBoard />
+          </ModalContainer>
+        </Modal>
+      );
+    }
+    if (deletingBoard) {
+      modal = (
+        <Modal handleClose={cancelDeleteBoard}>
+          <ModalContainer>
+            <NewBoard />
+          </ModalContainer>
+        </Modal>
+      );
+    }
 
     const boards = Object.keys(this.props.boards).map((key, index) => {
       const board = this.props.boards[key];
@@ -124,6 +147,7 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     addingBoard: state.app.addingBoard,
+    deletingBoard: state.app.deletingBoard,
     boards: state.boards,
     token: state.app.token
   };
@@ -134,6 +158,7 @@ const mapDispatchToProps = dispatch => {
     loadBoards: () => dispatch(loadBoards()),
     startAddBoard: () => dispatch(startAddBoard()),
     cancelAddBoard: () => dispatch(cancelAddBoard()),
+    cancelDeleteBoard: () => dispatch(cancelDeleteBoard()),
     endAddBoard: () => dispatch(endAddBoard())
   };
 };

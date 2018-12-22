@@ -15,6 +15,12 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
+export const DangerButton = styled(Button)`
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  color: #212529;
+`;
+
 export const GrayButton = styled.button`
   border: none;
   border-radius: 4px;

@@ -4,6 +4,7 @@ import BoardTitle from "./board-title";
 import BoardBody from "./board-body";
 import { loadData } from "../../actions/board";
 import Container from "../ui/container";
+import { startDeleteBoard } from "../../actions/app";
 
 class Board extends React.Component {
   componentDidMount() {
@@ -13,7 +14,10 @@ class Board extends React.Component {
   render() {
     return (
       <Container>
-        <BoardTitle caption={this.props.board.title} />
+        <BoardTitle
+          caption={this.props.board.title}
+          deleteClickHandler={this.props.onDeleteHandler}
+        />
         <BoardBody />
       </Container>
     );
@@ -28,7 +32,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadData: boardId => dispatch(loadData(boardId))
+    loadData: boardId => dispatch(loadData(boardId)),
+    onDeleteHandler: boardId => dispatch(startDeleteBoard(boardId))
   };
 };
 

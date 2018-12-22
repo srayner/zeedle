@@ -50,6 +50,18 @@ export function cancelAddBoard() {
   };
 }
 
+export function startDeleteBoard() {
+  return {
+    type: "DELETE_BOARD_START"
+  };
+}
+
+export function cancelDeleteBoard() {
+  return {
+    type: "DELETE_BOARD_CANCEL"
+  };
+}
+
 export function endAddBoard() {
   return (dispatch, getState) => {
     const state = getState();

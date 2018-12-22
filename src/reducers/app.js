@@ -30,6 +30,15 @@ const app = (state = initialState, action) => {
     case "ADD_BOARD_END": {
       return { ...state, addingBoard: false };
     }
+    case "DELETE_BOARD_START": {
+      return { ...state, deletingBoard: true };
+    }
+    case "DELETE_BOARD_CANCEL": {
+      return { ...state, deletingoard: false };
+    }
+    case "DELETE_BOARD_END": {
+      return { ...state, deletingBoard: false };
+    }
     case "ADD_BOARD_UPDATE_CONTENT": {
       const { newContent } = action.payload;
       return { ...state, newBoardContent: newContent };

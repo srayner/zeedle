@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../ui/button";
+import { DangerButton } from "../ui/button";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -24,7 +24,7 @@ const BoardTitle = props => {
   return (
     <Container>
       <Caption>{props.caption}</Caption>
-      <Button>Delete Board</Button>
+      <DangerButton>Delete Board</DangerButton>
     </Container>
   );
 };
