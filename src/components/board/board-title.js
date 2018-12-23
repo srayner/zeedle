@@ -24,7 +24,13 @@ const BoardTitle = props => {
   return (
     <Container>
       <Caption>{props.caption}</Caption>
-      <DangerButton>Delete Board</DangerButton>
+      <DangerButton
+        onClick={() => {
+          props.onDeleteClick();
+        }}
+      >
+        Delete Board
+      </DangerButton>
     </Container>
   );
 };

@@ -2,6 +2,7 @@ const initialState = {
   token: null,
   redirect: null,
   addingBoard: false,
+  deletingBoard: false,
   newBoardContent: "",
   profileMenuVisible: false
 };
@@ -34,7 +35,7 @@ const app = (state = initialState, action) => {
       return { ...state, deletingBoard: true };
     }
     case "DELETE_BOARD_CANCEL": {
-      return { ...state, deletingoard: false };
+      return { ...state, deletingBoard: false };
     }
     case "DELETE_BOARD_END": {
       return { ...state, deletingBoard: false };

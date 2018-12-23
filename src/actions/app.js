@@ -56,6 +56,16 @@ export function startDeleteBoard() {
   };
 }
 
+export function endDeleteBoard(boardId) {
+  return dispatch => {
+    api.deleteBoard(boardId);
+    return dispatch({
+      type: "DELETE_BOARD_END",
+      payload: { boardId }
+    });
+  };
+}
+
 export function cancelDeleteBoard() {
   return {
     type: "DELETE_BOARD_CANCEL"

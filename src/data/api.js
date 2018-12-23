@@ -62,6 +62,10 @@ class Api {
     );
   }
 
+  deleteBoard(boardId) {
+    return axios.delete(this.baseUri + "/boards/" + boardId, this.getOptions());
+  }
+
   getTasks() {
     return axios.get(this.baseUri + "/tasks", this.getOptions());
   }
