@@ -9,13 +9,7 @@ import {
   endDeleteBoard,
   cancelDeleteBoard
 } from "../../actions/app";
-import Modal from "../ui/modal";
-import styled from "styled-components";
-
-const ModalContainer = styled.div`
-  display: flex;
-  margin-top: 10px;
-`;
+import DeleteBoardModal from "./delete-board-modal";
 
 class Board extends React.Component {
   componentDidMount() {
@@ -24,26 +18,11 @@ class Board extends React.Component {
   }
   render() {
     const modal = this.props.deletingBoard ? (
-      <Modal handleClose={this.props.cancelDeleteBoard}>
-        <ModalContainer>
-          <h2>Delete Board</h2>
-          <p>Are you sure you want to delete this board?</p>
-          <button
-            onClick={() => {
-              this.props.cancelDeleteBoard();
-            }}
-          >
-            No
-          </button>
-          <button
-            onClick={() => {
-              this.props.endDeleteBoard(this.props.board.id);
-            }}
-          >
-            Yes
-          </button>
-        </ModalContainer>
-      </Modal>
+      <DeleteBoardModal
+        cancel={this.props.cancelDeleteBoard}
+        delete={this.props.endDeleteBoard}
+        boardId={this.props.board.id}
+      />
     ) : null;
 
     return (
