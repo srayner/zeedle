@@ -1,6 +1,6 @@
 import React from "react";
 import Text from "./text";
-import { Button } from "./button";
+import { SuccessButton } from "./button";
 
 class LoginForm extends React.Component {
   state = {
@@ -24,7 +24,9 @@ class LoginForm extends React.Component {
         <Text onChange={event => this.handleChange(event, "email")} />
         <label>Password</label>
         <Text onChange={event => this.handleChange(event, "password")} />
-        <Button onClick={this.handleSubmit}>{this.props.submitCaption}</Button>
+        <SuccessButton onClick={this.handleSubmit}>
+          {this.props.submitCaption}
+        </SuccessButton>
       </form>
     );
   }

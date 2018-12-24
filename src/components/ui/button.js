@@ -1,23 +1,32 @@
 import styled from "styled-components";
 
+// Default grey button
 export const Button = styled.button`
-  border: 1px solid #28a745;
+  border: 1px solid #6c757d;
   border-radius: 4px;
   margin: 0;
   padding: 8px 16px;
   font-size: 14px;
   text-decoration: none;
-  color: #fff;
-  background: #37b223;
+  color: #212529;
+  background: #6c757d;
   font-family: "Roboto", sans-serif;
   line-height: 1.2;
   white-space: nowrap;
   cursor: pointer;
 `;
 
+// Green success button
+export const SuccessButton = styled(Button)`
+  background-color: #37b223;
+  border-color: #28a745;
+  color: #212529;
+`;
+
+// Red danger button
 export const DangerButton = styled(Button)`
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
+  background-color: #c82333;
+  border-color: #bd2130;
   color: #212529;
 `;
 

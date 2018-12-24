@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DangerButton } from "../ui/button";
+import { Button } from "../ui/button";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -24,13 +24,13 @@ const BoardTitle = props => {
   return (
     <Container>
       <Caption>{props.caption}</Caption>
-      <DangerButton
+      <Button
         onClick={() => {
           props.onDeleteClick();
         }}
       >
         Delete Board
-      </DangerButton>
+      </Button>
     </Container>
   );
 };
