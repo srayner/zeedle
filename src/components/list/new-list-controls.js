@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin: 0 -4px;
+  margin: 0;
   display: flex;
   justify-content: space-between;
 `;

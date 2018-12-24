@@ -33,7 +33,7 @@ export const DangerButton = styled(Button)`
 export const GrayButton = styled.button`
   border: none;
   border-radius: 4px;
-  margin: 0 4px;
+  margin: 0;
   padding: 0 8px;
   width: 32px;
   font-size: 14px;
