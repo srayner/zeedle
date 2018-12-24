@@ -4,6 +4,7 @@ import LoginForm from "../ui/login-form";
 import { login } from "../../actions/app";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
   render() {
@@ -17,6 +18,8 @@ class LoginPage extends React.Component {
       <LoginContainer>
         <h1>Login</h1>
         <LoginForm submitCaption="Login" onSubmit={this.props.onSubmit} />
+        <p>Don't have an account?</p>
+        <Link to="/signup">Sign Up</Link>
       </LoginContainer>
     );
   }
