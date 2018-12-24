@@ -6,7 +6,7 @@ import {
   endAddTask
 } from "../../actions/task";
 import { connect } from "react-redux";
-import { Button, GrayButton, CloseButton } from "../ui/button";
+import { SuccessButton, GrayButton, CloseButton } from "../ui/button";
 import TextArea from "../ui/text-area";
 import { faTimes, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,14 +42,14 @@ class NewTask extends React.Component {
           }}
         />
         <ButtonContainer>
-          <Button
+          <SuccessButton
             type="primary"
             onClick={() => {
               this.props.onSubmit(list);
             }}
           >
             Add Task
-          </Button>
+          </SuccessButton>
           <CloseButton
             onClick={() => {
               this.props.onCancel(list);

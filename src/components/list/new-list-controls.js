@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, CloseButton } from "../ui/button";
+import { SuccessButton, CloseButton } from "../ui/button";
 import Text from "../ui/text";
 import {
   addListUpdateContent,
@@ -37,14 +37,14 @@ class NewListControls extends React.Component {
           }}
         />
         <ButtonContainer>
-          <Button
+          <SuccessButton
             type="primary"
             onClick={() => {
               this.props.onSubmit(this.props.board);
             }}
           >
             Add List
-          </Button>
+          </SuccessButton>
           <CloseButton
             onClick={() => {
               this.props.onCancel();
