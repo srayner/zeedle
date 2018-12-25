@@ -108,3 +108,11 @@ export function removeList(index) {
     });
   };
 }
+
+export function showBoardMenu() {
+  return { type: "SHOW_BOARD_MENU" };
+}
+
+export function hideBoardMenu() {
+  return { type: "HIDE_BOARD_MENU" };
+}

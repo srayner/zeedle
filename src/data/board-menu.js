@@ -3,7 +3,7 @@ export default {
   title: "Board actions",
   width: "260px",
   position: {
-    top: "100px",
+    top: "0px",
     right: "1px"
   },
   items: [

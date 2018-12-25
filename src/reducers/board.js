@@ -1,8 +1,10 @@
 const initialState = {
-  title: "Task List",
+  id: null,
+  title: null,
   addingList: false,
   editingTaskId: null,
-  listIds: []
+  listIds: [],
+  boardMenuVisible: false
 };
 
 const board = (state = initialState, action) => {
@@ -11,7 +13,18 @@ const board = (state = initialState, action) => {
       let board = action.payload.board;
       board.id = board._id;
       delete board._id;
-      return board;
+      return {
+        ...state,
+        id: board.id,
+        title: board.title,
+        listIds: board.listIds
+      };
+    }
+    case "SHOW_BOARD_MENU": {
+      return { ...state, boardMenuVisible: true };
+    }
+    case "HIDE_BOARD_MENU": {
+      return { ...state, boardMenuVisible: false };
     }
     case "OPEN_TASK_DETAIL": {
       return { ...state, editingTaskId: action.payload };
