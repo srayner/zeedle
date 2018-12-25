@@ -1,7 +1,7 @@
 import React from "react";
 import Text from "../ui/text";
 import { connect } from "react-redux";
-import { Button } from "../ui/button";
+import { SuccessButton } from "../ui/button";
 import { endAddBoard, updateNewBoardContent } from "../../actions/app";
 
 class NewBoard extends React.Component {
@@ -9,11 +9,14 @@ class NewBoard extends React.Component {
     return (
       <div>
         <Text
+          placeholder="Board title"
           onChange={event =>
             this.props.updateNewBoardContent(event.target.value)
           }
         />
-        <Button onClick={this.props.endAddBoard}>Add new board</Button>
+        <SuccessButton onClick={this.props.endAddBoard}>
+          Add new board
+        </SuccessButton>
       </div>
     );
   }
