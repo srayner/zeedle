@@ -12,7 +12,7 @@ import { Redirect } from "react-router-dom";
 import BoardListTitle from "../board/board-list-title";
 import { faFlipboard } from "@fortawesome/free-brands-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import QuickLinkList from "../ui/quick-link-list";
 
 const Page = styled.div`
   display: grid;
@@ -48,18 +48,12 @@ const QuickLinkTitle = styled.div`
   font-weight: 500;
 `;
 
-const QuickLinkList = styled.ul`
-  padding: 20px;
-  margin: 0;
-`;
-
-const QuickLink = styled.li`
-  margin: 0;
-  padding: 0 0 10px 0;
-  list-style: none;
-`;
-
 class Home extends React.Component {
+  quickListItems = [
+    { caption: "Home", icon: faHome },
+    { caption: "Boards", icon: faFlipboard }
+  ];
+
   componentDidMount() {
     this.props.loadBoards();
   }
@@ -96,16 +90,7 @@ class Home extends React.Component {
         <Page>
           <nav>
             <QuickLinkTitle>Quick Links</QuickLinkTitle>
-            <QuickLinkList>
-              <QuickLink>
-                <FontAwesomeIcon icon={faHome} />
-                Home
-              </QuickLink>
-              <QuickLink>
-                <FontAwesomeIcon icon={faFlipboard} />
-                Boards
-              </QuickLink>
-            </QuickLinkList>
+            <QuickLinkList items={this.quickListItems} />
           </nav>
           <nav>
             <BoardListTitle caption="Personal Boards" />
