@@ -50,8 +50,8 @@ const QuickLinkTitle = styled.div`
 
 class Home extends React.Component {
   quickListItems = [
-    { caption: "Home", icon: faHome },
-    { caption: "Boards", icon: faFlipboard }
+    { caption: "Home", icon: faHome, href: "/" },
+    { caption: "Boards", icon: faFlipboard, href: "/boards" }
   ];
 
   componentDidMount() {
