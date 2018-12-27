@@ -1,15 +1,8 @@
 import React from "react";
-import BoardLink from "../home/board-link";
 import { connect } from "react-redux";
-import { loadBoards } from "../../actions/board";
 import Container from "../ui/container";
 import styled from "styled-components";
-import NewBoardLink from "../board/new-board-link";
-import Modal from "../ui/modal";
-import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
-import NewBoard from "../board/new-board";
 import { Redirect } from "react-router-dom";
-import BoardListTitle from "../board/board-list-title";
 import { faFlipboard } from "@fortawesome/free-brands-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import QuickLinkList from "../ui/quick-link-list";
@@ -29,18 +22,6 @@ const HomeTitle = styled.h2`
   font-weight: 400;
 `;
 
-const BoardList = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const ModalContainer = styled.div`
-  display: flex;
-  margin-top: 10px;
-`;
-
 const QuickLinkTitle = styled.div`
   padding: 0 20px;
   font-family: "Roboto", sans-serif;
@@ -54,12 +35,8 @@ class Home extends React.Component {
     { caption: "Boards", icon: faFlipboard, href: "/boards" }
   ];
 
-  componentDidMount() {
-    this.props.loadBoards();
-  }
-
   render() {
-    const { token, addingBoard, cancelAddBoard } = this.props;
+    const { token } = this.props;
     if (!token) {
       return (
         <Redirect
@@ -70,19 +47,6 @@ class Home extends React.Component {
         />
       );
     }
-    const modal = addingBoard ? (
-      <Modal handleClose={cancelAddBoard}>
-        <ModalContainer>
-          <NewBoard />
-        </ModalContainer>
-      </Modal>
-    ) : null;
-
-    const boards = Object.keys(this.props.boards).map((key, index) => {
-      const board = this.props.boards[key];
-      const url = "/board/" + board.id;
-      return <BoardLink key={index} to={url} board={board} />;
-    });
 
     return (
       <Container backgroundColor="white">
@@ -92,15 +56,17 @@ class Home extends React.Component {
             <QuickLinkTitle>Quick Links</QuickLinkTitle>
             <QuickLinkList items={this.quickListItems} />
           </nav>
-          <nav>
-            <BoardListTitle caption="Personal Boards" />
-            <BoardList>{boards}</BoardList>
-            <NewBoardLink onClick={this.props.startAddBoard}>
-              Create new board...
-            </NewBoardLink>
-          </nav>
+          <div>
+            <h3>Welcome to Zeedle</h3>
+            <p>
+              Zeedle is a Trello clone example react application, built for
+              learning purposes. It does not include all the features available
+              in the real Trello application, but is a fully functional to do
+              application. After signing up, you can start managing task lists
+              within multiple trello style boards.
+            </p>
+          </div>
         </Page>
-        {modal}
       </Container>
     );
   }
@@ -108,23 +74,11 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    addingBoard: state.app.addingBoard,
-    deletingBoard: state.app.deletingBoard,
-    boards: state.boards,
     token: state.app.token
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadBoards: () => dispatch(loadBoards()),
-    startAddBoard: () => dispatch(startAddBoard()),
-    cancelAddBoard: () => dispatch(cancelAddBoard()),
-    endAddBoard: () => dispatch(endAddBoard())
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Home);
