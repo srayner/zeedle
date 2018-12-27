@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListItem = styled.li`
   list-style: none;
@@ -30,10 +32,25 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const Star = styled.div`
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+`;
+
 const BoardLink = props => {
+  const badge = props.board.starred ? (
+    <Star>
+      <FontAwesomeIcon icon={faStar} />
+    </Star>
+  ) : null;
   return (
     <ListItem>
-      <StyledLink to={props.to}>{props.board.title}</StyledLink>
+      <StyledLink to={props.to}>
+        {props.board.title}
+        {badge}
+      </StyledLink>
     </ListItem>
   );
 };
