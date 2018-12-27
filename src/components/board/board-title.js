@@ -34,6 +34,15 @@ class BoardTitle extends React.Component {
         this.props.onDeleteClick();
         break;
       }
+      case "STAR": {
+        console.log("STAR");
+        this.props.onStar();
+        break;
+      }
+      case "UNSTAR": {
+        this.props.onUnstar();
+        break;
+      }
       default: {
       }
     }

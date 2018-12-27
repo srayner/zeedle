@@ -116,3 +116,12 @@ export function showBoardMenu() {
 export function hideBoardMenu() {
   return { type: "HIDE_BOARD_MENU" };
 }
+
+export function starBoard(board, starred) {
+  const updatedBoard = { ...board, starred };
+  api.updateBoard(updatedBoard);
+  return {
+    type: "BOARD_UPDATED",
+    payload: { board: updatedBoard }
+  };
+}

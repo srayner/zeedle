@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import BoardTitle from "./board-title";
 import BoardBody from "./board-body";
-import { loadData } from "../../actions/board";
+import { loadData, starBoard } from "../../actions/board";
 import Container from "../ui/container";
 import {
   startDeleteBoard,
@@ -12,6 +12,16 @@ import {
 import DeleteBoardModal from "./delete-board-modal";
 
 class Board extends React.Component {
+  star = () => {
+    console.log("star fired");
+    console.log(this.props);
+    this.props.star(this.props.board, true);
+  };
+
+  unstar = () => {
+    this.props.start(this.props.board, false);
+  };
+
   componentDidMount() {
     const { boardId } = this.props.match.params;
     this.props.loadData(boardId);
@@ -30,6 +40,8 @@ class Board extends React.Component {
         <BoardTitle
           caption={this.props.board.title}
           onDeleteClick={this.props.startDeleteBoard}
+          onStar={this.star}
+          onUnstar={this.unstar}
         />
         <BoardBody />
         {modal}
@@ -50,7 +62,8 @@ const mapDispatchToProps = dispatch => {
     loadData: boardId => dispatch(loadData(boardId)),
     startDeleteBoard: () => dispatch(startDeleteBoard()),
     endDeleteBoard: boardId => dispatch(endDeleteBoard(boardId)),
-    cancelDeleteBoard: () => dispatch(cancelDeleteBoard())
+    cancelDeleteBoard: () => dispatch(cancelDeleteBoard()),
+    star: (board, starred) => dispatch(starBoard(board, starred))
   };
 };
 

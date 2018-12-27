@@ -37,6 +37,9 @@ const Star = styled.div`
   padding: 0;
   color: white;
   font-size: 16px;
+  :hover {
+    color: yellow;
+  }
 `;
 
 const BoardLink = props => {
