@@ -37,7 +37,7 @@ const Icon = styled(FontAwesomeIcon)`
 const QuickLinkList = props => {
   const items = props.items.map(item => {
     return (
-      <Link to={item.href}>
+      <Link key={item.href} to={item.href}>
         <Item>
           <Icon icon={item.icon} fixedWidth />
           {item.caption}
