@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button } from "../ui/button";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import boardMenuData from "../../data/board-menu";
+import getBoardMenuData from "../../data/board-menu";
 import PopupMenu from "../ui/popup-menu";
 import { showBoardMenu, hideBoardMenu } from "../../actions/board";
 import { connect } from "react-redux";
@@ -35,7 +35,6 @@ class BoardTitle extends React.Component {
         break;
       }
       case "STAR": {
-        console.log("STAR");
         this.props.onStar();
         break;
       }
@@ -47,15 +46,13 @@ class BoardTitle extends React.Component {
       }
     }
   };
-  componentDidMount() {
-    boardMenuData.onClose = this.props.hideBoardMenu;
-    boardMenuData.onItemClick = this.menuClick;
-  }
 
   render() {
+    const boardMenuData = getBoardMenuData(this.props.starred);
+    boardMenuData.onClose = this.props.hideBoardMenu;
+    boardMenuData.onItemClick = this.menuClick;
     const { menuVisible, caption, showBoardMenu } = this.props;
     const menu = menuVisible ? <PopupMenu {...boardMenuData} /> : null;
-    console.log(menuVisible);
     return (
       <Container>
         <Caption>{caption}</Caption>

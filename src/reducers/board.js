@@ -17,7 +17,8 @@ const board = (state = initialState, action) => {
         ...state,
         id: board.id,
         title: board.title,
-        listIds: board.listIds
+        listIds: board.listIds,
+        starred: board.starred
       };
     }
     case "SHOW_BOARD_MENU": {
@@ -33,7 +34,8 @@ const board = (state = initialState, action) => {
       return { ...state, editingTaskId: null };
     }
     case "BOARD_UPDATED": {
-      return action.payload.board;
+      const { id, title, listIds, starred } = action.payload.board;
+      return { ...state, id, title, listIds, starred };
     }
     case "ADD_LIST_START": {
       return { ...state, addingList: true };

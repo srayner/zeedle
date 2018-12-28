@@ -30,8 +30,6 @@ class Api {
   }
 
   getBoards() {
-    const options = this.getOptions();
-    console.log(options);
     return axios.get(this.baseUri + "/boards", this.getOptions());
   }
 

@@ -13,13 +13,11 @@ import DeleteBoardModal from "./delete-board-modal";
 
 class Board extends React.Component {
   star = () => {
-    console.log("star fired");
-    console.log(this.props);
     this.props.star(this.props.board, true);
   };
 
   unstar = () => {
-    this.props.start(this.props.board, false);
+    this.props.star(this.props.board, false);
   };
 
   componentDidMount() {
@@ -42,6 +40,7 @@ class Board extends React.Component {
           onDeleteClick={this.props.startDeleteBoard}
           onStar={this.star}
           onUnstar={this.unstar}
+          starred={this.props.board.starred}
         />
         <BoardBody />
         {modal}
