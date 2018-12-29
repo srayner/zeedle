@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../ui/button";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisH,
+  faStar as faSolidStar
+} from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getBoardMenuData from "../../data/board-menu";
 import PopupMenu from "../ui/popup-menu";
@@ -29,8 +33,11 @@ const Caption = styled.h2`
 
 class BoardTitle extends React.Component {
   getButtonMenuItems = () => {
+    const starItem = this.props.starred
+      ? { id: "UNSTAR", icon: faSolidStar }
+      : { id: "STAR", icon: faStar };
     return [
-      { caption: "star", id: "STAR" },
+      starItem,
       { caption: "Personal", id: "GROUP" },
       { caption: "Private", id: "VISIBILITY" }
     ];

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "./button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Divider = styled.div`
   margin: 0 5px;
@@ -18,9 +19,12 @@ const ButtonMenu = props => {
     if (index > 0) {
       accumulator.push(<Divider key={index} />);
     }
+    const icon = currentItem.icon ? (
+      <FontAwesomeIcon icon={currentItem.icon} />
+    ) : null;
     accumulator.push(
       <Button key={index} onClick={() => props.onItemClick(currentItem.id)}>
-        {currentItem.icon}
+        {icon}
         {currentItem.caption}
       </Button>
     );
