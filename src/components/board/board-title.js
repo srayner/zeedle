@@ -7,6 +7,7 @@ import getBoardMenuData from "../../data/board-menu";
 import PopupMenu from "../ui/popup-menu";
 import { showBoardMenu, hideBoardMenu } from "../../actions/board";
 import { connect } from "react-redux";
+import ButtonMenu from "../ui/button-menu";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -27,6 +28,18 @@ const Caption = styled.h2`
 `;
 
 class BoardTitle extends React.Component {
+  getButtonMenuItems = () => {
+    return [
+      { caption: "star", id: "STAR" },
+      { caption: "Personal", id: "GROUP" },
+      { caption: "Private", id: "VISIBILITY" }
+    ];
+  };
+
+  buttonMenuItemClick = itemId => {
+    alert(itemId);
+  };
+
   menuClick = itemId => {
     this.props.hideBoardMenu();
     switch (itemId) {
@@ -48,6 +61,7 @@ class BoardTitle extends React.Component {
   };
 
   render() {
+    const buttonMenuItems = this.getButtonMenuItems();
     const boardMenuData = getBoardMenuData(this.props.starred);
     boardMenuData.onClose = this.props.hideBoardMenu;
     boardMenuData.onItemClick = this.menuClick;
@@ -56,6 +70,7 @@ class BoardTitle extends React.Component {
     return (
       <Container>
         <Caption>{caption}</Caption>
+        <ButtonMenu items={buttonMenuItems} />
         <Button
           onClick={() => {
             showBoardMenu();
