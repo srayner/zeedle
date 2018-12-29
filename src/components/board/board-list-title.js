@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
@@ -17,7 +16,7 @@ const Caption = styled.span`
 const BoardListTitle = props => {
   return (
     <Container>
-      <FontAwesomeIcon icon={faUser} />
+      <FontAwesomeIcon icon={props.icon} />
       <Caption>{props.caption}</Caption>
     </Container>
   );

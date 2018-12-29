@@ -12,7 +12,7 @@ import BoardListTitle from "./board-list-title";
 import { startAddBoard, cancelAddBoard, endAddBoard } from "../../actions/app";
 import { Redirect } from "react-router-dom";
 import { faFlipboard } from "@fortawesome/free-brands-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Page = styled.div`
   display: grid;
@@ -78,6 +78,29 @@ class Boards extends React.Component {
       </Modal>
     ) : null;
 
+    const starredBoards = Object.keys(this.props.boards)
+      .map((key, index) => {
+        const board = this.props.boards[key];
+        if (board.starred) {
+          const url = "/board/" + board.id;
+          return <BoardLink key={index} to={url} board={board} />;
+        }
+        return undefined;
+      })
+      .filter(item => {
+        return item !== undefined;
+      });
+
+    let starredBoardsSection = null;
+    if (starredBoards.length > 0) {
+      starredBoardsSection = (
+        <nav>
+          <BoardListTitle icon={faStar} caption="Starred Boards" />
+          <BoardList>{starredBoards}</BoardList>
+        </nav>
+      );
+    }
+
     const boards = Object.keys(this.props.boards).map((key, index) => {
       const board = this.props.boards[key];
       const url = "/board/" + board.id;
@@ -92,13 +115,16 @@ class Boards extends React.Component {
             <QuickLinkTitle>Quick Links</QuickLinkTitle>
             <QuickLinkList items={this.quickListItems} />
           </nav>
-          <nav>
-            <BoardListTitle caption="Personal Boards" />
-            <BoardList>{boards}</BoardList>
-            <NewBoardLink onClick={this.props.startAddBoard}>
-              Create new board...
-            </NewBoardLink>
-          </nav>
+          <div>
+            {starredBoardsSection}
+            <nav>
+              <BoardListTitle icon={faUser} caption="Personal Boards" />
+              <BoardList>{boards}</BoardList>
+              <NewBoardLink onClick={this.props.startAddBoard}>
+                Create new board...
+              </NewBoardLink>
+            </nav>
+          </div>
         </Page>
         {modal}
       </Container>
