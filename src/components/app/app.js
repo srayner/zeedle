@@ -12,7 +12,7 @@ import SignupPage from "../user/signup-page";
 import ProfileNav from "../profile/profile-nav";
 
 const StyledLink = styled(Link)`
-  focus: {
+  &:focus {
     outline: none;
   }
 `;
@@ -30,9 +30,9 @@ class App extends React.Component {
             <StyledLink to="/">
               <HomeButton />
             </StyledLink>
-            <Link to="/boards">
+            <StyledLink to="/boards">
               <BoardsButton />
-            </Link>
+            </StyledLink>
             zeedle
             <RightContainer>
               <ProfileNav />
