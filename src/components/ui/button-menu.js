@@ -17,13 +17,16 @@ const Container = styled.div`
 const ButtonMenu = props => {
   const items = props.items.reduce((accumulator, currentItem, index) => {
     if (index > 0) {
-      accumulator.push(<Divider key={index} />);
+      accumulator.push(<Divider key={"d" + index} />);
     }
     const icon = currentItem.icon ? (
       <FontAwesomeIcon icon={currentItem.icon} />
     ) : null;
     accumulator.push(
-      <Button key={index} onClick={() => props.onItemClick(currentItem.id)}>
+      <Button
+        key={"b" + index}
+        onClick={() => props.onItemClick(currentItem.id)}
+      >
         {icon}
         {currentItem.caption}
       </Button>
