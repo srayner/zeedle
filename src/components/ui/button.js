@@ -16,6 +16,17 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
+// Transparent button
+export const TransparentButton = styled(Button)`
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  padding: 8px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+`;
+
 // Green success button
 export const SuccessButton = styled(Button)`
   background-color: #37b223;

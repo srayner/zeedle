@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "./button";
+import { TransparentButton } from "./button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Divider = styled.div`
-  margin: 0 5px;
+const Divider = styled.span`
+  margin: 8px 5px;
   padding: 0;
   border: none;
-  border-left: 1px solid #000;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
 const Container = styled.div`
@@ -23,13 +23,13 @@ const ButtonMenu = props => {
       <FontAwesomeIcon icon={currentItem.icon} />
     ) : null;
     accumulator.push(
-      <Button
+      <TransparentButton
         key={"b" + index}
         onClick={() => props.onItemClick(currentItem.id)}
       >
         {icon}
         {currentItem.caption}
-      </Button>
+      </TransparentButton>
     );
     return accumulator;
   }, []);
