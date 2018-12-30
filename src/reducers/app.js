@@ -3,6 +3,7 @@ const initialState = {
   redirect: null,
   addingBoard: false,
   deletingBoard: false,
+  changingColour: false,
   newBoardContent: "",
   profileMenuVisible: false
 };
@@ -43,6 +44,15 @@ const app = (state = initialState, action) => {
     case "ADD_BOARD_UPDATE_CONTENT": {
       const { newContent } = action.payload;
       return { ...state, newBoardContent: newContent };
+    }
+    case "START_CHANGE_COLOUR": {
+      return { ...state, changingColour: true };
+    }
+    case "CANCEL_CHANGE_COLOUR": {
+      return { ...state, changingColour: false };
+    }
+    case "END_CHANGE_COLOUR": {
+      return { ...state, changingColour: false };
     }
     default:
       return state;

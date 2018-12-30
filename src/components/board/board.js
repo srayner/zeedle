@@ -2,7 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import BoardTitle from "./board-title";
 import BoardBody from "./board-body";
-import { loadData, starBoard } from "../../actions/board";
+import {
+  loadData,
+  starBoard,
+  startChangeColour,
+  cancelChangeColour,
+  endChangeColour
+} from "../../actions/board";
 import Container from "../ui/container";
 import {
   startDeleteBoard,
@@ -10,6 +16,7 @@ import {
   cancelDeleteBoard
 } from "../../actions/app";
 import DeleteBoardModal from "./delete-board-modal";
+import ChangeColourModal from "./change-colour-modal";
 
 class Board extends React.Component {
   star = () => {
@@ -25,13 +32,25 @@ class Board extends React.Component {
     this.props.loadData(boardId);
   }
   render() {
-    const modal = this.props.deletingBoard ? (
-      <DeleteBoardModal
-        cancel={this.props.cancelDeleteBoard}
-        delete={this.props.endDeleteBoard}
-        boardId={this.props.board.id}
-      />
-    ) : null;
+    let modal = null;
+    if (this.deletingBoard) {
+      modal = (
+        <DeleteBoardModal
+          cancel={this.props.cancelDeleteBoard}
+          delete={this.props.endDeleteBoard}
+          boardId={this.props.board.id}
+        />
+      );
+    }
+    if (this.props.changingColour) {
+      modal = (
+        <ChangeColourModal
+          cancel={this.props.cancelChangeColour}
+          change={this.props.endChangeColour}
+          boardId={this.props.board.id}
+        />
+      );
+    }
 
     return (
       <Container>
@@ -40,6 +59,7 @@ class Board extends React.Component {
           onDeleteClick={this.props.startDeleteBoard}
           onStar={this.star}
           onUnstar={this.unstar}
+          onChangeBackground={this.props.startChangeColour}
           starred={this.props.board.starred}
         />
         <BoardBody />
@@ -52,7 +72,8 @@ class Board extends React.Component {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    deletingBoard: state.app.deletingBoard
+    deletingBoard: state.app.deletingBoard,
+    changingColour: state.app.changingColour
   };
 };
 
@@ -62,7 +83,11 @@ const mapDispatchToProps = dispatch => {
     startDeleteBoard: () => dispatch(startDeleteBoard()),
     endDeleteBoard: boardId => dispatch(endDeleteBoard(boardId)),
     cancelDeleteBoard: () => dispatch(cancelDeleteBoard()),
-    star: (board, starred) => dispatch(starBoard(board, starred))
+    star: (board, starred) => dispatch(starBoard(board, starred)),
+    startChangeColour: () => dispatch(startChangeColour()),
+    cancelChangeColour: () => dispatch(cancelChangeColour()),
+    endChangeColour: (boardId, newColour) =>
+      dispatch(endChangeColour(boardId, newColour))
   };
 };
 

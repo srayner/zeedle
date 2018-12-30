@@ -62,6 +62,10 @@ class BoardTitle extends React.Component {
         this.props.onUnstar();
         break;
       }
+      case "BACKGROUND": {
+        this.props.onChangeBackground();
+        break;
+      }
       default: {
       }
     }

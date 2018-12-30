@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-Container = styled.div`
+const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
-ColourSwatch = styled.div`
-  width: 250;
-  height: 125;
-  border-radius: 3px;
+const ColourSwatch = styled.div`
+  width: 225px;
+  height: 125px;
+  border-radius: 8px;
+  background-color: ${props => props.colour};
+  margin-top: 20px;
 `;
 
-ColourPalette = () => {
+const ColourPalette = props => {
+  console.log(props);
   const swatches = props.colours.map(colour => {
-    return <ColourSwatch colour={colour} />;
+    return (
+      <ColourSwatch colour={colour} onClick={() => props.onClick(colour)} />
+    );
   });
   return <Container>{swatches}</Container>;
 };

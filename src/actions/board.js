@@ -125,3 +125,24 @@ export function starBoard(board, starred) {
     payload: { board: updatedBoard }
   };
 }
+
+export function startChangeColour() {
+  return {
+    type: "START_CHANGE_COLOUR"
+  };
+}
+
+export function cancelChangeColour() {
+  return {
+    type: "CANCEL_CHANGE_COLOUR"
+  };
+}
+
+export function endChangeColour(boardId, newColour) {
+  console.log(boardId);
+  console.log(newColour);
+  return {
+    type: "END_CHANGE_COLOUR",
+    payload: { boardId, newColour }
+  };
+}
