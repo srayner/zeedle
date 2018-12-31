@@ -138,11 +138,16 @@ export function cancelChangeColour() {
   };
 }
 
-export function endChangeColour(boardId, newColour) {
-  console.log(boardId);
-  console.log(newColour);
-  return {
-    type: "END_CHANGE_COLOUR",
-    payload: { boardId, newColour }
+export function endChangeColour(board, colour) {
+  const updatedBoard = { ...board, colour };
+  api.updateBoard(updatedBoard);
+  return dispatch => {
+    dispatch({
+      type: "END_CHANGE_COLOUR"
+    });
+    dispatch({
+      type: "BOARD_UPDATED",
+      payload: { board: updatedBoard }
+    });
   };
 }

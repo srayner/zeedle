@@ -14,10 +14,7 @@ const ChangeColourModal = props => {
       <ModalContainer>
         <h2>Change Background Colour</h2>
         <p>Select a new colour:</p>
-        <ColourPalette
-          colours={colours}
-          onClick={newColour => props.change(props.boardId, newColour)}
-        />
+        <ColourPalette colours={colours} onClick={props.change} />
       </ModalContainer>
     </Modal>
   );

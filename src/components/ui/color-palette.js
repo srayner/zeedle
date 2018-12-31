@@ -16,10 +16,13 @@ const ColourSwatch = styled.div`
 `;
 
 const ColourPalette = props => {
-  console.log(props);
-  const swatches = props.colours.map(colour => {
+  const swatches = props.colours.map((colour, index) => {
     return (
-      <ColourSwatch colour={colour} onClick={() => props.onClick(colour)} />
+      <ColourSwatch
+        key={index}
+        colour={colour}
+        onClick={() => props.onClick(colour)}
+      />
     );
   });
   return <Container>{swatches}</Container>;

@@ -19,6 +19,10 @@ import DeleteBoardModal from "./delete-board-modal";
 import ChangeColourModal from "./change-colour-modal";
 
 class Board extends React.Component {
+  changeColour = newColour => {
+    this.props.endChangeColour(this.props.board, newColour);
+  };
+
   star = () => {
     this.props.star(this.props.board, true);
   };
@@ -46,8 +50,7 @@ class Board extends React.Component {
       modal = (
         <ChangeColourModal
           cancel={this.props.cancelChangeColour}
-          change={this.props.endChangeColour}
-          boardId={this.props.board.id}
+          change={this.changeColour}
         />
       );
     }
@@ -86,8 +89,8 @@ const mapDispatchToProps = dispatch => {
     star: (board, starred) => dispatch(starBoard(board, starred)),
     startChangeColour: () => dispatch(startChangeColour()),
     cancelChangeColour: () => dispatch(cancelChangeColour()),
-    endChangeColour: (boardId, newColour) =>
-      dispatch(endChangeColour(boardId, newColour))
+    endChangeColour: (board, newColour) =>
+      dispatch(endChangeColour(board, newColour))
   };
 };
 

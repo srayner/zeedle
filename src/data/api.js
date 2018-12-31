@@ -54,7 +54,8 @@ class Api {
       {
         title: board.title,
         listIds: board.listIds,
-        starred: board.starred
+        starred: board.starred,
+        colour: board.colour
       },
       this.getOptions()
     );
