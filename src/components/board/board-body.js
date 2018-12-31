@@ -18,12 +18,18 @@ class InnerList extends React.PureComponent {
 class BoardBody extends React.Component {
   render() {
     const { board, lists, tasks } = this.props;
+    console.log(board);
+    console.log("Board colour: " + board.colour);
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {provided => (
-              <Page {...provided.droppableProps} innerRef={provided.innerRef}>
+              <Page
+                {...provided.droppableProps}
+                innerRef={provided.innerRef}
+                backgroundColour={board.colour}
+              >
                 {board.listIds.map((listId, index) => {
                   const list = lists[listId];
                   return (

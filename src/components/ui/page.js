@@ -6,6 +6,7 @@ const Page = styled.div`
   right: 8px;
   bottom: 8px;
   left: 8px;
+  background-color: ${props => props.backgroundColour};
   display: flex;
   align-items: flex-start;
   flex-wrap: nowrap;
