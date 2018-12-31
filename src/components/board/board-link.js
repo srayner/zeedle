@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
-  background-color: #205785;
+  background-color: ${props => props.backgroundColour};
   width: 180px;
   height: 90px;
   flex: 0 0 auto;
@@ -50,7 +50,7 @@ const BoardLink = props => {
   ) : null;
   return (
     <ListItem>
-      <StyledLink to={props.to}>
+      <StyledLink to={props.to} backgroundColour={props.board.colour}>
         {props.board.title}
         {badge}
       </StyledLink>

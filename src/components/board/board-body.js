@@ -18,8 +18,6 @@ class InnerList extends React.PureComponent {
 class BoardBody extends React.Component {
   render() {
     const { board, lists, tasks } = this.props;
-    console.log(board);
-    console.log("Board colour: " + board.colour);
     return (
       <div>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
