@@ -8,7 +8,7 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.colour};
 `;
 
 export default Container;

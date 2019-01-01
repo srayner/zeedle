@@ -56,7 +56,7 @@ class Board extends React.Component {
     }
 
     return (
-      <Container>
+      <Container colour={this.props.board.colour}>
         <BoardTitle
           caption={this.props.board.title}
           onDeleteClick={this.props.startDeleteBoard}

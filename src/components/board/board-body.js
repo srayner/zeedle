@@ -23,11 +23,7 @@ class BoardBody extends React.Component {
         <DragDropContext onDragEnd={this.props.onDragEnd}>
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {provided => (
-              <Page
-                {...provided.droppableProps}
-                innerRef={provided.innerRef}
-                backgroundColour={board.colour}
-              >
+              <Page {...provided.droppableProps} innerRef={provided.innerRef}>
                 {board.listIds.map((listId, index) => {
                   const list = lists[listId];
                   return (

@@ -22,6 +22,11 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
+const MenuContainer = styled.div`
+  margin-left: 20px;
+  margin-right: auto;
+`;
+
 const Caption = styled.h2`
   margin: 0;
   padding: 0;
@@ -81,7 +86,9 @@ class BoardTitle extends React.Component {
     return (
       <Container>
         <Caption>{caption}</Caption>
-        <ButtonMenu items={buttonMenuItems} />
+        <MenuContainer>
+          <ButtonMenu items={buttonMenuItems} />
+        </MenuContainer>
         <Button
           onClick={() => {
             showBoardMenu();
