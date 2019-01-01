@@ -108,7 +108,7 @@ class Boards extends React.Component {
     });
 
     return (
-      <Container backgroundColor="white">
+      <Container colour="white">
         <HomeTitle>Boards</HomeTitle>
         <Page>
           <nav>
