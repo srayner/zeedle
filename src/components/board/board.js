@@ -7,7 +7,8 @@ import {
   starBoard,
   startChangeColour,
   cancelChangeColour,
-  endChangeColour
+  endChangeColour,
+  startChangeBoardTitle
 } from "../../actions/board";
 import Container from "../ui/container";
 import {
@@ -17,6 +18,7 @@ import {
 } from "../../actions/app";
 import DeleteBoardModal from "./delete-board-modal";
 import ChangeColourModal from "./change-colour-modal";
+import Popup from "../ui/popup";
 
 class Board extends React.Component {
   changeColour = newColour => {
@@ -54,11 +56,21 @@ class Board extends React.Component {
         />
       );
     }
+    if (this.props.changingBoardTitle) {
+      const position = {
+        top: "48px",
+        left: "16px"
+      };
+      modal = (
+        <Popup position={position} title="Rename Board" width={"250px"} />
+      );
+    }
 
     return (
       <Container colour={this.props.board.colour}>
         <BoardTitle
           caption={this.props.board.title}
+          onClickTitle={this.props.startChangeBoardTitle}
           onDeleteClick={this.props.startDeleteBoard}
           onStar={this.star}
           onUnstar={this.unstar}
@@ -76,7 +88,8 @@ const mapStateToProps = state => {
   return {
     board: state.board,
     deletingBoard: state.app.deletingBoard,
-    changingColour: state.app.changingColour
+    changingColour: state.app.changingColour,
+    changingBoardTitle: state.app.changingBoardTitle
   };
 };
 
@@ -90,7 +103,8 @@ const mapDispatchToProps = dispatch => {
     startChangeColour: () => dispatch(startChangeColour()),
     cancelChangeColour: () => dispatch(cancelChangeColour()),
     endChangeColour: (board, newColour) =>
-      dispatch(endChangeColour(board, newColour))
+      dispatch(endChangeColour(board, newColour)),
+    startChangeBoardTitle: () => dispatch(startChangeBoardTitle())
   };
 };
 

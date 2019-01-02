@@ -151,3 +151,9 @@ export function endChangeColour(board, colour) {
     });
   };
 }
+
+export function startChangeBoardTitle() {
+  return {
+    type: "START_CHANGE_BOARD_TITLE"
+  };
+}

@@ -85,7 +85,7 @@ class BoardTitle extends React.Component {
     const menu = menuVisible ? <PopupMenu {...boardMenuData} /> : null;
     return (
       <Container>
-        <Caption>{caption}</Caption>
+        <Caption onClick={() => this.props.onClickTitle()}>{caption}</Caption>
         <MenuContainer>
           <ButtonMenu items={buttonMenuItems} />
         </MenuContainer>

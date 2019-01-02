@@ -4,6 +4,7 @@ const initialState = {
   addingBoard: false,
   deletingBoard: false,
   changingColour: false,
+  changingBoardTitle: false,
   newBoardContent: "",
   profileMenuVisible: false
 };
@@ -53,6 +54,9 @@ const app = (state = initialState, action) => {
     }
     case "END_CHANGE_COLOUR": {
       return { ...state, changingColour: false };
+    }
+    case "START_CHANGE_BOARD_TITLE": {
+      return { ...state, changingBoardTitle: true };
     }
     default:
       return state;
