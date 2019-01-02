@@ -157,3 +157,9 @@ export function startChangeBoardTitle() {
     type: "START_CHANGE_BOARD_TITLE"
   };
 }
+
+export function cancelChangeBoardTitle() {
+  return {
+    type: "CANCEL_CHANGE_BOARD_TITLE"
+  };
+}

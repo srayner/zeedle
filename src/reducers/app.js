@@ -58,6 +58,9 @@ const app = (state = initialState, action) => {
     case "START_CHANGE_BOARD_TITLE": {
       return { ...state, changingBoardTitle: true };
     }
+    case "CANCEL_CHANGE_BOARD_TITLE": {
+      return { ...state, changingBoardTitle: false };
+    }
     default:
       return state;
   }

@@ -10,7 +10,6 @@ import styled from "styled-components";
 import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
 import ProfileNav from "../profile/profile-nav";
-import Background from "../ui/background";
 
 const StyledLink = styled(Link)`
   &:focus {

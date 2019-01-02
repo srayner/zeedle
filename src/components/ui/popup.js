@@ -46,7 +46,12 @@ const Close = styled.span`
   }
 `;
 
-const Body = styled.div``;
+const Body = styled.div`
+  padding: ${props => {
+    return props.padding;
+  }};
+  border-top: 1px solid #ccc;
+`;
 
 const Popup = props => {
   return (
@@ -59,7 +64,7 @@ const Popup = props => {
           }}
         />
       </Header>
-      <Body />
+      <Body padding={props.bodyPadding}>{props.children}</Body>
     </Container>
   );
 };
