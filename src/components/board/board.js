@@ -70,7 +70,9 @@ class Board extends React.Component {
       <Container colour={this.props.board.colour}>
         <BoardTitle
           caption={this.props.board.title}
-          onClickTitle={this.props.startChangeBoardTitle}
+          onClickTitle={() =>
+            this.props.startChangeBoardTitle(this.props.board.title)
+          }
           onDeleteClick={this.props.startDeleteBoard}
           onStar={this.star}
           onUnstar={this.unstar}
@@ -104,7 +106,8 @@ const mapDispatchToProps = dispatch => {
     cancelChangeColour: () => dispatch(cancelChangeColour()),
     endChangeColour: (board, newColour) =>
       dispatch(endChangeColour(board, newColour)),
-    startChangeBoardTitle: () => dispatch(startChangeBoardTitle()),
+    startChangeBoardTitle: currentTitle =>
+      dispatch(startChangeBoardTitle(currentTitle)),
     cancelChangeBoardTitle: () => dispatch(cancelChangeBoardTitle())
   };
 };

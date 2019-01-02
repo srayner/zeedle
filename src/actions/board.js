@@ -152,14 +152,38 @@ export function endChangeColour(board, colour) {
   };
 }
 
-export function startChangeBoardTitle() {
+export function startChangeBoardTitle(currentTitle) {
   return {
-    type: "START_CHANGE_BOARD_TITLE"
+    type: "START_CHANGE_BOARD_TITLE",
+    payload: { currentTitle }
+  };
+}
+
+export function updateChangeBoardTitle(newTitle) {
+  return {
+    type: "UPDATE_CHANGE_BOARD_TITLE",
+    payload: { newTitle }
   };
 }
 
 export function cancelChangeBoardTitle() {
   return {
     type: "CANCEL_CHANGE_BOARD_TITLE"
+  };
+}
+
+export function endChangeBoardTitle(newTitle) {
+  return (dispatch, getState) => {
+    const board = getState().board;
+    const updatedBoard = { ...board, title: newTitle };
+    dispatch({
+      type: "END_CHANGE_BOARD_TITLE",
+      payload: { newTitle }
+    });
+    api.updateBoard(updatedBoard);
+    dispatch({
+      type: "BOARD_UPDATED",
+      payload: { board: updatedBoard }
+    });
   };
 }

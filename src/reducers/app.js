@@ -6,6 +6,7 @@ const initialState = {
   changingColour: false,
   changingBoardTitle: false,
   newBoardContent: "",
+  updatedBoardTitle: "",
   profileMenuVisible: false
 };
 
@@ -56,9 +57,20 @@ const app = (state = initialState, action) => {
       return { ...state, changingColour: false };
     }
     case "START_CHANGE_BOARD_TITLE": {
-      return { ...state, changingBoardTitle: true };
+      console.log(action.payload);
+      return {
+        ...state,
+        changingBoardTitle: true,
+        updatedBoardTitle: action.payload.currentTitle
+      };
+    }
+    case "UPDATE_CHANGE_BOARD_TITLE": {
+      return { ...state, updatedBoardTitle: action.payload.newTitle };
     }
     case "CANCEL_CHANGE_BOARD_TITLE": {
+      return { ...state, changingBoardTitle: false };
+    }
+    case "END_CHANGE_BOARD_TITLE": {
       return { ...state, changingBoardTitle: false };
     }
     default:
