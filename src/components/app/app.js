@@ -10,6 +10,7 @@ import styled from "styled-components";
 import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
 import ProfileNav from "../profile/profile-nav";
+import Title from "./title";
 
 const StyledLink = styled(Link)`
   &:focus {
@@ -18,7 +19,7 @@ const StyledLink = styled(Link)`
 `;
 
 const RightContainer = styled.div`
-  float: right;
+  margin-left: auto;
 `;
 
 class App extends React.Component {
@@ -33,7 +34,7 @@ class App extends React.Component {
             <StyledLink to="/boards">
               <BoardsButton />
             </StyledLink>
-            zeedle
+            <Title>zeedle</Title>
             <RightContainer>
               <ProfileNav />
             </RightContainer>

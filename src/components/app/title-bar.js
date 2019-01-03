@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const TitleBar = styled.div`
-  background-color: #205785;
+  display: flex;
+  background-color: transparent;
   padding: 8px;
   font-family: "Rouge Script", cursive;
   font-size: 36px;
