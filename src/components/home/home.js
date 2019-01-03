@@ -49,7 +49,7 @@ class Home extends React.Component {
     }
 
     return (
-      <Container backgroundColor="white">
+      <Container colour="white">
         <HomeTitle>Home</HomeTitle>
         <Page>
           <nav>
