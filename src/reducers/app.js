@@ -5,6 +5,7 @@ const initialState = {
   deletingBoard: false,
   changingColour: false,
   changingBoardTitle: false,
+  changingBoardVisibility: false,
   newBoardContent: "",
   updatedBoardTitle: "",
   profileMenuVisible: false
@@ -72,6 +73,15 @@ const app = (state = initialState, action) => {
     }
     case "END_CHANGE_BOARD_TITLE": {
       return { ...state, changingBoardTitle: false };
+    }
+    case "START_CHANGE_BOARD_VISIBILITY": {
+      return { ...state, changingBoardVisibility: true };
+    }
+    case "CANCEL_CHANGE_BOARD_VISIBILITY": {
+      return { ...state, changingBoardVisibility: false };
+    }
+    case "END_CHANGE_BOARD_VISIBILITY": {
+      return { ...state, changingBoardVisibility: false };
     }
     default:
       return state;

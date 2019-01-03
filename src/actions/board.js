@@ -187,3 +187,21 @@ export function endChangeBoardTitle(newTitle) {
     });
   };
 }
+
+export function startChangeBoardVisibility() {
+  return {
+    type: "START_CHANGE_BOARD_VISIBILITY"
+  };
+}
+
+export function cancelChangeBoardVisibility() {
+  return {
+    type: "CANCEL_CHANGE_BOARD_VISIBILITY"
+  };
+}
+
+export function endChangeBoardVisibility() {
+  return {
+    type: "END_CHANGE_BOARD_VISIBILITY"
+  };
+}

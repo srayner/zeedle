@@ -12,6 +12,11 @@ import PopupMenu from "../ui/popup-menu";
 import { showBoardMenu, hideBoardMenu } from "../../actions/board";
 import { connect } from "react-redux";
 import ButtonMenu from "../ui/button-menu";
+import {
+  startChangeBoardVisibility,
+  cancelChangeBoardVisibility,
+  endChangeBoardVisibility
+} from "../../actions/board";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -49,7 +54,25 @@ class BoardTitle extends React.Component {
   };
 
   buttonMenuItemClick = itemId => {
-    alert(itemId);
+    switch (itemId) {
+      case "STAR": {
+        alert("Star board");
+        break;
+      }
+      case "UNSTAR": {
+        alert("Unstar board");
+        break;
+      }
+      case "GROUP": {
+        alert("Change group");
+        break;
+      }
+      case "VISIBILITY": {
+        alert("Change visibility");
+        this.props.startChangeBoardVisibility();
+        break;
+      }
+    }
   };
 
   menuClick = itemId => {
@@ -87,7 +110,10 @@ class BoardTitle extends React.Component {
       <Container>
         <Caption onClick={() => this.props.onClickTitle()}>{caption}</Caption>
         <MenuContainer>
-          <ButtonMenu items={buttonMenuItems} />
+          <ButtonMenu
+            items={buttonMenuItems}
+            onItemClick={this.buttonMenuItemClick}
+          />
         </MenuContainer>
         <Button
           onClick={() => {
@@ -104,14 +130,17 @@ class BoardTitle extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    menuVisible: state.board.boardMenuVisible
+    menuVisible: state.board.boardMenuVisible,
+    changingBoardVisibility: state.app.changingBoardVisibility
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     showBoardMenu: () => dispatch(showBoardMenu()),
-    hideBoardMenu: () => dispatch(hideBoardMenu())
+    hideBoardMenu: () => dispatch(hideBoardMenu()),
+    startChangeBoardVisibility: () => dispatch(startChangeBoardVisibility()),
+    cancelChangeBoardVisibility: () => dispatch(cancelChangeBoardVisibility())
   };
 };
 
