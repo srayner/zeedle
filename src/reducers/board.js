@@ -1,9 +1,11 @@
 const initialState = {
   id: null,
   title: null,
+  colour: null,
+  visibility: null,
+  listIds: [],
   addingList: false,
   editingTaskId: null,
-  listIds: [],
   boardMenuVisible: false
 };
 
@@ -35,8 +37,15 @@ const board = (state = initialState, action) => {
       return { ...state, editingTaskId: null };
     }
     case "BOARD_UPDATED": {
-      const { id, title, listIds, starred } = action.payload.board;
-      return { ...state, id, title, listIds, starred };
+      const {
+        id,
+        title,
+        listIds,
+        starred,
+        colour,
+        visibility
+      } = action.payload.board;
+      return { ...state, id, title, listIds, starred, colour, visibility };
     }
     case "ADD_LIST_START": {
       return { ...state, addingList: true };

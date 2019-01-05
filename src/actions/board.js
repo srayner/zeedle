@@ -201,8 +201,18 @@ export function cancelChangeBoardVisibility() {
   };
 }
 
-export function endChangeBoardVisibility() {
-  return {
-    type: "END_CHANGE_BOARD_VISIBILITY"
+export function endChangeBoardVisibility(visibility) {
+  return (dispatch, getState) => {
+    const board = getState().board;
+    const updatedBoard = { ...board, visibility };
+    api.updateBoard(updatedBoard);
+    dispatch({
+      type: "END_CHANGE_BOARD_VISIBILITY",
+      payload: { visibility }
+    });
+    dispatch({
+      type: "BOARD_UPDATED",
+      payload: { board: updatedBoard }
+    });
   };
 }

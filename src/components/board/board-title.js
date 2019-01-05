@@ -50,7 +50,7 @@ class BoardTitle extends React.Component {
     return [
       starItem,
       { caption: "Personal", id: "GROUP" },
-      { caption: "Private", id: "VISIBILITY" }
+      { caption: this.props.board.visibility, id: "VISIBILITY" }
     ];
   };
 
@@ -102,6 +102,12 @@ class BoardTitle extends React.Component {
     }
   };
 
+  visibilityMenuItemClick = itemId => {
+    const visibility =
+      itemId.charAt(0).toUpperCase() + itemId.toLowerCase().slice(1);
+    this.props.endChangeBoardVisibility(visibility);
+  };
+
   renderPopup() {
     const {
       menuVisible,
@@ -116,7 +122,12 @@ class BoardTitle extends React.Component {
     }
     if (changingBoardVisibility) {
       return (
-        <PopupMenu {...visibilityMenuData} position={visibilityMenuPosition} />
+        <PopupMenu
+          {...visibilityMenuData}
+          position={visibilityMenuPosition}
+          onItemClick={this.visibilityMenuItemClick}
+          onClose={this.props.cancelChangeBoardVisibility}
+        />
       );
     }
   }
@@ -149,6 +160,7 @@ class BoardTitle extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    board: state.board,
     menuVisible: state.board.boardMenuVisible,
     visibilityMenuPosition: state.app.visibilityMenuPosition,
     changingBoardVisibility: state.app.changingBoardVisibility
@@ -161,7 +173,9 @@ const mapDispatchToProps = dispatch => {
     hideBoardMenu: () => dispatch(hideBoardMenu()),
     startChangeBoardVisibility: (x, y) =>
       dispatch(startChangeBoardVisibility(x, y)),
-    cancelChangeBoardVisibility: () => dispatch(cancelChangeBoardVisibility())
+    cancelChangeBoardVisibility: () => dispatch(cancelChangeBoardVisibility()),
+    endChangeBoardVisibility: visibility =>
+      dispatch(endChangeBoardVisibility(visibility))
   };
 };
 
