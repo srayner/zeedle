@@ -17,6 +17,7 @@ import {
   cancelChangeBoardVisibility,
   endChangeBoardVisibility
 } from "../../actions/board";
+import visibilityMenuData from "../../data/visibility-menu";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -53,7 +54,8 @@ class BoardTitle extends React.Component {
     ];
   };
 
-  buttonMenuItemClick = itemId => {
+  buttonMenuItemClick = (itemId, target) => {
+    var rect = target.getBoundingClientRect();
     switch (itemId) {
       case "STAR": {
         alert("Star board");
@@ -68,8 +70,9 @@ class BoardTitle extends React.Component {
         break;
       }
       case "VISIBILITY": {
-        alert("Change visibility");
-        this.props.startChangeBoardVisibility();
+        const top = parseInt(rect.top - 14) + "px";
+        const left = parseInt(rect.left) + "px";
+        this.props.startChangeBoardVisibility({ top, left });
         break;
       }
     }
@@ -99,13 +102,29 @@ class BoardTitle extends React.Component {
     }
   };
 
+  renderPopup() {
+    const {
+      menuVisible,
+      changingBoardVisibility,
+      visibilityMenuPosition
+    } = this.props;
+    if (menuVisible) {
+      const boardMenuData = getBoardMenuData(this.props.starred);
+      boardMenuData.onClose = this.props.hideBoardMenu;
+      boardMenuData.onItemClick = this.menuClick;
+      return <PopupMenu {...boardMenuData} />;
+    }
+    if (changingBoardVisibility) {
+      return (
+        <PopupMenu {...visibilityMenuData} position={visibilityMenuPosition} />
+      );
+    }
+  }
+
   render() {
+    const { caption, showBoardMenu } = this.props;
     const buttonMenuItems = this.getButtonMenuItems();
-    const boardMenuData = getBoardMenuData(this.props.starred);
-    boardMenuData.onClose = this.props.hideBoardMenu;
-    boardMenuData.onItemClick = this.menuClick;
-    const { menuVisible, caption, showBoardMenu } = this.props;
-    const menu = menuVisible ? <PopupMenu {...boardMenuData} /> : null;
+    const popup = this.renderPopup();
     return (
       <Container>
         <Caption onClick={() => this.props.onClickTitle()}>{caption}</Caption>
@@ -122,7 +141,7 @@ class BoardTitle extends React.Component {
         >
           <FontAwesomeIcon icon={faEllipsisH} /> Show Menu
         </Button>
-        {menu}
+        {popup}
       </Container>
     );
   }
@@ -131,6 +150,7 @@ class BoardTitle extends React.Component {
 const mapStateToProps = state => {
   return {
     menuVisible: state.board.boardMenuVisible,
+    visibilityMenuPosition: state.app.visibilityMenuPosition,
     changingBoardVisibility: state.app.changingBoardVisibility
   };
 };
@@ -139,7 +159,8 @@ const mapDispatchToProps = dispatch => {
   return {
     showBoardMenu: () => dispatch(showBoardMenu()),
     hideBoardMenu: () => dispatch(hideBoardMenu()),
-    startChangeBoardVisibility: () => dispatch(startChangeBoardVisibility()),
+    startChangeBoardVisibility: (x, y) =>
+      dispatch(startChangeBoardVisibility(x, y)),
     cancelChangeBoardVisibility: () => dispatch(cancelChangeBoardVisibility())
   };
 };

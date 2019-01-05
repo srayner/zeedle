@@ -188,9 +188,10 @@ export function endChangeBoardTitle(newTitle) {
   };
 }
 
-export function startChangeBoardVisibility() {
+export function startChangeBoardVisibility(position) {
   return {
-    type: "START_CHANGE_BOARD_VISIBILITY"
+    type: "START_CHANGE_BOARD_VISIBILITY",
+    payload: { position }
   };
 }
 

@@ -14,27 +14,33 @@ const Container = styled.div`
   display: flex;
 `;
 
-const ButtonMenu = props => {
-  const items = props.items.reduce((accumulator, currentItem, index) => {
-    if (index > 0) {
-      accumulator.push(<Divider key={"d" + index} />);
-    }
-    const icon = currentItem.icon ? (
-      <FontAwesomeIcon icon={currentItem.icon} />
-    ) : null;
-    accumulator.push(
-      <TransparentButton
-        key={"b" + index}
-        onClick={() => props.onItemClick(currentItem.id)}
-      >
-        {icon}
-        {currentItem.caption}
-      </TransparentButton>
-    );
-    return accumulator;
-  }, []);
+class ButtonMenu extends React.Component {
+  menuItemClick = (event, item) => {
+    this.props.onItemClick(item.id, event.target);
+  };
 
-  return <Container>{items}</Container>;
-};
+  render() {
+    const items = this.props.items.reduce((accumulator, currentItem, index) => {
+      if (index > 0) {
+        accumulator.push(<Divider key={"d" + index} />);
+      }
+      const icon = currentItem.icon ? (
+        <FontAwesomeIcon icon={currentItem.icon} />
+      ) : null;
+      accumulator.push(
+        <TransparentButton
+          key={"b" + index}
+          onClick={event => this.menuItemClick(event, currentItem)}
+        >
+          {icon}
+          {currentItem.caption}
+        </TransparentButton>
+      );
+      return accumulator;
+    }, []);
+
+    return <Container>{items}</Container>;
+  }
+}
 
 export default ButtonMenu;

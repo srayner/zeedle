@@ -8,7 +8,8 @@ const initialState = {
   changingBoardVisibility: false,
   newBoardContent: "",
   updatedBoardTitle: "",
-  profileMenuVisible: false
+  profileMenuVisible: false,
+  visibilityMenuPosition: null
 };
 
 const app = (state = initialState, action) => {
@@ -75,7 +76,12 @@ const app = (state = initialState, action) => {
       return { ...state, changingBoardTitle: false };
     }
     case "START_CHANGE_BOARD_VISIBILITY": {
-      return { ...state, changingBoardVisibility: true };
+      const { position } = action.payload;
+      return {
+        ...state,
+        changingBoardVisibility: true,
+        visibilityMenuPosition: { ...position }
+      };
     }
     case "CANCEL_CHANGE_BOARD_VISIBILITY": {
       return { ...state, changingBoardVisibility: false };
