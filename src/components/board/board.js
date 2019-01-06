@@ -20,7 +20,6 @@ import {
 import DeleteBoardModal from "./delete-board-modal";
 import ChangeColourModal from "./change-colour-modal";
 import ChangeTitlePopup from "./change-title-popup";
-import visibilityMenuData from "../../data/visibility-menu";
 import PopupMenu from "../ui/popup-menu";
 
 class Board extends React.Component {
@@ -66,9 +65,6 @@ class Board extends React.Component {
           onClose={this.props.cancelChangeBoardTitle}
         />
       );
-    }
-    if (this.props.changingBoardVisibility) {
-      modal = <PopupMenu data={visibilityMenuData} />;
     }
 
     return (
