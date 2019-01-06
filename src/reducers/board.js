@@ -21,7 +21,8 @@ const board = (state = initialState, action) => {
         title: board.title,
         listIds: board.listIds,
         starred: board.starred,
-        colour: board.colour
+        colour: board.colour,
+        visibility: board.visibility
       };
     }
     case "SHOW_BOARD_MENU": {
