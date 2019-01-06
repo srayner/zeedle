@@ -190,14 +190,14 @@ export function endChangeBoardTitle(newTitle) {
 
 export function startChangeBoardVisibility(position) {
   return {
-    type: "START_CHANGE_BOARD_VISIBILITY",
+    type: "VISIBILITY_MENU_SHOW",
     payload: { position }
   };
 }
 
 export function cancelChangeBoardVisibility() {
   return {
-    type: "CANCEL_CHANGE_BOARD_VISIBILITY"
+    type: "VISIBILITY_MENU_HIDE"
   };
 }
 
@@ -207,8 +207,7 @@ export function endChangeBoardVisibility(visibility) {
     const updatedBoard = { ...board, visibility };
     api.updateBoard(updatedBoard);
     dispatch({
-      type: "END_CHANGE_BOARD_VISIBILITY",
-      payload: { visibility }
+      type: "VISIBILITY_MENU_HIDE"
     });
     dispatch({
       type: "BOARD_UPDATED",

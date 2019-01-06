@@ -5,11 +5,9 @@ const initialState = {
   deletingBoard: false,
   changingColour: false,
   changingBoardTitle: false,
-  changingBoardVisibility: false,
   newBoardContent: "",
   updatedBoardTitle: "",
-  profileMenuVisible: false,
-  visibilityMenuPosition: null
+  profileMenuVisible: false
 };
 
 const app = (state = initialState, action) => {
@@ -59,7 +57,6 @@ const app = (state = initialState, action) => {
       return { ...state, changingColour: false };
     }
     case "START_CHANGE_BOARD_TITLE": {
-      console.log(action.payload);
       return {
         ...state,
         changingBoardTitle: true,
@@ -74,20 +71,6 @@ const app = (state = initialState, action) => {
     }
     case "END_CHANGE_BOARD_TITLE": {
       return { ...state, changingBoardTitle: false };
-    }
-    case "START_CHANGE_BOARD_VISIBILITY": {
-      const { position } = action.payload;
-      return {
-        ...state,
-        changingBoardVisibility: true,
-        visibilityMenuPosition: { ...position }
-      };
-    }
-    case "CANCEL_CHANGE_BOARD_VISIBILITY": {
-      return { ...state, changingBoardVisibility: false };
-    }
-    case "END_CHANGE_BOARD_VISIBILITY": {
-      return { ...state, changingBoardVisibility: false };
     }
     default:
       return state;

@@ -17,7 +17,6 @@ import {
   cancelChangeBoardVisibility,
   endChangeBoardVisibility
 } from "../../actions/board";
-import visibilityMenuData from "../../data/visibility-menu";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -109,22 +108,17 @@ class BoardTitle extends React.Component {
   };
 
   renderPopup() {
-    const {
-      menuVisible,
-      changingBoardVisibility,
-      visibilityMenuPosition
-    } = this.props;
+    const { menuVisible, visibilityMenu } = this.props;
     if (menuVisible) {
       const boardMenuData = getBoardMenuData(this.props.starred);
       boardMenuData.onClose = this.props.hideBoardMenu;
       boardMenuData.onItemClick = this.menuClick;
       return <PopupMenu {...boardMenuData} />;
     }
-    if (changingBoardVisibility) {
+    if (visibilityMenu.visible) {
       return (
         <PopupMenu
-          {...visibilityMenuData}
-          position={visibilityMenuPosition}
+          {...visibilityMenu}
           onItemClick={this.visibilityMenuItemClick}
           onClose={this.props.cancelChangeBoardVisibility}
         />
@@ -163,7 +157,8 @@ const mapStateToProps = state => {
     board: state.board,
     menuVisible: state.board.boardMenuVisible,
     visibilityMenuPosition: state.app.visibilityMenuPosition,
-    changingBoardVisibility: state.app.changingBoardVisibility
+    changingBoardVisibility: state.app.changingBoardVisibility,
+    visibilityMenu: state.visibilityMenu
   };
 };
 
