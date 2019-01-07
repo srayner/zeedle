@@ -42,7 +42,10 @@ class Api {
       this.baseUri + "/boards",
       {
         title,
-        listIds: []
+        listIds: [],
+        starred: false,
+        colour: "#b04632",
+        visibility: "Private"
       },
       this.getOptions()
     );
