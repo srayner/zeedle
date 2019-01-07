@@ -6,6 +6,7 @@ const TaskList = styled.div`
   padding: 0 8px;
   background-color: "inherit";
   flex-grow: 1;
+  min-height: 15px;
 `;
 
 export default TaskList;
