@@ -5,8 +5,7 @@ const initialState = {
   visibility: null,
   listIds: [],
   addingList: false,
-  editingTaskId: null,
-  boardMenuVisible: false
+  editingTaskId: null
 };
 
 const board = (state = initialState, action) => {
@@ -24,12 +23,6 @@ const board = (state = initialState, action) => {
         colour: board.colour,
         visibility: board.visibility
       };
-    }
-    case "SHOW_BOARD_MENU": {
-      return { ...state, boardMenuVisible: true };
-    }
-    case "HIDE_BOARD_MENU": {
-      return { ...state, boardMenuVisible: false };
     }
     case "OPEN_TASK_DETAIL": {
       return { ...state, editingTaskId: action.payload };

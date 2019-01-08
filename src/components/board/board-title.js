@@ -130,7 +130,7 @@ class BoardTitle extends React.Component {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    menuVisible: state.board.boardMenuVisible,
+    menuVisible: state.app.boardMenuVisible,
     visibilityMenuPosition: state.app.visibilityMenuPosition,
     changingBoardVisibility: state.app.changingBoardVisibility,
     visibilityMenu: state.visibilityMenu

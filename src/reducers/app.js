@@ -1,4 +1,5 @@
 const initialState = {
+  boardMenuVisible: false,
   token: null,
   redirect: null,
   addingBoard: false,
@@ -12,6 +13,12 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "SHOW_BOARD_MENU": {
+      return { ...state, boardMenuVisible: true };
+    }
+    case "HIDE_BOARD_MENU": {
+      return { ...state, boardMenuVisible: false };
+    }
     case "LOGIN": {
       const { token, redirect } = action.payload;
       return { ...state, token, redirect };
