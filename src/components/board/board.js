@@ -42,7 +42,7 @@ class Board extends React.Component {
 
   render() {
     let modal = null;
-    if (this.deletingBoard) {
+    if (this.props.deletingBoard) {
       modal = (
         <DeleteBoardModal
           cancel={this.props.cancelDeleteBoard}
