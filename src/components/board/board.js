@@ -39,6 +39,7 @@ class Board extends React.Component {
     const { boardId } = this.props.match.params;
     this.props.loadData(boardId);
   }
+
   render() {
     let modal = null;
     if (this.deletingBoard) {

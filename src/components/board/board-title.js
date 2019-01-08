@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import getBoardMenuData from "../../data/board-menu";
+import BoardMenu from "./board-menu";
 import PopupMenu from "../ui/popup-menu";
 import { showBoardMenu, hideBoardMenu } from "../../actions/board";
 import { connect } from "react-redux";
@@ -77,30 +77,6 @@ class BoardTitle extends React.Component {
     }
   };
 
-  menuClick = itemId => {
-    this.props.hideBoardMenu();
-    switch (itemId) {
-      case "DELETE": {
-        this.props.onDeleteClick();
-        break;
-      }
-      case "STAR": {
-        this.props.onStar();
-        break;
-      }
-      case "UNSTAR": {
-        this.props.onUnstar();
-        break;
-      }
-      case "BACKGROUND": {
-        this.props.onChangeBackground();
-        break;
-      }
-      default: {
-      }
-    }
-  };
-
   visibilityMenuItemClick = itemId => {
     const visibility =
       itemId.charAt(0).toUpperCase() + itemId.toLowerCase().slice(1);
@@ -110,10 +86,7 @@ class BoardTitle extends React.Component {
   renderPopup() {
     const { menuVisible, visibilityMenu } = this.props;
     if (menuVisible) {
-      const boardMenuData = getBoardMenuData(this.props.starred);
-      boardMenuData.onClose = this.props.hideBoardMenu;
-      boardMenuData.onItemClick = this.menuClick;
-      return <PopupMenu {...boardMenuData} />;
+      return <BoardMenu />;
     }
     if (visibilityMenu.visible) {
       return (
