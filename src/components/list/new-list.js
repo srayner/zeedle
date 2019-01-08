@@ -16,7 +16,7 @@ class NewList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    addingList: state.board.addingList
+    addingList: state.app.addingList
   };
 };
 

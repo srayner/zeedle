@@ -1,4 +1,5 @@
 const initialState = {
+  addingList: false,
   boardMenuVisible: false,
   token: null,
   redirect: null,
@@ -13,6 +14,13 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_LIST_START": {
+      return { ...state, addingList: true };
+    }
+    case "ADD_LIST_END":
+    case "ADD_LIST_CANCEL": {
+      return { ...state, addingList: false };
+    }
     case "SHOW_BOARD_MENU": {
       return { ...state, boardMenuVisible: true };
     }

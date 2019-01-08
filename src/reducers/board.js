@@ -4,7 +4,6 @@ const initialState = {
   colour: null,
   visibility: null,
   listIds: [],
-  addingList: false,
   editingTaskId: null
 };
 
@@ -41,19 +40,13 @@ const board = (state = initialState, action) => {
       } = action.payload.board;
       return { ...state, id, title, listIds, starred, colour, visibility };
     }
-    case "ADD_LIST_START": {
-      return { ...state, addingList: true };
-    }
     case "ADD_LIST_UPDATE_CONTENT": {
       return { ...state, newListContent: action.payload };
-    }
-    case "ADD_LIST_CANCEL": {
-      return { ...state, addingList: false };
     }
     case "ADD_LIST_END": {
       const newList = action.payload;
       const listIds = [...state.listIds, newList.id];
-      return { ...state, listIds, addingList: false };
+      return { ...state, listIds };
     }
     case "LIST_DELETE": {
       return action.payload.board;
