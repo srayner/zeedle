@@ -9,7 +9,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BoardMenu from "./board-menu";
 import PopupMenu from "../ui/popup-menu";
-import { showBoardMenu, hideBoardMenu } from "../../actions/board";
+import { showBoardMenu, hideBoardMenu, starBoard } from "../../actions/board";
 import { connect } from "react-redux";
 import ButtonMenu from "../ui/button-menu";
 import {
@@ -57,11 +57,11 @@ class BoardTitle extends React.Component {
     var rect = target.getBoundingClientRect();
     switch (itemId) {
       case "STAR": {
-        alert("Star board");
+        this.props.starBoard(this.props.board, true);
         break;
       }
       case "UNSTAR": {
-        alert("Unstar board");
+        this.props.starBoard(this.props.board, false);
         break;
       }
       case "GROUP": {
@@ -143,7 +143,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(startChangeBoardVisibility(x, y)),
     cancelChangeBoardVisibility: () => dispatch(cancelChangeBoardVisibility()),
     endChangeBoardVisibility: visibility =>
-      dispatch(endChangeBoardVisibility(visibility))
+      dispatch(endChangeBoardVisibility(visibility)),
+    starBoard: (board, starred) => dispatch(starBoard(board, starred))
   };
 };
 

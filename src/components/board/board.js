@@ -4,7 +4,6 @@ import BoardTitle from "./board-title";
 import BoardBody from "./board-body";
 import {
   loadData,
-  starBoard,
   startChangeColour,
   cancelChangeColour,
   endChangeColour,
@@ -20,19 +19,10 @@ import {
 import DeleteBoardModal from "./delete-board-modal";
 import ChangeColourModal from "./change-colour-modal";
 import ChangeTitlePopup from "./change-title-popup";
-import PopupMenu from "../ui/popup-menu";
 
 class Board extends React.Component {
   changeColour = newColour => {
     this.props.endChangeColour(this.props.board, newColour);
-  };
-
-  star = () => {
-    this.props.star(this.props.board, true);
-  };
-
-  unstar = () => {
-    this.props.star(this.props.board, false);
   };
 
   componentDidMount() {
@@ -103,7 +93,6 @@ const mapDispatchToProps = dispatch => {
     startDeleteBoard: () => dispatch(startDeleteBoard()),
     endDeleteBoard: boardId => dispatch(endDeleteBoard(boardId)),
     cancelDeleteBoard: () => dispatch(cancelDeleteBoard()),
-    star: (board, starred) => dispatch(starBoard(board, starred)),
     startChangeColour: () => dispatch(startChangeColour()),
     cancelChangeColour: () => dispatch(cancelChangeColour()),
     endChangeColour: (board, newColour) =>
