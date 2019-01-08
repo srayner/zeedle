@@ -43,7 +43,7 @@ const Caption = styled.h2`
 
 class BoardTitle extends React.Component {
   getButtonMenuItems = () => {
-    const starItem = this.props.starred
+    const starItem = this.props.board.starred
       ? { id: "UNSTAR", icon: faSolidStar }
       : { id: "STAR", icon: faStar };
     return [
@@ -100,12 +100,14 @@ class BoardTitle extends React.Component {
   }
 
   render() {
-    const { caption, showBoardMenu } = this.props;
+    const { board, showBoardMenu } = this.props;
     const buttonMenuItems = this.getButtonMenuItems();
     const popup = this.renderPopup();
     return (
       <Container>
-        <Caption onClick={() => this.props.onClickTitle()}>{caption}</Caption>
+        <Caption onClick={() => this.props.onClickTitle()}>
+          {board.title}
+        </Caption>
         <MenuContainer>
           <ButtonMenu
             items={buttonMenuItems}

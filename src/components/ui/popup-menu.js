@@ -93,7 +93,6 @@ const PopupMenu = props => {
       </List>
     );
   });
-  console.log(props.position);
   return (
     <Container position={props.position} width={props.width}>
       <Header>
