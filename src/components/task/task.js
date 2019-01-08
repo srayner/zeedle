@@ -80,7 +80,7 @@ class Task extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    editingTaskId: state.board.editingTaskId
+    editingTaskId: state.app.editingTaskId
   };
 };
 

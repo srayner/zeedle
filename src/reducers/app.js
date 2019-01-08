@@ -1,6 +1,7 @@
 const initialState = {
   addingList: false,
   boardMenuVisible: false,
+  editingTaskId: null,
   token: null,
   redirect: null,
   addingBoard: false,
@@ -14,6 +15,12 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "OPEN_TASK_DETAIL": {
+      return { ...state, editingTaskId: action.payload };
+    }
+    case "CLOSE_TASK_DETAIL": {
+      return { ...state, editingTaskId: null };
+    }
     case "ADD_LIST_START": {
       return { ...state, addingList: true };
     }

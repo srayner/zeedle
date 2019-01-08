@@ -3,8 +3,7 @@ const initialState = {
   title: null,
   colour: null,
   visibility: null,
-  listIds: [],
-  editingTaskId: null
+  listIds: []
 };
 
 const board = (state = initialState, action) => {
@@ -22,12 +21,6 @@ const board = (state = initialState, action) => {
         colour: board.colour,
         visibility: board.visibility
       };
-    }
-    case "OPEN_TASK_DETAIL": {
-      return { ...state, editingTaskId: action.payload };
-    }
-    case "CLOSE_TASK_DETAIL": {
-      return { ...state, editingTaskId: null };
     }
     case "BOARD_UPDATED": {
       const {
