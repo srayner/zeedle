@@ -9,6 +9,7 @@ const initialState = {
   changingColour: false,
   changingBoardTitle: false,
   newBoardContent: "",
+  newListTitle: "",
   updatedBoardTitle: "",
   profileMenuVisible: false
 };
@@ -24,6 +25,8 @@ const app = (state = initialState, action) => {
     case "ADD_LIST_START": {
       return { ...state, addingList: true };
     }
+    case "ADD_LIST_UPDATE_CONTENT":
+      return { ...state, newListTitle: action.payload };
     case "ADD_LIST_END":
     case "ADD_LIST_CANCEL": {
       return { ...state, addingList: false };

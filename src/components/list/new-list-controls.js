@@ -28,26 +28,28 @@ const ButtonContainer = styled.div`
 
 class NewListControls extends React.Component {
   render() {
+    const { board, newListTitle, onChange, onSubmit, onCancel } = this.props;
     return (
       <Container>
         <Text
           placeholder="Enter list title..."
+          value={newListTitle}
           onChange={event => {
-            this.props.onChange(event.target.value);
+            onChange(event.target.value);
           }}
         />
         <ButtonContainer>
           <SuccessButton
             type="primary"
             onClick={() => {
-              this.props.onSubmit(this.props.board);
+              onSubmit(board, newListTitle);
             }}
           >
             Add List
           </SuccessButton>
           <CloseButton
             onClick={() => {
-              this.props.onCancel();
+              onCancel();
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
@@ -60,6 +62,7 @@ class NewListControls extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    newListTitle: state.app.newListTitle,
     board: state.board
   };
 };
@@ -68,7 +71,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onChange: content => dispatch(addListUpdateContent(content)),
     onCancel: list => dispatch(addListCancel(list)),
-    onSubmit: board => dispatch(addListEnd(board))
+    onSubmit: (board, newListTitle) => dispatch(addListEnd(board, newListTitle))
   };
 };
 

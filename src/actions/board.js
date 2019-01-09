@@ -75,10 +75,9 @@ export function addListCancel() {
   };
 }
 
-export function addListEnd(board) {
+export function addListEnd(board, newListTitle) {
   return dispatch => {
-    const title = board.newListContent;
-    return api.addList(title).then(response => {
+    return api.addList(newListTitle).then(response => {
       const newList = response.data;
       newList.id = newList._id;
       delete newList._id;

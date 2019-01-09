@@ -1,40 +1,17 @@
 const initialState = {
   id: null,
-  title: null,
-  colour: null,
-  visibility: null,
   listIds: []
 };
-
 const board = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_DATA_END": {
       let board = action.payload.board;
       board.id = board._id;
       delete board._id;
-      return {
-        ...state,
-        id: board.id,
-        title: board.title,
-        listIds: board.listIds,
-        starred: board.starred,
-        colour: board.colour,
-        visibility: board.visibility
-      };
+      return board;
     }
     case "BOARD_UPDATED": {
-      const {
-        id,
-        title,
-        listIds,
-        starred,
-        colour,
-        visibility
-      } = action.payload.board;
-      return { ...state, id, title, listIds, starred, colour, visibility };
-    }
-    case "ADD_LIST_UPDATE_CONTENT": {
-      return { ...state, newListContent: action.payload };
+      return action.payload.board;
     }
     case "ADD_LIST_END": {
       const newList = action.payload;
