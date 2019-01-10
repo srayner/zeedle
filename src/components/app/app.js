@@ -11,6 +11,7 @@ import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
 import ProfileNav from "../profile/profile-nav";
 import Title from "./title";
+import Profile from "../profile/profile";
 
 const StyledLink = styled(Link)`
   &:focus {
@@ -44,6 +45,7 @@ class App extends React.Component {
           <Route path="/board/:boardId" component={Board} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/profile" component={Profile} />
         </div>
       </Router>
     );
