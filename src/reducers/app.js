@@ -11,7 +11,12 @@ const initialState = {
   newBoardContent: "",
   newListTitle: "",
   updatedBoardTitle: "",
-  profileMenuVisible: false
+  profileMenuVisible: false,
+  user: {
+    username: "srayner296",
+    displayName: "Steve Rayner",
+    initials: "S R"
+  }
 };
 
 const app = (state = initialState, action) => {

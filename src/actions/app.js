@@ -9,6 +9,7 @@ export function signUp(data) {
 export function login(data) {
   return dispatch => {
     return api.login(data).then(response => {
+      console.log(response.data);
       const token = response.data.token;
       localStorage.setItem("token", token);
       return dispatch({
