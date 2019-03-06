@@ -4,10 +4,16 @@ import { showProfileMenu, hideProfileMenu, logout } from "../../actions/app";
 import Avatar from "../../components/ui/avatar";
 import profileMenuData from "../../data/profile-menu";
 import PopupMenu from "../ui/popup-menu";
+import { withRouter } from "react-router";
 
 class ProfileNav extends React.Component {
   menuClick = itemId => {
     switch (itemId) {
+      case "PROFILE": {
+        this.props.history.push("/profile");
+        this.props.hideMenu();
+        break;
+      }
       case "LOGOUT": {
         this.props.logout();
         break;
@@ -36,6 +42,8 @@ class ProfileNav extends React.Component {
   }
 }
 
+const ProfileNavWithRouter = withRouter(ProfileNav);
+
 const mapStateToProps = state => {
   return {
     token: state.app.token,
@@ -60,4 +68,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileNav);
+)(ProfileNavWithRouter);

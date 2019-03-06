@@ -45,7 +45,7 @@ class App extends React.Component {
           <Route path="/board/:boardId" component={Board} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" render={props => <Profile {...props} />} />
         </div>
       </Router>
     );
