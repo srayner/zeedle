@@ -23,7 +23,10 @@ class LoginForm extends React.Component {
         <label>Email</label>
         <Text onChange={event => this.handleChange(event, "email")} />
         <label>Password</label>
-        <Text onChange={event => this.handleChange(event, "password")} />
+        <Text
+          type="password"
+          onChange={event => this.handleChange(event, "password")}
+        />
         <SuccessButton onClick={this.handleSubmit}>
           {this.props.submitCaption}
         </SuccessButton>
