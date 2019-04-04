@@ -2,6 +2,7 @@ const initialState = {
   addingList: false,
   boardMenuVisible: false,
   editingTaskId: null,
+  flashMessage: null,
   token: null,
   redirect: null,
   addingBoard: false,
@@ -44,7 +45,11 @@ const app = (state = initialState, action) => {
     }
     case "LOGIN": {
       const { token, redirect } = action.payload;
-      return { ...state, token, redirect };
+      return { ...state, token, redirect, flashMessage: null };
+    }
+    case "LOGIN_FAILED": {
+      const { flashMessage } = action.payload;
+      return { ...state, flashMessage };
     }
     case "LOGOUT": {
       return { ...state, token: null, profileMenuVisible: false };

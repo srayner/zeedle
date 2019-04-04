@@ -8,15 +8,24 @@ export function signUp(data) {
 
 export function login(data) {
   return dispatch => {
-    return api.login(data).then(response => {
-      console.log(response.data);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      return dispatch({
-        type: "LOGIN",
-        payload: { token }
+    return api
+      .login(data)
+      .then(response => {
+        console.log(response.data);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        return dispatch({
+          type: "LOGIN",
+          payload: { token }
+        });
+      })
+      .catch(response => {
+        console.log(response);
+        return dispatch({
+          type: "LOGIN_FAILED",
+          payload: { flashMessage: "Invalid email or password." }
+        });
       });
-    });
   };
 }
 
