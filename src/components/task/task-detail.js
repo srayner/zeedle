@@ -34,6 +34,7 @@ const Wrap = styled.div`
 
 const SubTitle = styled.div`
   font-size: 14px;
+  padding: 2px;
 `;
 
 class TaskDetail extends React.Component {
