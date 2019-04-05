@@ -1,6 +1,12 @@
+import React from "react";
 import styled from "styled-components";
+import HomeButton from "./home-button";
+import BoardsButton from "./boards-button";
+import ProfileNav from "../profile/profile-nav";
+import Title from "./title";
+import { Link } from "react-router-dom";
 
-const TitleBar = styled.div`
+const Container = styled.div`
   display: flex;
   background-color: transparent;
   padding: 8px;
@@ -18,5 +24,34 @@ const TitleBar = styled.div`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 `;
+
+const StyledLink = styled(Link)`
+  &:focus {
+    outline: none;
+  }
+`;
+
+const RightContainer = styled.div`
+  margin-left: auto;
+`;
+
+class TitleBar extends React.Component {
+  render() {
+    return (
+      <Container>
+        <StyledLink to="/">
+          <HomeButton />
+        </StyledLink>
+        <StyledLink to="/boards">
+          <BoardsButton />
+        </StyledLink>
+        <Title>zeedle</Title>
+        <RightContainer>
+          <ProfileNav />
+        </RightContainer>
+      </Container>
+    );
+  }
+}
 
 export default TitleBar;
