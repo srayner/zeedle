@@ -69,6 +69,7 @@ class TaskDetail extends React.Component {
               value={task.description}
               onChange={description => onDescriptionChange(task, description)}
               onBlur={() => onTaskModified(task)}
+              placeholder="Add a more detailed description..."
             />
           </Wrap>
         </Container>

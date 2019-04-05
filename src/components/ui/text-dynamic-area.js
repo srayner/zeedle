@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const TextArea = styled.textarea`
   color: black;
-  background: transparent;
+  background: ${props => (props.value === "" ? "white" : "transparent")};
   border: 1px solid transparent;
   border-radius: 3px;
   margin: 0;
@@ -18,6 +18,9 @@ const TextArea = styled.textarea`
   resize: none;
   :focus {
     background-color: white;
+  }
+  ::placeholder {
+    color: #ccc;
   }
 `;
 
@@ -40,7 +43,7 @@ class TextDynamicArea extends React.Component {
   };
 
   render() {
-    const { fontSize, lineHeight, value, onBlur } = this.props;
+    const { fontSize, lineHeight, value, onBlur, placeholder } = this.props;
     return (
       <TextArea
         fontSize={fontSize}
@@ -49,6 +52,7 @@ class TextDynamicArea extends React.Component {
         value={value}
         onChange={event => this.contentChange(event.target)}
         onBlur={onBlur}
+        placeholder={placeholder}
       />
     );
   }
