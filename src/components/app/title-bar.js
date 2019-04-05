@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import HomeButton from "./home-button";
 import BoardsButton from "./boards-button";
 import ProfileNav from "../profile/profile-nav";
@@ -37,6 +38,10 @@ const RightContainer = styled.div`
 
 class TitleBar extends React.Component {
   render() {
+    const backgroundColour = this.props.board
+      ? this.props.board.colour
+      : "205785";
+    console.log("backgroundColour", backgroundColour);
     return (
       <Container>
         <StyledLink to="/">
@@ -45,7 +50,7 @@ class TitleBar extends React.Component {
         <StyledLink to="/boards">
           <BoardsButton />
         </StyledLink>
-        <Title>zeedle</Title>
+        <Title backgroundColour={backgroundColour}>zeedle</Title>
         <RightContainer>
           <ProfileNav />
         </RightContainer>
@@ -54,4 +59,13 @@ class TitleBar extends React.Component {
   }
 }
 
-export default TitleBar;
+const mapStateToProps = state => {
+  return {
+    board: state.board
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(TitleBar);

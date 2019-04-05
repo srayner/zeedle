@@ -8,7 +8,7 @@ const Title = styled.div`
   top: 0px;
   left: 0;
   right: 0;
-  background-color: #205785;
+  background-color: ${props => props.backgroundColour || "#205785"};
   z-index: -1;
 `;
 
