@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 8px;
   font-family: "Rouge Script", cursive;
   font-size: 36px;

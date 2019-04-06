@@ -9,6 +9,7 @@ const Title = styled.div`
   left: 0;
   right: 0;
   background-color: ${props => props.backgroundColour || "#205785"};
+  color: white;
   z-index: -1;
 `;
 
