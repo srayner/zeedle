@@ -5,7 +5,9 @@ const Container = styled.div`
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: ${props => {
+    return props.colour || "rgba(255, 255, 255, 0.3)";
+  }};
   text-align: center;
   text-transform: uppercase;
   color: white;
@@ -18,7 +20,9 @@ const Container = styled.div`
 
 const Avatar = props => {
   return (
-    <Container onClick={() => props.onClick()}>{props.children}</Container>
+    <Container colour={props.colour} onClick={() => props.onClick()}>
+      {props.children}
+    </Container>
   );
 };
 

@@ -27,7 +27,7 @@ const ProfileHeader = props => {
   const { displayName, username, initials } = props;
   return (
     <Container>
-      <Avatar>{initials}</Avatar>
+      <Avatar colour="#2d7aba">{initials}</Avatar>
       <div>
         <DisplayName>{displayName}</DisplayName>
         <Username>@{username}</Username>
