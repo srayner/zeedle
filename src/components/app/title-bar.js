@@ -41,7 +41,6 @@ class TitleBar extends React.Component {
     const backgroundColour = this.props.board
       ? this.props.board.colour
       : "205785";
-    console.log("backgroundColour", backgroundColour);
     return (
       <Container>
         <StyledLink to="/">
