@@ -5,8 +5,13 @@ import Avatar from "../ui/avatar";
 const Container = styled.div`
   background-color: white;
   margin: 0 auto;
+  padding: 20px;
   width: 500px;
   display: flex;
+`;
+
+const NameContainer = styled.div`
+  margin-left: 10px;
 `;
 
 const DisplayName = styled.h2`
@@ -28,10 +33,10 @@ const ProfileHeader = props => {
   return (
     <Container>
       <Avatar colour="#2d7aba">{initials}</Avatar>
-      <div>
+      <NameContainer>
         <DisplayName>{displayName}</DisplayName>
         <Username>@{username}</Username>
-      </div>
+      </NameContainer>
     </Container>
   );
 };
