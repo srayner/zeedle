@@ -1,15 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import ProfileHeader from "./profile-header";
 import { connect } from "react-redux";
-
-const Container = styled.div``;
+import Container from "../ui/container";
 
 class Profile extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <Container>
+      <Container colour="white">
         <ProfileHeader {...user} />
       </Container>
     );

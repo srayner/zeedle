@@ -18,6 +18,8 @@ const DisplayName = styled.h2`
   margin: 0 0 3px 0;
   padding: 0;
   color: black;
+  font-size: 24px;
+  line-height: 24px;
 `;
 
 const Username = styled.h3`
