@@ -11,16 +11,13 @@ export function login(data) {
     return api
       .login(data)
       .then(response => {
-        console.log(response.data);
         const token = response.data.token;
-        localStorage.setItem("token", token);
         return dispatch({
           type: "LOGIN",
           payload: { token }
         });
       })
       .catch(response => {
-        console.log(response);
         return dispatch({
           type: "LOGIN_FAILED",
           payload: { flashMessage: "Invalid email or password." }
@@ -30,7 +27,6 @@ export function login(data) {
 }
 
 export function logout() {
-  localStorage.removeItem("token");
   return {
     type: "LOGOUT"
   };
