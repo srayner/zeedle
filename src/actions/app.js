@@ -16,7 +16,7 @@ export function login(data) {
         localStorage.setItem("token", token);
         return dispatch({
           type: "LOGIN",
-          payload: { token }
+          payload: { token, redirect: true }
         });
       })
       .catch(response => {

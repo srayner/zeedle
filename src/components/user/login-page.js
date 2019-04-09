@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import ErrorMessage from "../ui/error-message";
 
 class LoginPage extends React.Component {
+  state = { referer: null };
+
   renderFlashMessage() {
     if (!this.props.flashMessage) {
       return null;
@@ -16,9 +18,11 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    const { redirect } = this.props;
-    const referrer = this.props.location.state.referrer;
-    if (redirect && referrer) {
+    const { token } = this.props;
+    const referrer = this.props.location.state
+      ? this.props.location.state.referrer
+      : "/";
+    if (token) {
       return <Redirect to={referrer} />;
     }
     const flashMessage = this.renderFlashMessage();
@@ -37,7 +41,7 @@ class LoginPage extends React.Component {
 const mapStateToProps = state => {
   return {
     flashMessage: state.app.flashMessage,
-    redirect: state.redirect
+    token: state.app.token
   };
 };
 

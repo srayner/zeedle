@@ -43,6 +43,9 @@ const app = (state = initialState, action) => {
     case "HIDE_BOARD_MENU": {
       return { ...state, boardMenuVisible: false };
     }
+    case "CLEAR_REDIRECT": {
+      return { ...state, redirect: null };
+    }
     case "LOGIN": {
       const { token, redirect } = action.payload;
       return { ...state, token, redirect, flashMessage: null };
