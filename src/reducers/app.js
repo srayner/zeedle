@@ -4,7 +4,6 @@ const initialState = {
   editingTaskId: null,
   flashMessage: null,
   token: null,
-  redirect: null,
   addingBoard: false,
   deletingBoard: false,
   changingColour: false,
@@ -43,12 +42,9 @@ const app = (state = initialState, action) => {
     case "HIDE_BOARD_MENU": {
       return { ...state, boardMenuVisible: false };
     }
-    case "CLEAR_REDIRECT": {
-      return { ...state, redirect: null };
-    }
     case "LOGIN": {
-      const { token, redirect } = action.payload;
-      return { ...state, token, redirect, flashMessage: null };
+      const { token } = action.payload;
+      return { ...state, token, flashMessage: null };
     }
     case "LOGIN_FAILED": {
       const { flashMessage } = action.payload;
