@@ -1,108 +1,82 @@
 import axios from "axios";
+import store from "../store";
+
+axios.interceptors.request.use(function(config) {
+  const token = store.getState().app.token;
+  config.mode = "no-cors";
+  config.headers.Accept = "application/json";
+  if (token) {
+    config.headers.Authorization = "Bearer " + token;
+  }
+  return config;
+});
 
 class Api {
   baseUri = "http://localhost:8000";
 
-  getHeaders = () => {
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const token = localStorage.getItem("token");
-    if (token) {
-      headers.Authorization = "Bearer " + token;
-    }
-    return headers;
-  };
-
-  getOptions = () => {
-    return {
-      mode: "no-cors",
-      headers: this.getHeaders()
-    };
-  };
-
   signup(data) {
-    return axios.post(this.baseUri + "/user/signup", data, this.getOptions());
+    return axios.post(this.baseUri + "/user/signup", data);
   }
 
   login(data) {
-    return axios.post(this.baseUri + "/user/login", data, this.getOptions());
+    return axios.post(this.baseUri + "/user/login", data);
   }
 
   getBoards() {
-    return axios.get(this.baseUri + "/boards", this.getOptions());
+    return axios.get(this.baseUri + "/boards");
   }
 
   getBoard(boardId) {
-    return axios.get(this.baseUri + "/boards/" + boardId, this.getOptions());
+    return axios.get(this.baseUri + "/boards/" + boardId);
   }
 
   addBoard(title) {
-    return axios.post(
-      this.baseUri + "/boards",
-      {
-        title,
-        listIds: [],
-        starred: false,
-        colour: "#b04632",
-        visibility: "Private"
-      },
-      this.getOptions()
-    );
+    return axios.post(this.baseUri + "/boards", {
+      title,
+      listIds: [],
+      starred: false,
+      colour: "#b04632",
+      visibility: "Private"
+    });
   }
 
   updateBoard(board) {
-    return axios.patch(
-      this.baseUri + "/boards/" + board.id,
-      {
-        title: board.title,
-        listIds: board.listIds,
-        starred: board.starred,
-        colour: board.colour,
-        visibility: board.visibility
-      },
-      this.getOptions()
-    );
+    return axios.patch(this.baseUri + "/boards/" + board.id, {
+      title: board.title,
+      listIds: board.listIds,
+      starred: board.starred,
+      colour: board.colour,
+      visibility: board.visibility
+    });
   }
 
   deleteBoard(boardId) {
-    return axios.delete(this.baseUri + "/boards/" + boardId, this.getOptions());
+    return axios.delete(this.baseUri + "/boards/" + boardId);
   }
 
   getTasks() {
-    return axios.get(this.baseUri + "/tasks", this.getOptions());
+    return axios.get(this.baseUri + "/tasks");
   }
 
   updateTask(task) {
-    return axios.patch(
-      this.baseUri + "/tasks/" + task.id,
-      {
-        title: task.title,
-        description: task.description
-      },
-      this.getOptions()
-    );
+    return axios.patch(this.baseUri + "/tasks/" + task.id, {
+      title: task.title,
+      description: task.description
+    });
   }
 
   addTask(title) {
-    return axios.post(
-      this.baseUri + "/tasks",
-      {
-        title: title
-      },
-      this.getOptions()
-    );
+    return axios.post(this.baseUri + "/tasks", {
+      title: title
+    });
   }
 
   deleteTask(id) {
-    return axios.delete(this.baseUri + "/tasks/" + id, this.getOptions());
+    return axios.delete(this.baseUri + "/tasks/" + id);
   }
 
   getLists(boardId) {
-    return axios.get(
-      this.baseUri + "/lists?boardId=" + boardId,
-      this.getOptions()
-    );
+    return axios.get(this.baseUri + "/lists?boardId=" + boardId);
   }
 
   updateList(list) {
@@ -111,26 +85,18 @@ class Api {
       title: list.title,
       taskIds: list.taskIds
     };
-    return axios.patch(
-      this.baseUri + "/lists/" + list.id,
-      data,
-      this.getOptions()
-    );
+    return axios.patch(this.baseUri + "/lists/" + list.id, data);
   }
 
   addList(title) {
-    return axios.post(
-      this.baseUri + "/lists",
-      {
-        title: title,
-        taskIds: []
-      },
-      this.getOptions()
-    );
+    return axios.post(this.baseUri + "/lists", {
+      title: title,
+      taskIds: []
+    });
   }
 
   deleteList(id) {
-    return axios.delete(this.baseUri + "/lists/" + id, this.getOptions());
+    return axios.delete(this.baseUri + "/lists/" + id);
   }
 }
 
