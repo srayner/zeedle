@@ -6,6 +6,7 @@ import BoardsButton from "./boards-button";
 import ProfileNav from "../profile/profile-nav";
 import Title from "./title";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const Container = styled.div`
   display: flex;
@@ -38,9 +39,10 @@ const RightContainer = styled.div`
 
 class TitleBar extends React.Component {
   render() {
-    const backgroundColour = this.props.board
-      ? this.props.board.colour
-      : "205785";
+    const backgroundColour =
+      this.props.location.pathname.startsWith("/board/") && this.props.board
+        ? this.props.board.colour
+        : "205785";
     return (
       <Container>
         <StyledLink to="/">
@@ -64,7 +66,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(TitleBar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(TitleBar)
+);
