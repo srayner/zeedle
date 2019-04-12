@@ -65,7 +65,7 @@ class Boards extends React.Component {
         <Redirect
           to={{
             pathname: "/login",
-            state: { referrer: "/" }
+            state: { referrer: "/boards" }
           }}
         />
       );
