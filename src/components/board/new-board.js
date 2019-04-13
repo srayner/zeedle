@@ -9,6 +9,7 @@ class NewBoard extends React.Component {
     return (
       <div>
         <Text
+          autoFocus
           placeholder="Board title"
           onChange={event =>
             this.props.updateNewBoardContent(event.target.value)
