@@ -20,6 +20,11 @@ class Board extends React.Component {
     this.props.endChangeColour(this.props.board, newColour);
   };
 
+  deleteBoard = boardId => {
+    this.props.history.push("/boards");
+    this.props.endDeleteBoard(boardId);
+  };
+
   componentDidMount() {
     const { boardId } = this.props.match.params;
     this.props.loadData(boardId);
@@ -31,7 +36,7 @@ class Board extends React.Component {
       modal = (
         <DeleteBoardModal
           cancel={this.props.cancelDeleteBoard}
-          delete={this.props.endDeleteBoard}
+          delete={this.deleteBoard}
           boardId={this.props.board.id}
         />
       );
