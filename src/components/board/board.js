@@ -14,6 +14,7 @@ import { endDeleteBoard, cancelDeleteBoard } from "../../actions/app";
 import DeleteBoardModal from "./delete-board-modal";
 import ChangeColourModal from "./change-colour-modal";
 import ChangeTitlePopup from "./change-title-popup";
+import { Redirect } from "react-router-dom";
 
 class Board extends React.Component {
   changeColour = newColour => {
@@ -31,6 +32,17 @@ class Board extends React.Component {
   }
 
   render() {
+    const { token } = this.props;
+    if (!token) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { referrer: this.props.location.pathname }
+          }}
+        />
+      );
+    }
     let modal = null;
     if (this.props.deletingBoard) {
       modal = (
@@ -77,7 +89,8 @@ const mapStateToProps = state => {
     board: state.board,
     deletingBoard: state.app.deletingBoard,
     changingColour: state.app.changingColour,
-    changingBoardTitle: state.app.changingBoardTitle
+    changingBoardTitle: state.app.changingBoardTitle,
+    token: state.app.token
   };
 };
 
