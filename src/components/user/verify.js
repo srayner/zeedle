@@ -15,7 +15,7 @@ class Verify extends React.Component {
     let message = "Sorry, your account could not be verified.";
     if (this.props.verifyState === "success") {
       message =
-        "Your account was sucessfully verify and you are now logged in.";
+        "Your account was successfully verified and you are now logged in.";
     }
     return (
       <div>
