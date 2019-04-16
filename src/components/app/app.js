@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
 import Profile from "../profile/profile";
+import Verify from "../user/verify";
 
 class App extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class App extends React.Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/profile" component={Profile} />
+          <Route path="/verify" exact component={Verify} />
         </div>
       </Router>
     );

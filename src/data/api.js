@@ -18,6 +18,10 @@ class Api {
     return axios.post(this.baseUri + "/user/signup", data);
   }
 
+  verify(data) {
+    return axios.post(this.baseUri + "/user/verify", data);
+  }
+
   login(data) {
     return axios.post(this.baseUri + "/user/login", data);
   }
