@@ -1,12 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import { login } from "../../actions/app";
+import Container from "../ui/container";
 import LoginContainer from "./login-container";
 import LoginForm from "../ui/login-form";
-import { login } from "../../actions/app";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
 import ErrorMessage from "../ui/error-message";
-import Container from "../ui/container";
 
 class LoginPage extends React.Component {
   state = { referer: null };

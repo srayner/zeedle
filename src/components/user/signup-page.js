@@ -1,10 +1,10 @@
 import React from "react";
-import LoginContainer from "./login-container";
-import LoginForm from "../ui/login-form";
-import { signUp } from "../../actions/app";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { signUp } from "../../actions/app";
 import Container from "../ui/container";
+import LoginContainer from "./login-container";
+import LoginForm from "../ui/login-form";
 
 class SignupPage extends React.Component {
   render() {
