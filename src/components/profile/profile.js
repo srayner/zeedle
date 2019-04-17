@@ -2,13 +2,18 @@ import React from "react";
 import ProfileHeader from "./profile-header";
 import { connect } from "react-redux";
 import Container from "../ui/container";
+import ProfileContainer from "./profile-container";
+import ProfileForm from "./profile-form";
 
 class Profile extends React.Component {
   render() {
     const { user } = this.props;
     return (
       <Container colour="white">
-        <ProfileHeader {...user} />
+        <ProfileContainer>
+          <ProfileHeader {...user} />
+          <ProfileForm />
+        </ProfileContainer>
       </Container>
     );
   }

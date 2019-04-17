@@ -3,11 +3,8 @@ import styled from "styled-components";
 import Avatar from "../ui/avatar";
 
 const Container = styled.div`
-  background-color: white;
-  margin: 0 auto;
-  padding: 20px;
-  width: 500px;
   display: flex;
+  margin-bottom: 50px;
 `;
 
 const NameContainer = styled.div`
