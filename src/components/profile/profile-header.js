@@ -28,12 +28,12 @@ const Username = styled.h3`
 `;
 
 const ProfileHeader = props => {
-  const { displayName, username, initials } = props;
+  const { fullname, username, initials } = props;
   return (
     <Container>
       <Avatar colour="#2d7aba">{initials}</Avatar>
       <NameContainer>
-        <DisplayName>{displayName}</DisplayName>
+        <DisplayName>{fullname}</DisplayName>
         <Username>@{username}</Username>
       </NameContainer>
     </Container>

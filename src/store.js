@@ -5,6 +5,7 @@ import boards from "./reducers/boards";
 import lists from "./reducers/lists";
 import tasks from "./reducers/tasks";
 import app from "./reducers/app";
+import user from "./reducers/user";
 import visibilityMenu from "./reducers/visibility-menu";
 import { loadState, saveState } from "./data/local-storage";
 import throttle from "lodash/throttle";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   board,
   lists,
   tasks,
+  user,
   visibilityMenu
 });
 const store = createStore(

@@ -12,11 +12,6 @@ const initialState = {
   newListTitle: "",
   updatedBoardTitle: "",
   profileMenuVisible: false,
-  user: {
-    username: "srayner296",
-    displayName: "Steve Rayner",
-    initials: "S R"
-  },
   accessToken: null,
   refreshToken: null,
   verifyState: null
