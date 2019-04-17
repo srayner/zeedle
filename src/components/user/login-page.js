@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ui/error-message";
+import Container from "../ui/container";
 
 class LoginPage extends React.Component {
   state = { referer: null };
@@ -27,13 +28,15 @@ class LoginPage extends React.Component {
     }
     const flashMessage = this.renderFlashMessage();
     return (
-      <LoginContainer>
-        <h1>Login</h1>
-        {flashMessage}
-        <LoginForm submitCaption="Login" onSubmit={this.props.onSubmit} />
-        <p>Don't have an account?</p>
-        <Link to="/signup">Sign Up</Link>
-      </LoginContainer>
+      <Container colour="white">
+        <LoginContainer>
+          <h1>Login</h1>
+          {flashMessage}
+          <LoginForm submitCaption="Login" onSubmit={this.props.onSubmit} />
+          <p>Don't have an account?</p>
+          <Link to="/signup">Sign Up</Link>
+        </LoginContainer>
+      </Container>
     );
   }
 }
