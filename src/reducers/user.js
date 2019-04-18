@@ -7,7 +7,7 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case "USER_UPDATED": {
-      const { fullname, initials } = action.payload;
+      const { fullname, initials } = action.payload.user;
       return { ...state, fullname, initials };
     }
     default: {

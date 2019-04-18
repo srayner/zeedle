@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileHeader from "./profile-header";
 import { connect } from "react-redux";
+import { update } from "../../actions/user";
 import Container from "../ui/container";
 import ProfileContainer from "./profile-container";
 import ProfileForm from "./profile-form";
@@ -12,7 +13,7 @@ class Profile extends React.Component {
       <Container colour="white">
         <ProfileContainer>
           <ProfileHeader {...user} />
-          <ProfileForm />
+          <ProfileForm onSubmit={this.props.update} />
         </ProfileContainer>
       </Container>
     );
@@ -26,7 +27,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    update: user => dispatch(update(user))
+  };
 };
 
 export default connect(

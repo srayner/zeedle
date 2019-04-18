@@ -1,5 +1,12 @@
 import api from "../data/api";
 
+export function update(user) {
+  return {
+    type: "USER_UPDATED",
+    payload: { user }
+  };
+}
+
 export function verify(token) {
   return dispatch => {
     api
