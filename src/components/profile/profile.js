@@ -13,7 +13,7 @@ class Profile extends React.Component {
       <Container colour="white">
         <ProfileContainer>
           <ProfileHeader {...user} />
-          <ProfileForm onSubmit={this.props.update} />
+          <ProfileForm user={user} onSubmit={this.props.update} />
         </ProfileContainer>
       </Container>
     );
