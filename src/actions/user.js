@@ -1,6 +1,7 @@
 import api from "../data/api";
 
 export function update(user) {
+  api.updateUser(user);
   return {
     type: "USER_UPDATED",
     payload: { user }

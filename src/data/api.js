@@ -58,6 +58,10 @@ class Api {
     return axios.delete(this.baseUri + "/boards/" + boardId);
   }
 
+  updateUser(user) {
+    return axios.patch(this.baseUri + "/user", user);
+  }
+
   getTasks() {
     return axios.get(this.baseUri + "/tasks");
   }
