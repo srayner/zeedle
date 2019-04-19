@@ -5,10 +5,21 @@ import { update } from "../../actions/user";
 import Container from "../ui/container";
 import ProfileContainer from "./profile-container";
 import ProfileForm from "./profile-form";
+import { Redirect } from "react-router-dom";
 
 class Profile extends React.Component {
   render() {
-    const { user } = this.props;
+    const { token, user } = this.props;
+    if (!token) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { referrer: "/profile" }
+          }}
+        />
+      );
+    }
     return (
       <Container colour="white">
         <ProfileContainer>
@@ -22,6 +33,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    token: state.app.token,
     user: state.user
   };
 };
