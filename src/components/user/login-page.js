@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
 const mapStateToProps = state => {
   return {
     flashMessage: state.app.flashMessage,
-    token: state.app.token
+    token: state.user.token
   };
 };
 

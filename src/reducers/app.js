@@ -3,7 +3,6 @@ const initialState = {
   boardMenuVisible: false,
   editingTaskId: null,
   flashMessage: null,
-  token: null,
   addingBoard: false,
   deletingBoard: false,
   changingColour: false,
@@ -40,16 +39,12 @@ const app = (state = initialState, action) => {
     case "HIDE_BOARD_MENU": {
       return { ...state, boardMenuVisible: false };
     }
-    case "LOGIN": {
-      const { token } = action.payload;
-      return { ...state, token, flashMessage: null };
-    }
     case "LOGIN_FAILED": {
       const { flashMessage } = action.payload;
       return { ...state, flashMessage };
     }
     case "LOGOUT": {
-      return { ...state, token: null, profileMenuVisible: false };
+      return { ...state, profileMenuVisible: false };
     }
     case "SHOW_PROFILE_MENU": {
       return { ...state, profileMenuVisible: true };

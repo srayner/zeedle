@@ -74,7 +74,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.app.token
+    token: state.user.token
   };
 };
 

@@ -137,7 +137,7 @@ const mapStateToProps = state => {
     addingBoard: state.app.addingBoard,
     deletingBoard: state.app.deletingBoard,
     boards: state.boards,
-    token: state.app.token
+    token: state.user.token
   };
 };
 

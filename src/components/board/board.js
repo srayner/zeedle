@@ -90,7 +90,7 @@ const mapStateToProps = state => {
     deletingBoard: state.app.deletingBoard,
     changingColour: state.app.changingColour,
     changingBoardTitle: state.app.changingBoardTitle,
-    token: state.app.token
+    token: state.user.token
   };
 };
 

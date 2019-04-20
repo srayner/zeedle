@@ -46,7 +46,7 @@ const ProfileNavWithRouter = withRouter(ProfileNav);
 
 const mapStateToProps = state => {
   return {
-    token: state.app.token,
+    token: state.user.token,
     menuVisible: state.app.profileMenuVisible
   };
 };

@@ -11,10 +11,10 @@ export function login(data) {
     return api
       .login(data)
       .then(response => {
-        const token = response.data.token;
+        const user = response.data.user;
         return dispatch({
           type: "LOGIN",
-          payload: { token }
+          payload: { user }
         });
       })
       .catch(response => {
