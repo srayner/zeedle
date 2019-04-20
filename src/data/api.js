@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 
 axios.interceptors.request.use(function(config) {
-  const token = store.getState().app.token;
+  const token = store.getState().user.token;
   config.mode = "no-cors";
   config.headers.Accept = "application/json";
   if (token) {
