@@ -5,6 +5,7 @@ import Avatar from "../../components/ui/avatar";
 import profileMenuData from "../../data/profile-menu";
 import PopupMenu from "../ui/popup-menu";
 import { withRouter } from "react-router";
+import profileMenu from "../../data/profile-menu";
 
 class ProfileNav extends React.Component {
   menuClick = itemId => {
@@ -24,6 +25,8 @@ class ProfileNav extends React.Component {
   };
 
   componentDidMount() {
+    profileMenu.title =
+      this.props.user.fullname + " (" + this.props.user.username + ")";
     profileMenuData.onItemClick = this.props.onMenuItemClick;
     profileMenuData.onClose = this.props.hideMenu;
     profileMenuData.onItemClick = this.menuClick;
@@ -47,7 +50,8 @@ const ProfileNavWithRouter = withRouter(ProfileNav);
 const mapStateToProps = state => {
   return {
     token: state.user.token,
-    menuVisible: state.app.profileMenuVisible
+    menuVisible: state.app.profileMenuVisible,
+    user: state.user
   };
 };
 
