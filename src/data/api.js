@@ -1,8 +1,21 @@
 import axios from "axios";
 import store from "../store";
 
+function jwtIsExpired(jwt) {
+  const payload = JSON.parse(atob(jwt.split(".")[1]));
+  const expires = new Date(payload.exp * 1000);
+  const now = new Date();
+  return expires <= now;
+}
+
 axios.interceptors.request.use(function(config) {
   const token = store.getState().user.token;
+  const refreshToken = store.getState().user.refreshToken;
+  console.log("Access Token Expired: ", jwtIsExpired(token));
+  console.log("Refresh Token Expired: ", jwtIsExpired(refreshToken));
+  if (jwtIsExpired(refreshToken)) {
+    store.dispatch({ type: "LOGOUT" });
+  }
   config.mode = "no-cors";
   config.headers.Accept = "application/json";
   if (token) {
