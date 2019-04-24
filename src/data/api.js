@@ -11,9 +11,12 @@ function jwtIsExpired(jwt) {
 axios.interceptors.request.use(function(config) {
   const token = store.getState().user.token;
   const refreshToken = store.getState().user.refreshToken;
-  console.log("Access Token Expired: ", jwtIsExpired(token));
-  console.log("Refresh Token Expired: ", jwtIsExpired(refreshToken));
-  if (jwtIsExpired(refreshToken)) {
+  if (
+    !config.url.endsWith("/user/login") &&
+    !config.url.endsWith("/user/refresh") &&
+    refreshToken &&
+    jwtIsExpired(refreshToken)
+  ) {
     store.dispatch({ type: "LOGOUT" });
   }
   config.mode = "no-cors";
