@@ -74,6 +74,8 @@ class BoardTitle extends React.Component {
         this.props.startChangeBoardVisibility({ top, left });
         break;
       }
+      default: {
+      }
     }
   };
 

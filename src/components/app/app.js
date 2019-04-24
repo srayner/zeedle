@@ -3,7 +3,7 @@ import TitleBar from "./title-bar";
 import Board from "../board/board";
 import Home from "../home/home";
 import Boards from "../board/boards";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from "../user/login-page";
 import SignupPage from "../user/signup-page";
 import Profile from "../profile/profile";
