@@ -33,9 +33,11 @@ class ProfileNav extends React.Component {
   }
 
   render() {
-    const { menuVisible, token, showMenu } = this.props;
+    const { menuVisible, token, showMenu, user } = this.props;
     const menu = menuVisible ? <PopupMenu {...profileMenuData} /> : null;
-    const avatar = token ? <Avatar onClick={showMenu}>S R</Avatar> : null;
+    const avatar = token ? (
+      <Avatar onClick={showMenu}>{user.initials}</Avatar>
+    ) : null;
     return (
       <React.Fragment>
         {avatar}
