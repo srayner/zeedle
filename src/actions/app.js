@@ -7,6 +7,7 @@ export function signUp(data) {
 }
 
 export function login(data) {
+  console.log("login action");
   return dispatch => {
     return api
       .login(data)
@@ -17,7 +18,8 @@ export function login(data) {
           payload: { user }
         });
       })
-      .catch(response => {
+      .catch(error => {
+        console.log(error);
         return dispatch({
           type: "LOGIN_FAILED",
           payload: { flashMessage: "Invalid email or password." }
