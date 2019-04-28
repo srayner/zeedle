@@ -7,7 +7,6 @@ export function signUp(data) {
 }
 
 export function login(data) {
-  console.log("login action");
   return dispatch => {
     return api
       .login(data)
