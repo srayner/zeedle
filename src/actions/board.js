@@ -76,20 +76,26 @@ export function addListCancel() {
 }
 
 export function addListEnd(board, newListTitle) {
+  console.log("board", board);
   return dispatch => {
-    return api.addList(newListTitle).then(response => {
-      const newList = response.data;
-      newList.id = newList._id;
-      delete newList._id;
+    return api
+      .addList({
+        title: newListTitle,
+        boardId: board.id
+      })
+      .then(response => {
+        const newList = response.data;
+        newList.id = newList._id;
+        delete newList._id;
 
-      const updatedBoard = appendList(board, newList.id);
-      api.updateBoard(updatedBoard).then(response => {
-        return dispatch({
-          type: "ADD_LIST_END",
-          payload: newList
+        const updatedBoard = appendList(board, newList.id);
+        api.updateBoard(updatedBoard).then(response => {
+          return dispatch({
+            type: "ADD_LIST_END",
+            payload: newList
+          });
         });
       });
-    });
   };
 }
 

@@ -92,19 +92,24 @@ export function cancelAddTask(list) {
 
 export function endAddTask(list) {
   return dispatch => {
-    return api.addTask(list.newTaskContent).then(response => {
-      const newTask = response.data;
-      newTask.id = newTask._id;
-      delete newTask._id;
+    return api
+      .addTask({
+        title: list.newTaskContent,
+        boardId: list.boardId
+      })
+      .then(response => {
+        const newTask = response.data;
+        newTask.id = newTask._id;
+        delete newTask._id;
 
-      const updatedList = appendTask(list, newTask.id);
-      api.updateList(updatedList).then(() => {
-        return dispatch({
-          type: "ADD_TASK_END",
-          payload: { list, newTask }
+        const updatedList = appendTask(list, newTask.id);
+        api.updateList(updatedList).then(() => {
+          return dispatch({
+            type: "ADD_TASK_END",
+            payload: { list, newTask }
+          });
         });
       });
-    });
   };
 }
 

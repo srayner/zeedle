@@ -89,10 +89,8 @@ class Api {
     });
   }
 
-  addTask(title) {
-    return axios.post(this.baseUri + "/tasks", {
-      title: title
-    });
+  addTask({ title, boardId }) {
+    return axios.post(this.baseUri + "/tasks", { title, boardId });
   }
 
   deleteTask(id) {
@@ -112,11 +110,9 @@ class Api {
     return axios.patch(this.baseUri + "/lists/" + list.id, data);
   }
 
-  addList(title) {
-    return axios.post(this.baseUri + "/lists", {
-      title: title,
-      taskIds: []
-    });
+  addList({ title, boardId }) {
+    console.log(title, boardId);
+    return axios.post(this.baseUri + "/lists", { title, boardId, taskIds: [] });
   }
 
   deleteList(id) {
