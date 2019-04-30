@@ -33,7 +33,7 @@ function loadBoardsEnd(response) {
 }
 
 async function getBoardData(boardId) {
-  const tasks = await api.getTasks();
+  const tasks = await api.getTasks(boardId);
   const lists = await api.getLists(boardId);
   const board = await api.getBoard(boardId);
   return {

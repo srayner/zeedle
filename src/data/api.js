@@ -79,7 +79,7 @@ class Api {
   }
 
   getTasks() {
-    return axios.get(this.baseUri + "/tasks");
+    return axios.get(this.baseUri + "/tasks?boardId=" + boardId);
   }
 
   updateTask(task) {
