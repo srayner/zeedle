@@ -78,7 +78,7 @@ class Api {
     return axios.patch(this.baseUri + "/user", user);
   }
 
-  getTasks() {
+  getTasks(boardId) {
     return axios.get(this.baseUri + "/tasks?boardId=" + boardId);
   }
 
