@@ -17,10 +17,6 @@ import ChangeTitlePopup from "./change-title-popup";
 import { Redirect } from "react-router-dom";
 
 class Board extends React.Component {
-  state = {
-    dirty: true
-  };
-
   changeColour = newColour => {
     this.props.endChangeColour(this.props.board, newColour);
   };
@@ -31,14 +27,11 @@ class Board extends React.Component {
   };
 
   componentDidMount() {
-    console.log("Dirty:", this.state.dirty);
     const { boardId } = this.props.match.params;
     this.props.loadData(boardId);
-    this.setState({ dirty: false });
   }
 
   render() {
-    console.log("render is dirty:", this.state.dirty);
     const { token } = this.props;
     if (!token) {
       return (
@@ -50,6 +43,8 @@ class Board extends React.Component {
         />
       );
     }
+    const { boardId } = this.props.match.params;
+    const boardBody = boardId === this.props.board.id ? <BoardBody /> : null;
     let modal = null;
     if (this.props.deletingBoard) {
       modal = (
@@ -84,7 +79,7 @@ class Board extends React.Component {
             this.props.startChangeBoardTitle(this.props.board.title)
           }
         />
-        <BoardBody />
+        {boardBody}
         {modal}
       </Container>
     );
