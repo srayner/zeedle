@@ -44,7 +44,7 @@ const app = (state = initialState, action) => {
       return { ...state, flashMessage };
     }
     case "LOGOUT": {
-      return { ...state, profileMenuVisible: false };
+      return { ...state, flashMessage: null, profileMenuVisible: false };
     }
     case "SHOW_PROFILE_MENU": {
       return { ...state, profileMenuVisible: true };
