@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../ui/button";
+import { TransparentButton } from "../ui/button";
 import {
   faEllipsisH,
   faStar as faSolidStar
@@ -116,13 +116,13 @@ class BoardTitle extends React.Component {
             onItemClick={this.buttonMenuItemClick}
           />
         </MenuContainer>
-        <Button
+        <TransparentButton
           onClick={() => {
             showBoardMenu();
           }}
         >
           <FontAwesomeIcon icon={faEllipsisH} /> Show Menu
-        </Button>
+        </TransparentButton>
         {popup}
       </Container>
     );
