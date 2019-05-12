@@ -22,6 +22,9 @@ export const TransparentButton = styled(Button)`
   border-color: transparent;
   color: white;
   padding: 8px;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
   }
