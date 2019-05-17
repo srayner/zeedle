@@ -30,12 +30,20 @@ const ButtonContainer = styled.div`
 `;
 
 class NewTask extends React.Component {
+  textInput = React.createRef();
+
+  componentDidMount() {
+    this.textInput.focus();
+  }
   render() {
     const list = this.props.list;
     return (
       <Container>
         <TextArea
           rows="2"
+          innerRef={x => {
+            this.textInput = x;
+          }}
           placeholder="Enter a title for this task..."
           onChange={event => {
             this.props.onChange(list, event.target.value);
