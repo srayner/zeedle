@@ -31,7 +31,7 @@ const app = (state = initialState, action) => {
       return { ...state, newListTitle: action.payload };
     case "ADD_LIST_END":
     case "ADD_LIST_CANCEL": {
-      return { ...state, addingList: false };
+      return { ...state, addingList: false, newListTitle: "" };
     }
     case "SHOW_BOARD_MENU": {
       return { ...state, boardMenuVisible: true };
