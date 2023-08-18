@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import board from "./reducers/board";
 import boards from "./reducers/boards";
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   lists,
   tasks,
   user,
-  visibilityMenu
+  visibilityMenu,
 });
 const store = createStore(
   rootReducer,
